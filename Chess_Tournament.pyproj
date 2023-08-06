@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>dffba0ba-9632-4fec-9472-ad58ce08fac8</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Chess_Tournament.py</StartupFile>
+    <StartupFile>main.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -21,7 +21,16 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Chess_Tournament.py" />
+    <Compile Include="main.py" />
+    <Compile Include="models\match.py" />
+    <Compile Include="models\player.py" />
+    <Compile Include="models\round.py" />
+    <Compile Include="models\tournament.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="models\" />
+    <Folder Include="controllers\" />
+    <Folder Include="views\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
