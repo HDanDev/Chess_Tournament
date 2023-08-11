@@ -1,8 +1,15 @@
+from enum import Enum
+
+class MatchResult(Enum):
+    WIN = "win"
+    LOSE = "lose"
+    DRAW = "draw"
+
 class Match:
-    def __init__(self, player1, player2, score=None):
+    def __init__(self, player1, player2, result=None):
         self._player1 = player1
         self._player2 = player2
-        self._score = score
+        self._result = result
 
     @property
     def player1(self):
@@ -21,12 +28,9 @@ class Match:
         self._player2 = value
 
     @property
-    def score(self):
-        return self._score
+    def result(self):
+        return self._result
 
-    @score.setter
-    def score(self, value):
-        if value is None or 0 <= value <= 1:
-            self._score = value
-        else:
-            raise ValueError("Invalid score. Must be None or a value between 0 and 1.")
+    @result.setter
+    def result(self, value):
+        self._result = value

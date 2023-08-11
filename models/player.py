@@ -1,12 +1,12 @@
+import re 
+
 class Player:
     def __init__(self, last_name, first_name, date_of_birth, chess_id):
         self._last_name = last_name
         self._first_name = first_name
         self._date_of_birth = date_of_birth
         self._chess_id = chess_id
-
-    def get_full_name(self):
-        return f"{self._first_name} {self._last_name}"
+        self._points = 0
 
     @property
     def last_name(self):
@@ -38,4 +38,22 @@ class Player:
 
     @chess_id.setter
     def chess_id(self, value):
-        self._chess_id = value
+        try:
+            if re.match(r'^[A-Za-z]{2}\d{5}$', value):
+                self._chess_id = value
+            else:
+                raise ValueError("The chess ID should match the two letters followed by five numbers mandatory format.")
+        except ValueError as e:
+            print(e)
+            
+    @property
+    def points(self):
+        return self.points
+
+    @points.setter
+    def points(self, value):
+        self._points = value
+
+    def get_full_name(self):
+        return f"{self._first_name} {self._last_name} ({self._chess_id})"
+        

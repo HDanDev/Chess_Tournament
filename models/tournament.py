@@ -1,5 +1,5 @@
 class Tournament:
-    def __init__(self, name, location, start_date, end_date, num_rounds=4):
+    def __init__(self, name, location, start_date, end_date, num_rounds=4, remarks=""):
         self._name = name
         self._location = location
         self._start_date = start_date
@@ -8,7 +8,7 @@ class Tournament:
         self._current_round = 1
         self._rounds = []
         self._registered_players = []
-        self._infos = ""
+        self._remarks = remarks
 
     @property
     def name(self):
@@ -78,9 +78,9 @@ class Tournament:
         self._registered_players = value
 
     @property
-    def infos(self):
-        return self._infos
+    def remarks(self):
+        return self._remarks
 
-    @infos.setter
-    def infos(self, value):
-        self._infos = value
+    @remarks.setter
+    def remarks(self, value):
+        self._remarks = value
