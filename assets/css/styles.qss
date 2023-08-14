@@ -1,0 +1,39 @@
+QMainWindow {
+    background-color: rgba(255, 198, 219, 1);
+}
+
+QPushButton {
+    color: white;
+    background-color: #df6f97;
+    border: none;
+    padding: 10px;
+}
+
+QPushButton:hover {
+    background-color: rgba(255, 198, 219, 1);
+    border: none;
+}
+
+QMenuBar::item {
+    padding: 10px 10px;
+    background-color: white;
+    text-align: center;
+}
+
+QMenuBar::item:selected {
+    background-color: #df6f97;
+}
+
+#title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#img {
+    max-width: 150px;
+    max-height: 150px;
+}
+
+/* QLabel {
+    font-size: 24px;
+} */
