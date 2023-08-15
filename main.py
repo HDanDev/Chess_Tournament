@@ -5,7 +5,7 @@ from controllers.home_controller import HomeController
 def main():
     app = QApplication(sys.argv)
     home_controller = HomeController()
-    home_controller.show_view()
+    home_controller._show_view()
     sys.exit(app.exec_())
 
 if __name__ == "__main__":

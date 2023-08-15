@@ -5,21 +5,21 @@ class HomeController(BaseController):
     def __init__(self):
         super().__init__(HomeView)
 
-    def handle_button_click(self, button_text):
+    def _handle_button_click(self, button_text):
         if button_text == "Create":
-            self.handle_create_button()
+            self._handle_create_button()
         elif button_text == "Create2":
-            self.handle_create2_button()
+            self._handle_create2_button()
         elif button_text == "Read":
-            self.handle_read_button()
+            self._handle_read_button()
         elif button_text == "Exit":
             self.view.close()
 
-    def handle_create_button(self):
-        print("Create button clicked")
+    def _handle_create_button(self):
+        self._get_input_data()
 
-    def handle_create2_button(self):
+    def _handle_create2_button(self):
         print("Create2 button clicked")
 
-    def handle_read_button(self):
+    def _handle_read_button(self):
         print("Read button clicked")

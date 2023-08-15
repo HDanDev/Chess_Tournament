@@ -30,8 +30,8 @@ QMenuBar::item:selected {
 }
 
 #img {
-    max-width: 150px;
-    max-height: 150px;
+    max-width: 236px;
+    max-height: 195px;
 }
 
 /* QLabel {
