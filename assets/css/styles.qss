@@ -1,17 +1,45 @@
+QLabel {
+    font-family: "Comfortaa";
+    font-size: 14px;
+}
+
 QMainWindow {
     background-color: rgba(255, 198, 219, 1);
-}
+    font-family: "Comfortaa";
+    font-size: 14px;}
 
 QPushButton {
     color: white;
     background-color: #df6f97;
     border: none;
     padding: 10px;
+    margin-right: 8px;
 }
 
 QPushButton:hover {
     background-color: rgba(255, 198, 219, 1);
     border: none;
+}
+
+QPushButton#home-btn {
+    background-color: #df6f97;
+    border-radius: 16px;
+    padding: 10px;
+    width: 12px;
+    height: 12px;
+}
+
+QPushButton#home-btn:hover {
+    background-color: rgba(255, 198, 219, 1);
+}
+
+QPushButton#home-btn:pressed {
+    background-color: #df6f97;
+}
+
+QMenuBar {
+    font-family: "Comfortaa";
+    font-size: 14px;
 }
 
 QMenuBar::item {
@@ -34,6 +62,8 @@ QMenuBar::item:selected {
     max-height: 195px;
 }
 
-/* QLabel {
-    font-size: 24px;
-} */
+#player-menu, 
+#tournament-menu {
+    font-family: "Comfortaa";
+    font-size: 12px;
+}

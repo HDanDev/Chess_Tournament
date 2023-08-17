@@ -1,24 +1,33 @@
-from .base_view import BaseView
-from controllers.tournament_controller import TournamentController
+from PySide6.QtCore import Qt
+from PySide6.QtWidgets import QLabel, QPushButton, QVBoxLayout, QWidget, QHBoxLayout
+from PySide6.QtGui import QPixmap
 
-class HomeView(BaseView):
-    def __init__(self, controller):
-        super().__init__(controller)
-        self._add_input_field(self._content_layout)
-        self._setup_buttons(self._content_layout)
-        self._set_img(self.main_img_layout)
-        self._page_change("Home","Welcome to Chess Manager","Welcome to your personal chess tournament manager")
+class HomeView(QWidget):
+    def __init__(self, main_app):
+        super().__init__()
 
-    def create_new_tournament(self):
-        self.clear_layout(layout=self.main_img_layout)
-        self.clear_layout(layout=self._content_layout)
-        tournament_controller = TournamentController()        
-        tournament_controller.view._page_change(name="nouyveau titre", title="nouveau test", content="nouveau contenu")        
-        tournament_controller.view._add_input_field(self._content_layout)
-        tournament_controller.view._setup_buttons(self._content_layout)
+        self.main_app = main_app
         
-        ### Popup a new window ###
-        # tournament_controller = TournamentController()
-        # tournament_controller._show_view()
+        layout = QVBoxLayout()
+        layout.setAlignment(Qt.AlignCenter)
         
-            
+        img_label = QLabel(self)
+        img_label.setObjectName("img")
+        pixmap = QPixmap("./assets/img/chess_img.png")
+        img_label.setPixmap(pixmap)
+        image_layout = QHBoxLayout()
+        img_label.setScaledContents(True)
+        image_layout.addWidget(img_label, alignment=Qt.AlignCenter)  # Center the content horizontally
+        layout.addLayout(image_layout)
+        layout.addSpacing(20)
+        
+        text_label = QLabel("Lorem ipsum dolor sit amet, consectetur adipiscing elit. "
+                            "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
+        text_label.setObjectName("home-text")
+        text_label.setAlignment(Qt.AlignCenter)  # Center the content horizontally
+        text_label.setWordWrap(True)  # Enable word wrapping for the text
+        text_layout = QHBoxLayout()
+        text_layout.addWidget(text_label, alignment=Qt.AlignCenter)  # Center the content horizontally
+        layout.addLayout(text_layout)
+        
+        self.setLayout(layout)

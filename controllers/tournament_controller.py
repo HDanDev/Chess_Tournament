@@ -1,31 +1,33 @@
-from . import BaseController
-from views.tournament_create_view import TournamentCreateView
+from PySide6.QtWidgets import QTableWidgetItem, QHeaderView
+from repositories.tournament_repository import TournamentRepository
 from models.match import MatchResult
 import random 
 from datetime import datetime
 
-class TournamentController(BaseController):
-    def __init__(self):
-        super().__init__(TournamentCreateView)      
+class TournamentController:
+    
+    def __init__(self, main_app, user_data={}):
+        self.main_app = main_app
+        self.user_data = user_data
+        self.data_repository = TournamentRepository()
+        
+    def setup_view(self, view):
+        self.view = view
+        self.view.populate_table(self.user_data)
+        self.view.table.horizontalHeader().setStretchLastSection(True)
+        self.view.table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
 
-    def _handle_button_click(self, button_text):
-        if button_text == "Create":
-            self._handle_create_button()
-        elif button_text == "Create2":
-            self._handle_create2_button()
-        elif button_text == "Read":
-            self._handle_read_button()
-        elif button_text == "Exit":
-            self.view.close()
+    def save_changes(self):
+        for row in range(self.view.table.rowCount()):
+            username_item = self.view.table.item(row, 0)
+            password_item = self.view.table.item(row, 1)
+            if username_item and password_item:
+                username = username_item.text()
+                password = password_item.text()
+                self.user_data[row]["username"] = username
+                self.user_data[row]["password"] = password
 
-    def _handle_create_button(self):
-        self._get_input_data()
-
-    def _handle_create2_button(self):
-        print("Create2 button clicked")
-
-    def _handle_read_button(self):
-        print("Read button clicked")
+        self.data_repository._write_data_to_file(self.user_data)
         
     def add_player(self, player):
         try:
