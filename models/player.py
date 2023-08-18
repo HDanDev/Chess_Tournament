@@ -1,4 +1,8 @@
 import re 
+from repositories.player_repository import PlayerRepository
+
+class IDAlreadyAssignedError(Exception):
+    pass
 
 class Player:
     def __init__(self, last_name, first_name, date_of_birth, chess_id):
@@ -7,6 +11,13 @@ class Player:
         self._date_of_birth = date_of_birth
         self._chess_id = chess_id
         self._points = 0
+        
+    def _load_assigned_ids(self):
+        player_repo = PlayerRepository()
+        self.__assigned_ids = set(player_repo.get_assigned_ids())
+        
+    def _is_id_assigned(self, new_id):
+        return new_id in self.__assigned_ids
 
     @property
     def last_name(self):
@@ -39,11 +50,17 @@ class Player:
     @chess_id.setter
     def chess_id(self, value):
         try:
-            if re.match(r'^[A-Za-z]{2}\d{5}$', value):
-                self._chess_id = value
-            else:
+            self._load_assigned_ids()
+
+            if self._is_id_assigned(value):
+                raise IDAlreadyAssignedError(f"This chess ID ({value}) is already assigned to a player.")
+
+            if not re.match(r'^[A-Za-z]{2}\d{5}$', value):
                 raise ValueError("The chess ID should match the two letters followed by five numbers mandatory format.")
-        except ValueError as e:
+
+            self._chess_id = value
+
+        except (IDAlreadyAssignedError, ValueError) as e:
             print(e)
             
     @property

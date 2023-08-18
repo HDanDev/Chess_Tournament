@@ -1,6 +1,7 @@
 from PySide6.QtWidgets import QMainWindow, QVBoxLayout, QWidget, QLabel, QHBoxLayout, QMenu, QMenuBar, QPushButton, QWidgetAction, QToolBar, QApplication
 from PySide6.QtCore import Qt, QFile
 from PySide6.QtGui import QPixmap, QIcon, QAction
+from views.partials.nav import Nav
 
 class BaseView(QMainWindow):
     
@@ -8,10 +9,10 @@ class BaseView(QMainWindow):
     APP_LOGO = "./assets/img/chess_logo.png"
     CHESS_IMG = "./assets/img/chess_img.png"
     
-    def __init__(self, main_app, qapp):
+    def __init__(self, qapp):
         super().__init__()
+        self.nav = Nav(self)
 
-        self.app = main_app
         self.qapp = qapp
         
         self.setGeometry(500, 200, 960, 540) 
@@ -63,8 +64,8 @@ class BaseView(QMainWindow):
 
         switch_to_tournament_creation = QAction("Create", self)
         switch_to_tournament_read = QAction("View", self)
-        switch_to_tournament_creation.triggered.connect(self.app.switch_to_tournament_creation)
-        switch_to_tournament_read.triggered.connect(self.app.switch_to_tournament_read)
+        switch_to_tournament_creation.triggered.connect(self.nav.switch_to_tournament_creation)
+        switch_to_tournament_read.triggered.connect(self.nav.switch_to_tournament_read)
         tournament_menu.addAction(switch_to_tournament_creation)
         tournament_menu.addAction(switch_to_tournament_read)
 
@@ -73,14 +74,14 @@ class BaseView(QMainWindow):
 
         switch_to_player_creation = QAction("Create", self)
         switch_to_player_read = QAction("View", self)
-        switch_to_player_creation.triggered.connect(self.app.switch_to_player_creation)
-        switch_to_player_read.triggered.connect(self.app.switch_to_player_read)
+        switch_to_player_creation.triggered.connect(self.nav.switch_to_player_creation)
+        switch_to_player_read.triggered.connect(self.nav.switch_to_player_read)
         player_menu.addAction(switch_to_player_creation)
         player_menu.addAction(switch_to_player_read)        
  
         switch_to_home = QPushButton(self)
         switch_to_home.setIcon(QIcon(self.HOME_ICON))
-        switch_to_home.clicked.connect(self.app.switch_to_home)
+        switch_to_home.clicked.connect(self.nav.switch_to_home)
         switch_to_home.setObjectName("home-btn")
 
         menubar.setCornerWidget(switch_to_home, corner=Qt.TopRightCorner)

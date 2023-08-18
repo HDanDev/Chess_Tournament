@@ -1,8 +1,10 @@
 from . import BaseRepository
 
 class PlayerRepository(BaseRepository):
-    def __init__(self, file_path):
-        super().__init__(file_path)
+    PLAYERS_JSON_FILE_PATH = './data/players/players_data.json'
+    
+    def __init__(self, PLAYERS_JSON_FILE_PATH):
+        super().__init__(PLAYERS_JSON_FILE_PATH)
         
     def add(self, player):
         self.data.append({
@@ -19,3 +21,8 @@ class PlayerRepository(BaseRepository):
                 existing_player["points"] = player.points
                 self.save_data()
                 break
+            
+    def get_assigned_ids(self):
+        data = self._read_data_from_file()
+        return [item['id'] for item in data]
+        

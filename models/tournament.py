@@ -67,7 +67,7 @@ class Tournament:
 
     @rounds.setter
     def rounds(self, value):
-        self._rounds = value
+        if value: self._rounds = value
 
     @property
     def registered_players(self):
@@ -83,4 +83,4 @@ class Tournament:
 
     @remarks.setter
     def remarks(self, value):
-        self._remarks = value
+        if value: self._remarks = value
