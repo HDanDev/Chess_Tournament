@@ -38,4 +38,4 @@ class TournamentCreationView(QWidget):
             remarks=self.remarks.input.toPlainText()
         )
         
-        self.nav.switch_to_home()
+        self.nav.switch_to_tournament_manager(new_tournament)

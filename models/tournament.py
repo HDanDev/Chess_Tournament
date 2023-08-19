@@ -1,5 +1,9 @@
+from PySide6.QtCore import Qt, QDateTime
+import uuid
+
 class Tournament:
-    def __init__(self, name, location, start_date, end_date, num_rounds=4, remarks=""):
+    def __init__(self, name, location, start_date, end_date, id="",num_rounds=4, remarks=""):
+        self._id = id if id != "" else str(uuid.uuid4())
         self._name = name
         self._location = location
         self._start_date = start_date
@@ -10,6 +14,37 @@ class Tournament:
         self._registered_players = []
         self._remarks = remarks
 
+    def serialize_tournament(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "location": self.location,
+            "start_date": self.start_date.toString(Qt.ISODate), 
+            "end_date": self.end_date.toString(Qt.ISODate), 
+            "num_rounds": self.num_rounds,
+            "remarks": self.remarks
+        }
+        
+    @staticmethod    
+    def deserialize_tournament(data):
+        return Tournament(
+            id=data["id"],
+            name=data["name"],
+            location=data["location"],
+            start_date=QDateTime.fromString(data["start_date"], Qt.ISODate),
+            end_date=QDateTime.fromString(data["end_date"], Qt.ISODate),
+            num_rounds=data["num_rounds"],
+            remarks=data["remarks"]
+        )
+
+    @property
+    def id(self):
+        return self._id
+    
+    @id.setter
+    def id(self, value):
+        self._id = value
+    
     @property
     def name(self):
         return self._name
@@ -17,6 +52,7 @@ class Tournament:
     @name.setter
     def name(self, value):
         self._name = value
+ 
     
     @property
     def location(self):

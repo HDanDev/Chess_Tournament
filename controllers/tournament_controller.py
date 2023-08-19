@@ -1,33 +1,30 @@
 from PySide6.QtWidgets import QTableWidgetItem, QHeaderView
+from PySide6.QtCore import QDateTime 
 from repositories.tournament_repository import TournamentRepository
 from models.match import MatchResult
+from models.tournament import Tournament
 import random 
 from datetime import datetime
 
 class TournamentController:
     
-    def __init__(self, main_app, user_data={}):
-        self.main_app = main_app
-        self.user_data = user_data
+    def __init__(self, nav, tournament_data={}):
+        self.nav = nav
+        self.tournament_data = tournament_data
         self.data_repository = TournamentRepository()
+        self.tournament_model = Tournament
         
     def setup_view(self, view):
         self.view = view
-        self.view.populate_table(self.user_data)
+        self.view.populate_table(self.tournament_data)
         self.view.table.horizontalHeader().setStretchLastSection(True)
         self.view.table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
 
-    def save_changes(self):
-        for row in range(self.view.table.rowCount()):
-            username_item = self.view.table.item(row, 0)
-            password_item = self.view.table.item(row, 1)
-            if username_item and password_item:
-                username = username_item.text()
-                password = password_item.text()
-                self.user_data[row]["username"] = username
-                self.user_data[row]["password"] = password
-
-        self.data_repository._write_data_to_file(self.user_data)
+    def save_changes(self, tournament):
+        self.data_repository._update_json(tournament)
+        
+    def save_new_item(self, tournament):
+        self.data_repository._add_json(tournament)
         
     def add_player(self, player):
         try:
