@@ -21,7 +21,7 @@ class Tournament:
             "location": self.location,
             "start_date": self.start_date.toString(Qt.ISODate), 
             "end_date": self.end_date.toString(Qt.ISODate), 
-            "num_rounds": self.num_rounds,
+            "num_rounds": int(self.num_rounds),
             "remarks": self.remarks
         }
         

@@ -19,10 +19,10 @@ class Nav:
         self._base_view.switch_view(tournament_creation_view, "Chess Manager - Tournament creation")
         
     def switch_to_tournament_read(self):
-        tournament_controller = TournamentController(self)
-        tournament_data = tournament_controller.data_repository._read_data_from_file()
+        # tournament_controller = TournamentController(self)
+        # tournament_data = tournament_controller.data_repository._read_data_from_file()
 
-        tournament_read_view = TournamentReadView(self, tournament_data)
+        tournament_read_view = TournamentReadView(self)
         self._base_view.switch_view(tournament_read_view, "Chess Manager - Tournament view")
         
     def switch_to_tournament_manager(self, tournament):

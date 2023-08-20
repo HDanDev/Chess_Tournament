@@ -9,7 +9,7 @@ class IntDelegate(QItemDelegate):
         return editor
 
     def setEditorData(self, editor, index):
-        int_value = index.data(Qt.EditRole)
+        int_value = int(index.data(Qt.EditRole))
         editor.setValue(int_value)
 
     def setModelData(self, editor, model, index):

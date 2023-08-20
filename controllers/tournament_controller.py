@@ -16,9 +16,12 @@ class TournamentController:
         
     def setup_view(self, view):
         self.view = view
-        self.view.populate_table(self.tournament_data)
+        self.view.populate_table()
         self.view.table.horizontalHeader().setStretchLastSection(True)
         self.view.table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        
+    def get_tournament_data(self):
+        return self.data_repository._read_json()
 
     def save_changes(self, tournament):
         self.data_repository._update_json(tournament)
