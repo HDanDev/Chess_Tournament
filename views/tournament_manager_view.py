@@ -142,7 +142,6 @@ class TournamentManagerView(QWidget):
         self.selected_players_table.deleteLater()
         self.selected_players_table = None
         self.save_players_button.setVisible(False)
-        self.save_players_button.setVisible(False)
         
     def save_selected_players(self):
         selected_players = []
@@ -154,6 +153,7 @@ class TournamentManagerView(QWidget):
                     selected_players.append(player_item.text())
         
         print("Selected Players:", selected_players)
+        self.save_players_button.setVisible(False)
         
     def checkbox_state_changed(self, state):
         self.save_players_button.setVisible(True)

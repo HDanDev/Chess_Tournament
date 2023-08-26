@@ -1,23 +1,13 @@
 import re 
-from repositories.player_repository import PlayerRepository
-
-class IDAlreadyAssignedError(Exception):
-    pass
+import json
 
 class Player:
-    def __init__(self, last_name, first_name, date_of_birth, chess_id):
+    def __init__(self, last_name="", first_name="", date_of_birth="", chess_id=""):
         self._last_name = last_name
         self._first_name = first_name
         self._date_of_birth = date_of_birth
         self._chess_id = chess_id
         self._points = 0
-        
-    def _load_assigned_ids(self):
-        player_repo = PlayerRepository()
-        self.__assigned_ids = set(player_repo.get_assigned_ids())
-        
-    def _is_id_assigned(self, new_id):
-        return new_id in self.__assigned_ids
 
     @property
     def last_name(self):
@@ -49,23 +39,15 @@ class Player:
 
     @chess_id.setter
     def chess_id(self, value):
-        try:
-            self._load_assigned_ids()
+        print(value)
+        if not re.match(r'^[A-Za-z]{2}\d{5}$', value):
+            raise ValueError("The chess ID should match the two letters followed by five numbers mandatory format.")
 
-            if self._is_id_assigned(value):
-                raise IDAlreadyAssignedError(f"This chess ID ({value}) is already assigned to a player.")
-
-            if not re.match(r'^[A-Za-z]{2}\d{5}$', value):
-                raise ValueError("The chess ID should match the two letters followed by five numbers mandatory format.")
-
-            self._chess_id = value
-
-        except (IDAlreadyAssignedError, ValueError) as e:
-            print(e)
+        self._chess_id = value.upper()
             
     @property
     def points(self):
-        return self.points
+        return self._points
 
     @points.setter
     def points(self, value):
@@ -73,4 +55,3 @@ class Player:
 
     def get_full_name(self):
         return f"{self._first_name} {self._last_name} ({self._chess_id})"
-        
