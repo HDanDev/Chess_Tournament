@@ -1,26 +1,32 @@
 [
     {
-        "first_name": "ertgsgqg",
-        "last_name": "ete",
-        "date_of_birth": "2023-08-26T17:53:01",
+        "first_name": "Mickael",
+        "last_name": "Brandt",
+        "date_of_birth": "1876-09-01",
         "chess_id": "ED12345"
     },
     {
         "first_name": "gdrgsd",
         "last_name": "gdgrg",
-        "date_of_birth": "2023-08-26T17:54:16",
+        "date_of_birth": "2023-08-26",
         "chess_id": "VX12345"
     },
     {
         "first_name": "rhthtf",
         "last_name": "dhtfdhdtffh",
-        "date_of_birth": "2023-08-27T00:30:42",
+        "date_of_birth": "2023-08-27",
         "chess_id": "OS12345"
     },
     {
         "first_name": "efesfqs",
         "last_name": "fqsefefqsef",
-        "date_of_birth": "2023-08-27T01:16:18",
+        "date_of_birth": "2023-08-27",
         "chess_id": "RE12345"
+    },
+    {
+        "first_name": "Pope",
+        "last_name": "Juh",
+        "date_of_birth": "1986-08-12",
+        "chess_id": "PO12345"
     }
 ]

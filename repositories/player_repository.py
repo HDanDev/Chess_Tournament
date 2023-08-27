@@ -1,5 +1,5 @@
 from . import BaseRepository
-from PySide6.QtCore import Qt, QDateTime
+from PySide6.QtCore import Qt, QDate
 from models.player import Player
 import json
 
@@ -37,7 +37,7 @@ class PlayerRepository(BaseRepository):
             data = self._read_json()
 
             for i, item in enumerate(data):
-                if item.id == player.id:
+                if item.chess_id == player.chess_id:
                     data[i] = player
                     break
 
@@ -91,7 +91,7 @@ class PlayerRepository(BaseRepository):
         
         player.first_name = data["first_name"]
         player.last_name = data["last_name"]
-        player.date_of_birth = QDateTime.fromString(data["date_of_birth"], Qt.ISODate)
+        player.date_of_birth = QDate.fromString(data["date_of_birth"], Qt.ISODate)
         player.chess_id = data["chess_id"]        
 
         return player

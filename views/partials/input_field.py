@@ -1,10 +1,11 @@
-from PySide6.QtWidgets import QWidget, QLabel, QLineEdit, QVBoxLayout, QDateTimeEdit, QTextEdit, QComboBox
-from PySide6.QtCore import QDateTime
+from PySide6.QtWidgets import QWidget, QLabel, QLineEdit, QVBoxLayout, QDateTimeEdit, QTextEdit, QComboBox, QDateEdit
+from PySide6.QtCore import QDateTime, QDate, QTime
 from PySide6.QtGui import QIntValidator
 
 class FormType:
     Normal = "normal"
     Numerical = "numerical"
+    DateTime = "date_time"
     Date = "date"
     LongText = "text"
     Combo = "combo"
@@ -35,10 +36,21 @@ class InputField(QWidget):
             input.setValidator(QIntValidator())
             input.setPlaceholderText(self._placeholder)
             return input
-        elif form_type == FormType.Date:
+        elif form_type == FormType.DateTime:
             input = QDateTimeEdit()
+            min_datetime = QDateTime.currentDateTime()
+            max_datetime = QDateTime.currentDateTime().addYears(15)
+            input.setDateTimeRange(min_datetime, max_datetime)
             input.setDisplayFormat("yyyy-MM-dd HH:mm:ss")
-            input.setDateTime(QDateTime.currentDateTime())
+            input.setDateTime(min_datetime)
+            return input
+        elif form_type == FormType.Date:
+            age_limit = QDate.currentDate().addYears(-10)
+            input = QDateEdit()
+            input.setDisplayFormat("yyyy-MM-dd")
+            input.setCalendarPopup(True)
+            input.setDateRange(QDate(1900, 1, 1), age_limit)
+            input.setDate(QDate(2000, 1, 1))
             return input
         elif form_type == FormType.LongText:
             input = QTextEdit()

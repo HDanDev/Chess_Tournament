@@ -31,7 +31,7 @@ class PlayerCreationView(QWidget):
         
         new_player.first_name=self.first_name.input.text()
         new_player.last_name=self.last_name.input.text()
-        new_player.date_of_birth=self.date_of_birth.input.dateTime()
+        new_player.date_of_birth=self.date_of_birth.input.date()
         new_player.chess_id=self.chess_id.input.text()
         
         try:
@@ -39,4 +39,4 @@ class PlayerCreationView(QWidget):
         except ValueError as e:
             print("Error:", e)
         else: 
-            print(f"Successfully added player {new_player.get_full_name()} {new_player.date_of_birth}")
+            print(f"Successfully added player {new_player.get_full_name()}")
