@@ -1,5 +1,5 @@
 class Round:
-    def __init__(self, name, start_datetime=None, end_datetime=None):
+    def __init__(self, name="", start_datetime=None, end_datetime=None):
         self._name = name
         self._start_datetime = start_datetime
         self._end_datetime = end_datetime

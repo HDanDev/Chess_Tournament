@@ -26,7 +26,7 @@ class PlayerController:
         
     def save_new_item(self, player):
         self.data_repository._add_json(player)
-        
+            
     # def add_player(self, player):
     #     try:
     #         self.registered_players.append(player)

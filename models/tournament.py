@@ -2,14 +2,14 @@ from PySide6.QtCore import Qt, QDateTime
 import uuid
 
 class Tournament:
-    def __init__(self, name, location, start_date, end_date, id="",num_rounds=4, remarks=""):
+    def __init__(self, name, location, start_date, end_date, id="",num_rounds=4, current_round=1, remarks=""):
         self._id = id if id != "" else str(uuid.uuid4())
         self._name = name
         self._location = location
         self._start_date = start_date
         self._end_date = end_date
         self._num_rounds = num_rounds
-        self._current_round = 1
+        self._current_round = current_round
         self._rounds = []
         self._registered_players = []
         self._remarks = remarks
@@ -92,8 +92,8 @@ class Tournament:
 
     @current_round.setter
     def current_round(self, value):
-        if 1 <= value <= self._num_rounds:
-            self._current_round = value
+        if 1 <= int(value) <= int(self._num_rounds):
+            self._current_round = int(value)
         else:
             raise ValueError("Invalid round number. Must be between 1 and the number of rounds.")
 
@@ -120,3 +120,6 @@ class Tournament:
     @remarks.setter
     def remarks(self, value):
         if value: self._remarks = value
+
+    def add_round(self, round):
+        self._rounds.append(round)

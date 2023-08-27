@@ -6,6 +6,9 @@ import json
 class IDAlreadyAssignedError(Exception):
     pass
 
+class EntryNotFoundError(Exception):
+    pass
+
 class PlayerRepository(BaseRepository):
     PLAYER_JSON_FILE_PATH = './data/players/players_data.json'
     
@@ -23,6 +26,16 @@ class PlayerRepository(BaseRepository):
             print(f"Could not find the file: {e}")
         return players
 
+    def find_one_player(self, target_id):
+        try:
+            with open(self.file_path, "r") as f:
+                data = json.load(f)
+                for entry in data:
+                    if entry["chess_id"] == target_id:
+                        return self.deserialize_player(entry)
+        except EntryNotFoundError as e:
+            print(f"Could not find the element: {e}")
+            return None
         
     def _write_json(self, players):
         try:
@@ -55,7 +68,6 @@ class PlayerRepository(BaseRepository):
         
         serialized_player = self.serialize_player(player)
         data = []
-        print(serialized_player)
 
         try:
             with open(self.file_path, "r") as file:

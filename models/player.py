@@ -2,12 +2,12 @@ import re
 import json
 
 class Player:
-    def __init__(self, last_name="", first_name="", date_of_birth="", chess_id=""):
+    def __init__(self, last_name="", first_name="", date_of_birth="", chess_id="", points=0):
         self._last_name = last_name
         self._first_name = first_name
         self._date_of_birth = date_of_birth
         self._chess_id = chess_id
-        self._points = 0
+        self._points = points
 
     @property
     def last_name(self):
@@ -39,7 +39,6 @@ class Player:
 
     @chess_id.setter
     def chess_id(self, value):
-        print(value)
         if not re.match(r'^[A-Za-z]{2}\d{5}$', value):
             raise ValueError("The chess ID should match the two letters followed by five numbers mandatory format.")
 

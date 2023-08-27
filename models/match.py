@@ -6,7 +6,7 @@ class MatchResult(Enum):
     DRAW = "draw"
 
 class Match:
-    def __init__(self, player1, player2, result=None):
+    def __init__(self, player1=None, player2=None, result=None):
         self._player1 = player1
         self._player2 = player2
         self._result = result

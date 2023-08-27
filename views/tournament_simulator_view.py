@@ -8,7 +8,7 @@ from views.partials.date_delegate import DateDelegate
 from views.partials.int_delegate import IntDelegate
 from views.partials.centered_check_box_widget import CenteredCheckBoxWidget
 
-class TournamentManagerView(QWidget):
+class TournamentSimulatorView(QWidget):
     def __init__(self, nav, tournament):
         super().__init__()
 
@@ -23,72 +23,75 @@ class TournamentManagerView(QWidget):
         
         self.layout = QVBoxLayout()
 
-        self.label = QLabel("Tournament Manager")
+        self.label = QLabel("Tournament Simulator")
         self.layout.addWidget(self.label)
+        
+        self.tournament_controller.generate_pairs() 
 
         self.table = QTableWidget()
-        self.table.setColumnCount(7)
-        self.table.setHorizontalHeaderLabels(["Name", "Location", "Starting date", "Ending date", "Number of rounds", "remarks"])
-        self.table.setColumnHidden(6, True) 
+        self.table.setColumnCount(1)
+        self.table.setHorizontalHeaderLabels(["Matches"])
 
         self.layout.addWidget(self.table)
         
-        self.selected_players_table = None
+        # self.selected_players_table = None
 
         self.setLayout(self.layout)
         
-        self.tournament_controller.save_new_item(self.tournament)
+        # self.tournament_controller.save_new_item(self.tournament)
         self.tournament_controller.setup_view(self)
-
+        
     def populate_table(self):        
-        id = QTableWidgetItem(self.tournament.id)
-        id.setFlags(id.flags() & ~Qt.ItemIsEnabled)
-        # self.table.setItemDelegateForColumn(2, self.date_delegate)
-        # self.table.setItemDelegateForColumn(3, self.date_delegate)
-        self.table.setItemDelegateForColumn(4, self.int_delegate)
 
-        name = QTableWidgetItem(self.tournament.name)
-        location = QTableWidgetItem(self.tournament.location)
+        for round in self.tournament.rounds:
+            for match in round.matches :
+                row_position = self.table.rowCount()
+                self.table.insertRow(row_position)
 
-        start_date = QTableWidgetItem(self.tournament.start_date.toString(Qt.ISODate))
-        start_date.setData(Qt.DisplayRole, start_date.text())
-        start_date.setData(Qt.EditRole, self.tournament.start_date)
+                matches_item = QTableWidgetItem(f"{match.player1.get_full_name()} vs {match.player2.get_full_name()}")
+                matches_item.setFlags(matches_item.flags() & ~Qt.ItemIsEditable)
+                self.table.setItem(row_position, 0, matches_item)
 
-        end_date = QTableWidgetItem(self.tournament.end_date.toString(Qt.ISODate))
-        end_date.setData(Qt.DisplayRole, end_date.text())
-        end_date.setData(Qt.EditRole, self.tournament.end_date)
+    # def populate_table(self):        
+    #     id = QTableWidgetItem(self.tournament.id)
+    #     id.setFlags(id.flags() & ~Qt.ItemIsEnabled)
+    #     # self.table.setItemDelegateForColumn(2, self.date_delegate)
+    #     # self.table.setItemDelegateForColumn(3, self.date_delegate)
+    #     self.table.setItemDelegateForColumn(4, self.int_delegate)
 
-        num_rounds = QTableWidgetItem(str(self.tournament._num_rounds))
-        num_rounds.setData(Qt.EditRole, int(self.tournament._num_rounds))
+    #     name = QTableWidgetItem(self.tournament.name)
+    #     location = QTableWidgetItem(self.tournament.location)
 
-        remarks = QTableWidgetItem(self.tournament.remarks)
+    #     start_date = QTableWidgetItem(self.tournament.start_date.toString(Qt.ISODate))
+    #     start_date.setData(Qt.DisplayRole, start_date.text())
+    #     start_date.setData(Qt.EditRole, self.tournament.start_date)
+
+    #     end_date = QTableWidgetItem(self.tournament.end_date.toString(Qt.ISODate))
+    #     end_date.setData(Qt.DisplayRole, end_date.text())
+    #     end_date.setData(Qt.EditRole, self.tournament.end_date)
+
+    #     num_rounds = QTableWidgetItem(str(self.tournament._num_rounds))
+    #     num_rounds.setData(Qt.EditRole, int(self.tournament._num_rounds))
+
+    #     remarks = QTableWidgetItem(self.tournament.remarks)
                 
-        row_position = self.table.rowCount()
-        self.table.insertRow(row_position)
-        self.table.setItem(row_position, 0, name)
-        self.table.setItem(row_position, 1, location)
-        self.table.setItem(row_position, 2, start_date)
-        self.table.setItem(row_position, 3, end_date)
-        self.table.setItem(row_position, 4, num_rounds)
-        self.table.setItem(row_position, 5, remarks)
-        self.table.setItem(row_position, 6, id)
+    #     row_position = self.table.rowCount()
+    #     self.table.insertRow(row_position)
+    #     self.table.setItem(row_position, 0, name)
+    #     self.table.setItem(row_position, 1, location)
+    #     self.table.setItem(row_position, 2, start_date)
+    #     self.table.setItem(row_position, 3, end_date)
+    #     self.table.setItem(row_position, 4, num_rounds)
+    #     self.table.setItem(row_position, 5, remarks)
+    #     self.table.setItem(row_position, 6, id)
         
-        self.resize_table_to_content()
-        self.table.itemChanged.connect(self.handle_item_changed)        
+    #     self.resize_table_to_content()
+    #     self.table.itemChanged.connect(self.handle_item_changed)        
         
-        self.save_players_button = QPushButton("Save changes")
-        self.save_players_button.clicked.connect(self.save_selected_players)
-        self.save_players_button.setVisible(False)
+    #     self.save_players_button = QPushButton("Save changes")
+    #     self.save_players_button.clicked.connect(self.save_selected_players)
         
-        self.manually_add_players_btn = QPushButton("Manually add players")
-        self.manually_add_players_btn.clicked.connect(self.toggle_selected_players_table)
-        self.layout.addWidget(self.manually_add_players_btn)
-        
-        self.start_simulation_btn = QPushButton("Simulate tournament")
-        self.start_simulation_btn.clicked.connect(self.start_simulation)
-        self.layout.addWidget(self.start_simulation_btn)
-        
-        self.layout.addStretch()        
+    #     self.layout.addStretch()        
         
     def handle_item_changed(self, item):
         row = item.row()
@@ -169,13 +172,10 @@ class TournamentManagerView(QWidget):
             if isinstance(checkbox_widget, CenteredCheckBoxWidget):
                 if checkbox_widget.isChecked():
                     player_item = self.player_repository.find_one_player(self.selected_players_table.item(row, 0).text())
-                    self.tournament_controller.add_player(player_item)
+                    self.tournament.registered_players.append(player_item)
                     
         self.save_players_button.setVisible(False)
         
     def checkbox_state_changed(self, state):
         self.save_players_button.setVisible(True)
-        
-    def start_simulation(self):
-        self.nav.switch_to_tournament_simulator(self.tournament)
         
