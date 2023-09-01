@@ -18,7 +18,7 @@ class TournamentSimulatorView(QWidget):
         self.player_repository = PlayerRepository()
         self.date_delegate = DateDelegate(self)
         self.int_delegate = IntDelegate(self)
-        self.all_players = self.player_repository._read_json()
+        self.all_players = self.player_repository.read_json()
         self.id_index_column = 3
         
         self.layout = QVBoxLayout()
@@ -171,7 +171,7 @@ class TournamentSimulatorView(QWidget):
             checkbox_widget = self.selected_players_table.cellWidget(row, self.id_index_column)
             if isinstance(checkbox_widget, CenteredCheckBoxWidget):
                 if checkbox_widget.isChecked():
-                    player_item = self.player_repository.find_one_player(self.selected_players_table.item(row, 0).text())
+                    player_item = self.player_repository.find_one_by_id(self.selected_players_table.item(row, 0).text())
                     self.tournament.registered_players.append(player_item)
                     
         self.save_players_button.setVisible(False)

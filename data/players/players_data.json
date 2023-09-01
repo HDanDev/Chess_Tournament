@@ -28,5 +28,17 @@
         "last_name": "Juh",
         "date_of_birth": "1986-08-12",
         "chess_id": "PO12345"
+    },
+    {
+        "first_name": "Henri",
+        "last_name": "Cave Ville",
+        "date_of_birth": "1979-01-01",
+        "chess_id": "AA21345"
+    },
+    {
+        "first_name": "Louis",
+        "last_name": "Arm Strong",
+        "date_of_birth": "2009-01-01",
+        "chess_id": "BH23789"
     }
 ]

@@ -22,13 +22,13 @@ class TournamentController:
         self.view.table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         
     def get_tournament_data(self):
-        return self.tournament_repository._read_json()
+        return self.tournament_repository.read_json()
 
     def save_changes(self, tournament):
-        self.tournament_repository._update_json(tournament)
+        self.tournament_repository.update_json(tournament)
         
     def save_new_item(self, tournament):
-        self.tournament_repository._add_json(tournament)
+        self.tournament_repository.add_json(tournament)
         
     def add_player(self, player):
         try:

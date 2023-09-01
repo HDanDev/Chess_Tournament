@@ -65,7 +65,6 @@ class PlayerReadView(QWidget):
             edited_player.first_name=self.table.item(row, 1).text()
             edited_player.last_name=self.table.item(row, 2).text()
             edited_player.date_of_birth=QDate.fromString(self.table.item(row, 3).text(), Qt.ISODate)
-            print(f"Edited player id is :{edited_player.chess_id},Edited player firstname is :{edited_player.first_name},Edited player lastname is :{edited_player.last_name},Edited player birthday is :{edited_player.date_of_birth}")
             self.player_controller.save_changes(edited_player)
         except Exception as e:
             print(f"Error fnding item: {e}")  

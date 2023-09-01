@@ -19,13 +19,13 @@ class PlayerController:
         self.view.table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         
     def get_player_data(self):
-        return self.data_repository._read_json()
+        return self.data_repository.read_json()
 
     def save_changes(self, player):
-        self.data_repository._update_json(player)
+        self.data_repository.update_json(player)
         
     def save_new_item(self, player):
-        self.data_repository._add_json(player)
+        self.data_repository.add_json(player)
             
     # def add_player(self, player):
     #     try:

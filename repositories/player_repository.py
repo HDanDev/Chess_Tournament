@@ -3,74 +3,24 @@ from PySide6.QtCore import Qt, QDate
 from models.player import Player
 import json
 
-class IDAlreadyAssignedError(Exception):
-    pass
-
-class EntryNotFoundError(Exception):
-    pass
-
 class PlayerRepository(BaseRepository):
     PLAYER_JSON_FILE_PATH = './data/players/players_data.json'
     
     def __init__(self, file_path = PLAYER_JSON_FILE_PATH):
         super().__init__(file_path)
-        
-    def _read_json(self):
-        players = []
-        try:
-            with open(self.file_path, 'r') as file:
-                deserialized_players = json.load(file)
-                for data in deserialized_players:
-                    players.append(self.deserialize_player(data))
-        except FileNotFoundError as e:
-            print(f"Could not find the file: {e}")
-        return players
-
-    def find_one_player(self, target_id):
-        try:
-            with open(self.file_path, "r") as f:
-                data = json.load(f)
-                for entry in data:
-                    if entry["chess_id"] == target_id:
-                        return self.deserialize_player(entry)
-        except EntryNotFoundError as e:
-            print(f"Could not find the element: {e}")
-            return None
-        
-    def _write_json(self, players):
-        try:
-            serialized_players = [self.serialize_player(player) for player in players]
-            with open(self.file_path, 'w') as file:
-                json.dump(serialized_players, file, indent=4)
-        except FileNotFoundError as e:
-            print(f"Could not find the file: {e}")
-
-    def _update_json(self, player):
-        try:
-            data = self._read_json()
-
-            for i, item in enumerate(data):
-                if item.chess_id == player.chess_id:
-                    data[i] = player
-                    break
-
-            with open(self.file_path, 'w') as file:
-                serialized_data = [self.serialize_player(item) for item in data]
-                json.dump(serialized_data, file, indent=4)
-        except FileNotFoundError:
-            print(f"Could not find the file: {self.file_path}")
+        self._attribute = "chess_id"       
             
-    def _add_json(self, player):
+    def add_json(self, player):
         serialized_player = None
 
-        if self.is_id_assigned(player.chess_id, self.get_assigned_ids()):
+        if self.__is_id_assigned(player.chess_id, self.__get_assigned_ids()):
             raise ValueError(f"ID: {player.chess_id} is already in use, the chess ID has to be unique. Maybe the player has already been registered.")
         
-        serialized_player = self.serialize_player(player)
+        serialized_player = self._serialize(player)
         data = []
 
         try:
-            with open(self.file_path, "r") as file:
+            with open(self._file_path, "r") as file:
                 data = json.load(file)
         except FileNotFoundError:
             pass
@@ -78,17 +28,18 @@ class PlayerRepository(BaseRepository):
         if serialized_player:
             data.append(serialized_player)
 
-        with open(self.file_path, "w") as file:
+        with open(self._file_path, "w") as file:
             json.dump(data, file, indent=4)
             
-    def is_id_assigned(self, new_id, assigned_ids):
+    def __is_id_assigned(self, new_id, assigned_ids):
         return new_id in assigned_ids
         
-    def get_assigned_ids(self):
-        data = self._read_json()
+    def __get_assigned_ids(self):
+        data = self.read_json()
         return [item.chess_id for item in data]          
     
-    def serialize_player(self, player):
+    @staticmethod    
+    def _serialize(player):
        
         return {
             "first_name": player.first_name,
@@ -98,7 +49,7 @@ class PlayerRepository(BaseRepository):
         }
         
     @staticmethod    
-    def deserialize_player(data):
+    def _deserialize(data):
         player = Player()
         
         player.first_name = data["first_name"]

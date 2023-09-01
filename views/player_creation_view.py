@@ -35,7 +35,7 @@ class PlayerCreationView(QWidget):
         new_player.chess_id=self.chess_id.input.text()
         
         try:
-            self.player_repository._add_json(new_player)
+            self.player_repository.add_json(new_player)
         except ValueError as e:
             print("Error:", e)
         else: 

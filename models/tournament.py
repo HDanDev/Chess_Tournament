@@ -1,4 +1,3 @@
-from PySide6.QtCore import Qt, QDateTime
 import uuid
 
 class Tournament:
@@ -13,29 +12,6 @@ class Tournament:
         self._rounds = []
         self._registered_players = []
         self._remarks = remarks
-
-    def serialize_tournament(self):
-        return {
-            "id": self.id,
-            "name": self.name,
-            "location": self.location,
-            "start_date": self.start_date.toString(Qt.ISODate), 
-            "end_date": self.end_date.toString(Qt.ISODate), 
-            "num_rounds": int(self.num_rounds),
-            "remarks": self.remarks
-        }
-        
-    @staticmethod    
-    def deserialize_tournament(data):
-        return Tournament(
-            id=data["id"],
-            name=data["name"],
-            location=data["location"],
-            start_date=QDateTime.fromString(data["start_date"], Qt.ISODate),
-            end_date=QDateTime.fromString(data["end_date"], Qt.ISODate),
-            num_rounds=data["num_rounds"],
-            remarks=data["remarks"]
-        )
 
     @property
     def id(self):
