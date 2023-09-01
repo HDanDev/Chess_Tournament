@@ -1,6 +1,6 @@
 import sys
 from PySide6.QtWidgets import QApplication
-from views.base_view import BaseView
+from views.bases.base_view import BaseView
 from views.home_view import HomeView
 
 class MainApp:

@@ -26,6 +26,9 @@ class PlayerController:
         
     def save_new_item(self, player):
         self.data_repository.add_json(player)
+        
+    def delete_one(self, id):
+        self.data_repository.delete_json(id)
             
     # def add_player(self, player):
     #     try:

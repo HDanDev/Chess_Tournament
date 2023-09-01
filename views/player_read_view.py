@@ -3,6 +3,7 @@ from PySide6.QtCore import Qt, QDate
 from controllers.player_controller import PlayerController
 from models.player import Player
 from views.partials.date_delegate import DateDelegate
+from functools import partial
 
 class PlayerReadView(QWidget):
     def __init__(self, nav):
@@ -19,8 +20,8 @@ class PlayerReadView(QWidget):
         self.layout.addWidget(self.label)
 
         self.table = QTableWidget()
-        self.table.setColumnCount(4)
-        self.table.setHorizontalHeaderLabels(["Chess ID", "First name", "Last name", "Date of birth"])
+        self.table.setColumnCount(5)
+        self.table.setHorizontalHeaderLabels(["Chess ID", "First name", "Last name", "Date of birth", "Action"])
         # self.table.setItemDelegateForColumn(2, self.date_delegate)
         # self.table.setItemDelegateForColumn(3, self.date_delegate)   
         
@@ -48,12 +49,17 @@ class PlayerReadView(QWidget):
         date_of_birth.setData(Qt.DisplayRole, date_of_birth.text())
         date_of_birth.setData(Qt.EditRole, player.date_of_birth)
         
+        delete_btn = QPushButton("Delete")
+        
         row_position = self.table.rowCount()
         self.table.insertRow(row_position)
         self.table.setItem(row_position, 0, id)
         self.table.setItem(row_position, 1, first_name)
         self.table.setItem(row_position, 2, last_name)
         self.table.setItem(row_position, 3, date_of_birth)
+        self.table.setCellWidget(row_position, 4, delete_btn)
+        
+        delete_btn.clicked.connect(partial(self.delete, row=row_position))
          
     def handle_item_changed(self, item):
         row = item.row()
@@ -61,10 +67,16 @@ class PlayerReadView(QWidget):
             id_item = self.table.item(row, 0) 
             player_id = id_item.text()
             edited_player = Player(chess_id=player_id)
-            # edited_player.chess_id=player_id
             edited_player.first_name=self.table.item(row, 1).text()
             edited_player.last_name=self.table.item(row, 2).text()
             edited_player.date_of_birth=QDate.fromString(self.table.item(row, 3).text(), Qt.ISODate)
+            print(f"Edited player id is :{edited_player.chess_id},Edited player firstname is :{edited_player.first_name},Edited player lastname is :{edited_player.last_name},Edited player birthday is :{edited_player.date_of_birth}")
             self.player_controller.save_changes(edited_player)
         except Exception as e:
             print(f"Error fnding item: {e}")  
+            
+    def delete(self, row):
+            print(f"row : {row}")
+            id = self.table.item(row, 0).text()
+            self.player_controller.delete_one(id)
+            self.table.removeRow(row)

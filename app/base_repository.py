@@ -55,12 +55,12 @@ class BaseRepository:
         except FileNotFoundError:
             print(f"Could not find the file: {self._file_path}")
             
-    def delete_json(self, obj):
+    def delete_json(self, id):
         try:
             data = self.read_json()
 
-            for item in enumerate(data):
-                if getattr(item, self._attribute) == getattr(obj, self._attribute):
+            for i, item in enumerate(data):
+                if getattr(item, self._attribute) == id:
                     data.remove(item)
                     break
 
