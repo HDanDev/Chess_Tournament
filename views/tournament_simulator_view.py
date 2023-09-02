@@ -178,4 +178,3 @@ class TournamentSimulatorView(QWidget):
         
     def checkbox_state_changed(self, state):
         self.save_players_button.setVisible(True)
-        

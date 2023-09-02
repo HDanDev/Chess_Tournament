@@ -18,7 +18,7 @@ class PlayerCreationView(QWidget):
         self.first_name = InputField(self.layout, "First name", "Player's first name")
         self.last_name = InputField(self.layout, "Last name", "Player's last name")
         self.date_of_birth = InputField(self.layout, "Birth date", "Player's date of birth", FormType.Date)
-        self.chess_id = InputField(self.layout, "Chess ID", "Player's chess ID")
+        self.chess_id = InputField(self.layout, "Chess ID", "Player's chess ID must be in \"XX00000\" format, if left empty an ID will be automatically generated")
 
         self.register_button = QPushButton("Register")
         self.register_button.clicked.connect(self.register)

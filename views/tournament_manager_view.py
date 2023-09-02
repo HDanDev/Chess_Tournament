@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QLabel, QPushButton, QVBoxLayout, QWidget, QLineEdit, QTableWidget, QTableWidgetItem, QDialog, QCheckBox
+from PySide6.QtWidgets import QLabel, QPushButton, QVBoxLayout, QWidget, QLineEdit, QTableWidget, QTableWidgetItem, QDialog, QCheckBox, QComboBox
 from PySide6.QtCore import Qt, QDateTime
 from views.partials.input_field import InputField, FormType
 from models.tournament import Tournament
@@ -9,22 +9,35 @@ from views.partials.int_delegate import IntDelegate
 from views.partials.centered_check_box_widget import CenteredCheckBoxWidget
 
 class TournamentManagerView(QWidget):
-    def __init__(self, nav, tournament):
+    def __init__(self, nav, tournament, index=0):
         super().__init__()
 
-        self.nav = nav
-        self.tournament_controller = TournamentController(nav, tournament)
+        self._nav = nav
+        self.tournament_controller = TournamentController(self._nav, tournament)
         self.tournament = tournament
         self.player_repository = PlayerRepository()
         self.date_delegate = DateDelegate(self)
         self.int_delegate = IntDelegate(self)
         self.all_players = self.player_repository.read_json()
         self.id_index_column = 3
+        self.combo_index = index
         
         self.layout = QVBoxLayout()
 
         self.label = QLabel("Tournament Manager")
         self.layout.addWidget(self.label)
+        
+        self.combo_box = QComboBox()
+
+        for tournament in self.tournament_controller.get_tournament_data():
+            item = tournament.name
+            self.combo_box.addItem(item)
+            self.combo_box.setItemData(self.combo_box.count() - 1, tournament, role=Qt.UserRole)
+            
+        self.combo_box.setCurrentIndex(self.combo_index)
+
+        self.layout.addWidget(self.combo_box)
+        self.combo_box.currentIndexChanged.connect(self.select_tournament)
 
         self.table = QTableWidget()
         self.table.setColumnCount(7)
@@ -178,5 +191,13 @@ class TournamentManagerView(QWidget):
         self.save_players_button.setVisible(True)
         
     def start_simulation(self):
-        self.nav.switch_to_tournament_simulator(self.tournament)
+        self._nav.switch_to_tournament_simulator(self.tournament)
+        
+    def select_tournament(self):
+        index = self.combo_box.currentIndex()
+        selected_tournament = self.combo_box.itemData(index, role=Qt.UserRole)
+        if selected_tournament:
+            self._nav.switch_to_tournament_manager(selected_tournament, index)
+        
+        
         

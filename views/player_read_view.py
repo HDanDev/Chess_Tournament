@@ -50,6 +50,7 @@ class PlayerReadView(QWidget):
         date_of_birth.setData(Qt.EditRole, player.date_of_birth)
         
         delete_btn = QPushButton("Delete")
+        delete_btn.setObjectName("delete-button")
         
         row_position = self.table.rowCount()
         self.table.insertRow(row_position)
@@ -58,7 +59,6 @@ class PlayerReadView(QWidget):
         self.table.setItem(row_position, 2, last_name)
         self.table.setItem(row_position, 3, date_of_birth)
         self.table.setCellWidget(row_position, 4, delete_btn)
-        
         delete_btn.clicked.connect(partial(self.delete, row=row_position))
          
     def handle_item_changed(self, item):
@@ -70,13 +70,16 @@ class PlayerReadView(QWidget):
             edited_player.first_name=self.table.item(row, 1).text()
             edited_player.last_name=self.table.item(row, 2).text()
             edited_player.date_of_birth=QDate.fromString(self.table.item(row, 3).text(), Qt.ISODate)
-            print(f"Edited player id is :{edited_player.chess_id},Edited player firstname is :{edited_player.first_name},Edited player lastname is :{edited_player.last_name},Edited player birthday is :{edited_player.date_of_birth}")
             self.player_controller.save_changes(edited_player)
         except Exception as e:
-            print(f"Error fnding item: {e}")  
+            print(f"Error finding item: {e}")  
             
     def delete(self, row):
             print(f"row : {row}")
             id = self.table.item(row, 0).text()
-            self.player_controller.delete_one(id)
-            self.table.removeRow(row)
+            try: 
+                self.player_controller.delete_one(id)
+                self.table.removeRow(row)
+            except Exception as e:
+                print(f"An error occured while trying to delete the item: {e}")  
+                

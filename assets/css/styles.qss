@@ -67,3 +67,16 @@ QMenuBar::item:selected {
     font-family: "Comfortaa";
     font-size: 12px;
 }
+
+#delete-button {
+            background-color: #ce5b74;
+            font-weight: bold; 
+            width: 5px;
+            height: 5px; 
+            padding: 0px;
+            margin: 0px;
+        }
+
+#delete-button:hover {
+    background-color: #ee8187; /* Red background color on hover */
+}

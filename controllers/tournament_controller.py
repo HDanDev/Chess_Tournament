@@ -36,7 +36,7 @@ class TournamentController:
         except Exception as e:
             print(f"Error adding player: {e}")
             
-    def generate_pairs(self):
+    def generate_pairs(self, is_simulation = False):
         try:
             new_round = Round()
             new_round.name = f"Round {self.tournament.current_round}"
@@ -49,6 +49,7 @@ class TournamentController:
                 
             else: 
                 sorted_players = sorted(self.tournament.registered_players, key=lambda p: p.points, reverse=True)
+                # sorted_players = sorted(self.tournament.registered_players, key=lambda player: player[1], reverse=True)                
 
             for i in range(0, len(sorted_players), 2):
                 if i + 1 < len(sorted_players):
@@ -60,6 +61,15 @@ class TournamentController:
             self.tournament.add_round(new_round)
 
             self.tournament.current_round += 1
+            
+            is_simulation = True
+            if is_simulation:
+                outcome = list(MatchResult)
+                
+                for match in new_round.matches:
+                    random_result = random.choice(outcome)
+                    match.result = random_result
+                    print(f"Outcome of {match.get_match_name()}: {match.result}")
             
         except Exception as e:
             print(f"Error generating pairs: {e}")         
