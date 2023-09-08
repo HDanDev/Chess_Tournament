@@ -36,6 +36,9 @@ class TournamentController:
         except Exception as e:
             print(f"Error adding player: {e}")
             
+    def clear_registered_player(self):
+        self.tournament.registered_players.clear()
+            
     def generate_pairs(self, is_simulation = False):
         try:
             new_round = Round()
@@ -69,7 +72,7 @@ class TournamentController:
                 for match in new_round.matches:
                     random_result = random.choice(outcome)
                     match.result = random_result
-                    print(f"Outcome of {match.get_match_name()}: {match.result}")
+                    print(f"Outcome of {match.get_match_name()}: {match.result} / player one has now: {match.get_match_result()[0][1]} points, and player 2: {match.get_match_result()[1][1]} points")
             
         except Exception as e:
             print(f"Error generating pairs: {e}")         

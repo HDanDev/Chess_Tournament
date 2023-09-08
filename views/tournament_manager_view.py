@@ -1,8 +1,10 @@
 from PySide6.QtWidgets import QLabel, QPushButton, QVBoxLayout, QWidget, QLineEdit, QTableWidget, QTableWidgetItem, QDialog, QCheckBox, QComboBox
+from PySide6.QtGui import QIntValidator
 from PySide6.QtCore import Qt, QDateTime
 from views.partials.input_field import InputField, FormType
 from models.tournament import Tournament
 from controllers.tournament_controller import TournamentController
+from controllers.player_controller import PlayerController
 from repositories.player_repository import PlayerRepository
 from views.partials.date_delegate import DateDelegate
 from views.partials.int_delegate import IntDelegate
@@ -14,6 +16,7 @@ class TournamentManagerView(QWidget):
 
         self._nav = nav
         self.tournament_controller = TournamentController(self._nav, tournament)
+        self.player_controller = PlayerController(self._nav)
         self.tournament = tournament
         self.player_repository = PlayerRepository()
         self.date_delegate = DateDelegate(self)
@@ -47,10 +50,10 @@ class TournamentManagerView(QWidget):
         self.layout.addWidget(self.table)
         
         self.selected_players_table = None
+        self.nbr_players_input = None
 
         self.setLayout(self.layout)
         
-        self.tournament_controller.save_new_item(self.tournament)
         self.tournament_controller.setup_view(self)
 
     def populate_table(self):        
@@ -93,9 +96,17 @@ class TournamentManagerView(QWidget):
         self.save_players_button.clicked.connect(self.save_selected_players)
         self.save_players_button.setVisible(False)
         
+        self.auto_add_players_button_validation = QPushButton("Add players")
+        self.auto_add_players_button_validation.clicked.connect(self.auto_select_players)
+        self.auto_add_players_button_validation.setVisible(False)
+        
         self.manually_add_players_btn = QPushButton("Manually add players")
         self.manually_add_players_btn.clicked.connect(self.toggle_selected_players_table)
-        self.layout.addWidget(self.manually_add_players_btn)
+        self.layout.addWidget(self.manually_add_players_btn)       
+        
+        self.auto_add_players_btn = QPushButton("Automatically add players")
+        self.auto_add_players_btn.clicked.connect(self.toggle_players_nbr_input)
+        self.layout.addWidget(self.auto_add_players_btn)
         
         self.start_simulation_btn = QPushButton("Simulate tournament")
         self.start_simulation_btn.clicked.connect(self.start_simulation)
@@ -133,6 +144,12 @@ class TournamentManagerView(QWidget):
             self.create_selected_players_table()
         else:
             self.clear_selected_players_table()
+            
+    def toggle_players_nbr_input(self):
+        if self.nbr_players_input is None:
+            self.create_nbr_players_input()
+        else:
+            self.clear_nbr_players_input()
 
     def create_selected_players_table(self):
         self.selected_players_table = QTableWidget()
@@ -158,8 +175,9 @@ class TournamentManagerView(QWidget):
             self.selected_players_table.setItem(row_position, 2, player_last_name)
             self.selected_players_table.setCellWidget(row_position, self.id_index_column, checkbox_widget)
 
-        self.layout.insertWidget(self.layout.indexOf(self.manually_add_players_btn), self.selected_players_table)
+        self.layout.insertWidget(self.layout.indexOf(self.manually_add_players_btn) + 1, self.selected_players_table)
         self.layout.insertWidget(self.layout.indexOf(self.selected_players_table) + 1, self.save_players_button)
+        # self.manually_add_players_btn.setVisible(False)
         
         for row in range(self.selected_players_table.rowCount()):
             checkbox_widget = self.selected_players_table.cellWidget(row, self.id_index_column)
@@ -174,9 +192,37 @@ class TournamentManagerView(QWidget):
         self.selected_players_table.deleteLater()
         self.selected_players_table = None
         self.save_players_button.setVisible(False)
+        # self.manually_add_players_btn.setVisible(True)
+        
+    def create_nbr_players_input(self):
+        self.nbr_players_input = InputField(self.layout, "Number of players to implement", "Number of players", FormType.Numerical)
+        self.nbr_players_input.displace(self.layout.indexOf(self.auto_add_players_btn) + 1)
+        self.nbr_players_input.input.textChanged.connect(self.toggle_auto_add_btn_validation)
+        self.layout.insertWidget(self.layout.indexOf(self.nbr_players_input.input) + 1, self.auto_add_players_button_validation)
+        # self.auto_add_players_btn.setVisible(False)
+        
+    def toggle_auto_add_btn_validation(self, text):
+        self.auto_add_players_button_validation.setVisible(True) if text else self.auto_add_players_button_validation.setVisible(False)
+        
+    def auto_select_players(self):
+        self.tournament_controller.clear_registered_player()
+        try:
+            if self.nbr_players_input : 
+                selected_players = self.player_controller.randomly_pick_players(int(self.nbr_players_input.input.text()))
+                for player in selected_players:
+                    self.tournament_controller.add_player(player)
+                    print(f"Successfully added player : {player.get_full_name()}")
+                    
+        except Exception as e:
+            print(f"Error adding players: {e}")
+
+    def clear_nbr_players_input(self):        
+        self.nbr_players_input.remove_widgets()
+        self.auto_add_players_button_validation.setVisible(False)
+        self.nbr_players_input = None
+        # self.auto_add_players_btn.setVisible(True)
         
     def save_selected_players(self):
-        self.tournament.registered_players = []
         for row in range(self.selected_players_table.rowCount()):
             checkbox_widget = self.selected_players_table.cellWidget(row, self.id_index_column)
             if isinstance(checkbox_widget, CenteredCheckBoxWidget):

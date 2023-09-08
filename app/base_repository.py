@@ -19,7 +19,25 @@ class BaseRepository:
         data.append(serialized_obj)
 
         with open(self._file_path, "w") as file:
-            json.dump(data, file, indent=4)       
+            json.dump(data, file, indent=4)    
+            
+    def clear_json(self):
+        try:
+            with open(self._file_path, 'r') as file:
+                data = json.load(file)
+            data.clear()
+
+            with open(self._file_path, 'w') as file:
+                json.dump(data, file, indent=4)
+
+            print("All entries cleared from the JSON file.")
+            
+        except FileNotFoundError as e:
+            print(f"Could not find the file: {e}")
+        except json.JSONDecodeError:
+            print(f"Error decoding JSON data in file: {self._file_path}")
+        except Exception as e:
+            print(f"An error occurred: {e}")
         
     def read_json(self):
         data = []
@@ -30,6 +48,11 @@ class BaseRepository:
                     data.append(self._deserialize(item))
         except FileNotFoundError as e:
             print(f"Could not find the file: {e}")
+        except json.JSONDecodeError:
+            print(f"Error decoding JSON data in file: {self._file_path}")
+        except Exception as e:
+            print(f"An error occurred: {e}")
+        
         return data
         
     def write_json(self, data):
@@ -38,7 +61,12 @@ class BaseRepository:
             with open(self._file_path, 'w') as file:
                 json.dump(serialized_data, file, indent=4)
         except FileNotFoundError as e:
-            print(f"Could not find the file: {e}")      
+            print(f"Could not find the file: {e}")
+        except json.JSONDecodeError:
+            print(f"Error decoding JSON data in file: {self._file_path}")
+        except Exception as e:
+            print(f"An error occurred: {e}")
+              
 
     def update_json(self, obj):
         try:
@@ -54,6 +82,11 @@ class BaseRepository:
                 json.dump(serialized_data, file, indent=4)
         except FileNotFoundError:
             print(f"Could not find the file: {self._file_path}")
+        except json.JSONDecodeError:
+            print(f"Error decoding JSON data in file: {self._file_path}")
+        except Exception as e:
+            print(f"An error occurred: {e}")
+        
             
     def delete_json(self, id):
         try:
@@ -69,6 +102,11 @@ class BaseRepository:
                 json.dump(serialized_data, file, indent=4)
         except FileNotFoundError:
             print(f"Could not find the file: {self._file_path}")
+        except json.JSONDecodeError:
+            print(f"Error decoding JSON data in file: {self._file_path}")
+        except Exception as e:
+            print(f"An error occurred: {e}")
+        
 
     def find_one_by_id(self, target_id):
         try:
@@ -79,6 +117,11 @@ class BaseRepository:
                         return self._deserialize(entry)
         except EntryNotFoundError as e:
             print(f"Could not find the element: {e}")
+        except json.JSONDecodeError:
+            print(f"Error decoding JSON data in file: {self._file_path}")
+        except Exception as e:
+            print(f"An error occurred: {e}")
+        
             return None     
             
     @staticmethod    

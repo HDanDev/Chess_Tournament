@@ -1,12 +1,14 @@
 from PySide6.QtWidgets import QLabel, QPushButton, QVBoxLayout, QWidget, QLineEdit
 from views.partials.input_field import InputField, FormType
 from models.tournament import Tournament
+from controllers.tournament_controller import TournamentController
 
 class TournamentCreationView(QWidget):
     def __init__(self, nav):
         super().__init__()
 
-        self.nav = nav
+        self._nav = nav
+        self._tournament_controller = TournamentController(self._nav)
 
         self.layout = QVBoxLayout()
 
@@ -38,4 +40,5 @@ class TournamentCreationView(QWidget):
             remarks=self.remarks.input.toPlainText()
         )
         
-        self.nav.switch_to_tournament_manager(new_tournament)
+        self._tournament_controller.save_new_item(new_tournament)
+        self._nav.switch_to_tournament_manager(new_tournament)

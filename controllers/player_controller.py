@@ -3,6 +3,7 @@ from PySide6.QtCore import QDateTime
 from repositories.player_repository import PlayerRepository
 from models.player import Player
 from datetime import datetime
+import random
 
 class PlayerController:
     
@@ -29,6 +30,9 @@ class PlayerController:
         
     def delete_one(self, id):
         self.data_repository.delete_json(id)
+        
+    def randomly_pick_players(self, nbr):
+        return random.sample(self.get_player_data(), nbr)
             
     # def add_player(self, player):
     #     try:

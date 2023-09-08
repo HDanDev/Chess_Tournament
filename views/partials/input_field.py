@@ -12,15 +12,16 @@ class FormType:
 
 class InputField(QWidget):
     def __init__(self, layout, label, placeholder="", form_type="normal") -> None:
+        super().__init__() 
         self._layout = layout
         self._label = label
         self._placeholder = placeholder
         self._form_type = form_type
         self._input = None
             
-        label = QLabel(self._label)
-        label.setObjectName(f"label-{label}")
-        self._layout.addWidget(label)
+        self._label = QLabel(self._label)
+        self._label.setObjectName(f"label-{self._label}")
+        self._layout.addWidget(self._label)
         self._input = self.create_component(self, self._form_type)
         self._input.setObjectName(f"input-{self._input}")
         self._layout.addWidget(self._input)
@@ -58,6 +59,31 @@ class InputField(QWidget):
         elif form_type == FormType.Combo:
             input = QComboBox()
             return input
+        
+    def remove_widgets(self):
+        self._layout.removeWidget(self._label)
+        self._layout.removeWidget(self._input)
+        
+        self._label.deleteLater()
+        self._input.deleteLater()
+        
+        self._label.setVisible(False)
+        self._input.setVisible(False)        
+        
+    def show(self):
+        self._label.setVisible(True)
+        self._input.setVisible(True)
+
+    def hide(self):
+        self._label.setVisible(False)
+        self._input.setVisible(False)
+        
+    def displace(self, index):
+        self._layout.removeWidget(self._label)
+        self._layout.removeWidget(self._input)
+        
+        self._layout.insertWidget(index, self._label)
+        self._layout.insertWidget(index + 1, self._input)        
         
     @property
     def layout(self):
