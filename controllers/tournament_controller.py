@@ -1,5 +1,5 @@
 from PySide6.QtWidgets import QTableWidgetItem, QHeaderView
-from PySide6.QtCore import QDateTime 
+from PySide6.QtCore import QDateTime, Qt
 from repositories.tournament_repository import TournamentRepository
 from models.match import MatchResult, Match
 from models.round import Round
@@ -39,8 +39,10 @@ class TournamentController:
     def clear_registered_player(self):
         self.tournament.registered_players.clear()
             
-    def generate_pairs(self, is_simulation = False):
+    def generate_pairs(self, is_simulation = False, current_round=0):
         try:
+            self.tournament.current_round = current_round
+            
             new_round = Round()
             new_round.name = f"Round {self.tournament.current_round}"
             new_round.start_datetime = datetime.now()
@@ -62,8 +64,6 @@ class TournamentController:
                     new_round.add_match(new_match)    
 
             self.tournament.add_round(new_round)
-
-            self.tournament.current_round += 1
             
             is_simulation = True
             if is_simulation:
@@ -94,5 +94,8 @@ class TournamentController:
         all_players_ids = set(player.chess_id for player in all_players)
 
         return id in tournament_players_ids and id in all_players_ids
+    
+    def set_round_end_date(self, round, date):
+        round.end_datetime = date.toString(Qt.ISODate)
 
     

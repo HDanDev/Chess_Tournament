@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QLabel, QPushButton, QVBoxLayout, QWidget, QLineEdit, QTableWidget, QTableWidgetItem, QDialog, QCheckBox
+from PySide6.QtWidgets import QLabel, QPushButton, QVBoxLayout, QWidget, QLineEdit, QTableWidget, QTableWidgetItem, QDialog, QCheckBox, QComboBox, QHBoxLayout, QDateEdit, QHeaderView
 from PySide6.QtCore import Qt, QDateTime
 from views.partials.input_field import InputField, FormType
 from models.tournament import Tournament
@@ -26,11 +26,10 @@ class TournamentSimulatorView(QWidget):
         self.label = QLabel("Tournament Simulator")
         self.layout.addWidget(self.label)
         
-        self.tournament_controller.generate_pairs() 
-
         self.table = QTableWidget()
-        self.table.setColumnCount(1)
-        self.table.setHorizontalHeaderLabels(["Matches"])
+        self.table.setColumnCount(2)
+        self.table.setHorizontalHeaderLabels(["Player", "Score"])
+        self.table.setVisible(False)
 
         self.layout.addWidget(self.table)
         
@@ -43,55 +42,35 @@ class TournamentSimulatorView(QWidget):
         
     def populate_table(self):        
 
-        for round in self.tournament.rounds:
-            for match in round.matches :
-                row_position = self.table.rowCount()
-                self.table.insertRow(row_position)
+        for i in range(self.tournament.num_rounds):
+            self.tournament_controller.generate_pairs(current_round=i+1) 
+            self.create_round_table(self.tournament.rounds[i])
 
-                matches_item = QTableWidgetItem(f"{match.player1.get_full_name()} vs {match.player2.get_full_name()}")
-                matches_item.setFlags(matches_item.flags() & ~Qt.ItemIsEditable)
-                self.table.setItem(row_position, 0, matches_item)
+    def create_round_table(self, round):
+        round_table = QTableWidget()
+        round_table.setColumnCount(2)
+        round_table.setHorizontalHeaderLabels(["Matches", "Winner"])
 
-    # def populate_table(self):        
-    #     id = QTableWidgetItem(self.tournament.id)
-    #     id.setFlags(id.flags() & ~Qt.ItemIsEnabled)
-    #     # self.table.setItemDelegateForColumn(2, self.date_delegate)
-    #     # self.table.setItemDelegateForColumn(3, self.date_delegate)
-    #     self.table.setItemDelegateForColumn(4, self.int_delegate)
+        for match in round.matches :
+            row_position = round_table.rowCount()
+            round_table.insertRow(row_position)
 
-    #     name = QTableWidgetItem(self.tournament.name)
-    #     location = QTableWidgetItem(self.tournament.location)
-
-    #     start_date = QTableWidgetItem(self.tournament.start_date.toString(Qt.ISODate))
-    #     start_date.setData(Qt.DisplayRole, start_date.text())
-    #     start_date.setData(Qt.EditRole, self.tournament.start_date)
-
-    #     end_date = QTableWidgetItem(self.tournament.end_date.toString(Qt.ISODate))
-    #     end_date.setData(Qt.DisplayRole, end_date.text())
-    #     end_date.setData(Qt.EditRole, self.tournament.end_date)
-
-    #     num_rounds = QTableWidgetItem(str(self.tournament._num_rounds))
-    #     num_rounds.setData(Qt.EditRole, int(self.tournament._num_rounds))
-
-    #     remarks = QTableWidgetItem(self.tournament.remarks)
-                
-    #     row_position = self.table.rowCount()
-    #     self.table.insertRow(row_position)
-    #     self.table.setItem(row_position, 0, name)
-    #     self.table.setItem(row_position, 1, location)
-    #     self.table.setItem(row_position, 2, start_date)
-    #     self.table.setItem(row_position, 3, end_date)
-    #     self.table.setItem(row_position, 4, num_rounds)
-    #     self.table.setItem(row_position, 5, remarks)
-    #     self.table.setItem(row_position, 6, id)
+            matches_item = QTableWidgetItem(f"{match.player1.get_full_name()} vs {match.player2.get_full_name()}")
+            matches_item.setFlags(matches_item.flags() & ~Qt.ItemIsEditable)
+            round_table.setItem(row_position, 0, matches_item)
+            
+            combo_box = QComboBox()
+            combo_box.addItems(["Ex Aequo", match.player1.get_full_name(), match.player2.get_full_name()])
+            combo_box.setCurrentText("Ex Aequo")
+            round_table.setCellWidget(row_position, 1, combo_box)
+            
+        self.resize_table_to_content(round_table)
         
-    #     self.resize_table_to_content()
-    #     self.table.itemChanged.connect(self.handle_item_changed)        
+        end_date = InputField(self.layout, "Round end date", "Round en date", FormType.DateTime)
+        self.tournament_controller.set_round_end_date(round, end_date.input.dateTime())
+        print(f"{round.name} end at {round.end_datetime}")
         
-    #     self.save_players_button = QPushButton("Save changes")
-    #     self.save_players_button.clicked.connect(self.save_selected_players)
-        
-    #     self.layout.addStretch()        
+        self.layout.addWidget(round_table)
         
     def handle_item_changed(self, item):
         row = item.row()
@@ -111,12 +90,12 @@ class TournamentSimulatorView(QWidget):
         except Exception as e:
             print(f"Error fnding item: {e}")   
             
-    def resize_table_to_content(self):
-        total_height = self.table.horizontalHeader().height()
-        for row in range(self.table.rowCount()):
-            total_height += self.table.rowHeight(row)
+    def resize_table_to_content(self, table):
+        total_height = table.horizontalHeader().height()
+        for row in range(table.rowCount()):
+            total_height += table.rowHeight(row)
         
-        self.table.setFixedHeight(total_height)   
+        table.setFixedHeight(total_height)   
     
     def toggle_selected_players_table(self):
         if self.selected_players_table is None:
