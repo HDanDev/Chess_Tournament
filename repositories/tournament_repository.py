@@ -9,8 +9,11 @@ class TournamentRepository(BaseRepository):
     def __init__(self, file_path = TOURNAMENT_JSON_FILE_PATH):
         super().__init__(file_path) 
             
-    @staticmethod    
-    def _serialize(tournament):
+    def _serialize(self, tournament):
+        registered_players = []        
+        for player in tournament.registered_players:
+            registered_players.append(self.serialize_player(player))
+            
         return {
             "id": tournament.id,
             "name": tournament.name,
@@ -18,12 +21,12 @@ class TournamentRepository(BaseRepository):
             "start_date": tournament.start_date.toString(Qt.ISODate), 
             "end_date": tournament.end_date.toString(Qt.ISODate), 
             "num_rounds": int(tournament.num_rounds),
-            "remarks": tournament.remarks
+            "remarks": tournament.remarks,            
+            "registered_players": registered_players
         }
         
-    @staticmethod    
-    def _deserialize(data):
-        return Tournament(
+    def _deserialize(self, data):
+        tournament =  Tournament(
             id=data["id"],
             name=data["name"],
             location=data["location"],
@@ -31,4 +34,10 @@ class TournamentRepository(BaseRepository):
             end_date=QDateTime.fromString(data["end_date"], Qt.ISODate),
             num_rounds=data["num_rounds"],
             remarks=data["remarks"]
-        )
+        )         
+        registered_players = []    
+        for player in data["registered_players"]:
+            registered_players.append(self.deserialize_player(player))
+        tournament.registered_players = registered_players
+        
+        return tournament

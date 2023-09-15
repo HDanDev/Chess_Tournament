@@ -6,12 +6,12 @@ from views.partials.date_delegate import DateDelegate
 from functools import partial
 
 class PlayerReadView(QWidget):
-    def __init__(self, nav):
+    def __init__(self, nav, player_data=""):
         super().__init__()
 
         self.nav = nav
         self.player_controller = PlayerController(nav)
-        self.player_data = sorted(self.player_controller.get_player_data(), key=lambda x: x.last_name)
+        self.player_data = player_data if player_data is not "" else sorted(self.player_controller.get_player_data(), key=lambda x: x.last_name)
         # self.date_delegate = DateDelegate(self)
         
         self.layout = QVBoxLayout()

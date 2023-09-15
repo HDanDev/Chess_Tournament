@@ -9,6 +9,7 @@ from repositories.player_repository import PlayerRepository
 from views.partials.date_delegate import DateDelegate
 from views.partials.int_delegate import IntDelegate
 from views.partials.centered_check_box_widget import CenteredCheckBoxWidget
+from views.player_read_view import PlayerReadView
 
 class TournamentManagerView(QWidget):
     def __init__(self, nav, tournament, index=0):
@@ -96,6 +97,11 @@ class TournamentManagerView(QWidget):
         self.save_players_button.clicked.connect(self.save_selected_players)
         self.save_players_button.setVisible(False)
         
+        self.view_player_button = QPushButton("See registered players")
+        self.view_player_button.clicked.connect(self.see_players)
+        self.layout.addWidget(self.view_player_button)
+        self._check_view_player_button_visibility()
+                
         self.auto_add_players_button_validation = QPushButton("Add players")
         self.auto_add_players_button_validation.clicked.connect(self.auto_select_players)
         self.auto_add_players_button_validation.setVisible(False)
@@ -212,7 +218,8 @@ class TournamentManagerView(QWidget):
                 for player in selected_players:
                     self.tournament_controller.add_player(player)
                     print(f"Successfully added player : {player.get_full_name()}")
-                    
+            self.tournament_controller.save_changes(self.tournament)                    
+            self._check_view_player_button_visibility()           
         except Exception as e:
             print(f"Error adding players: {e}")
 
@@ -230,20 +237,30 @@ class TournamentManagerView(QWidget):
                     player_item = self.player_repository.find_one_by_id(self.selected_players_table.item(row, 0).text())
                     self.tournament_controller.add_player(player_item)
                     
+        self.tournament_controller.save_changes(self.tournament)                    
         self.save_players_button.setVisible(False)
+        self._check_view_player_button_visibility()           
         self.toggle_selected_players_table()
         
     def checkbox_state_changed(self, state):
         self.save_players_button.setVisible(True)
         
     def start_simulation(self):
-        self._nav.switch_to_tournament_simulator(self.tournament)
+        self._nav.switch_to_tournament_picker_manager(self.tournament)
         
     def select_tournament(self):
         index = self.combo_box.currentIndex()
         selected_tournament = self.combo_box.itemData(index, role=Qt.UserRole)
         if selected_tournament:
-            self._nav.switch_to_tournament_manager(selected_tournament, index)
-        
+            self._nav.switch_to_tournament_manager(selected_tournament, index)   
+                
+    def see_players(self):
+        index = self.combo_box.currentIndex()
+        selected_tournament = self.combo_box.itemData(index, role=Qt.UserRole)
+        if selected_tournament:
+            players_list = PlayerReadView(self._nav, selected_tournament.registered_players).show()
+            
+    def _check_view_player_button_visibility(self):
+        self.view_player_button.setVisible(True) if self.tournament and len(self.tournament.registered_players) > 0 else self.view_player_button.setVisible(False)            
         
         

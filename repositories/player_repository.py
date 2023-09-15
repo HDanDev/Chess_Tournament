@@ -16,7 +16,7 @@ class PlayerRepository(BaseRepository):
         if self.__is_id_assigned(player.chess_id, self.__get_assigned_ids()):
             raise ValueError(f"ID: {player.chess_id} is already in use, the chess ID has to be unique. Maybe the player has already been registered.")
         
-        serialized_player = self._serialize(player)
+        serialized_player = self._serialize_player(player)
         data = []
 
         try:

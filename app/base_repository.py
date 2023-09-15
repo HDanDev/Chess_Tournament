@@ -1,4 +1,6 @@
 import json
+from models.player import Player
+from PySide6.QtCore import Qt, QDate
 
 class EntryNotFoundError(Exception):
     pass
@@ -65,8 +67,7 @@ class BaseRepository:
         except json.JSONDecodeError:
             print(f"Error decoding JSON data in file: {self._file_path}")
         except Exception as e:
-            print(f"An error occurred: {e}")
-              
+            print(f"An error occurred: {e}")              
 
     def update_json(self, obj):
         try:
@@ -85,8 +86,7 @@ class BaseRepository:
         except json.JSONDecodeError:
             print(f"Error decoding JSON data in file: {self._file_path}")
         except Exception as e:
-            print(f"An error occurred: {e}")
-        
+            print(f"An error occurred: {e}")        
             
     def delete_json(self, id):
         try:
@@ -105,8 +105,7 @@ class BaseRepository:
         except json.JSONDecodeError:
             print(f"Error decoding JSON data in file: {self._file_path}")
         except Exception as e:
-            print(f"An error occurred: {e}")
-        
+            print(f"An error occurred: {e}")        
 
     def find_one_by_id(self, target_id):
         try:
@@ -131,3 +130,24 @@ class BaseRepository:
     @staticmethod    
     def _serialize(obj):
         pass
+    
+    @staticmethod    
+    def serialize_player(player):
+       
+        return {
+            "first_name": player.first_name,
+            "last_name": player.last_name,
+            "date_of_birth": player.date_of_birth.toString(Qt.ISODate), 
+            "chess_id": player.chess_id
+        }
+        
+    @staticmethod    
+    def deserialize_player(data):
+        player = Player()
+        
+        player.first_name = data["first_name"]
+        player.last_name = data["last_name"]
+        player.date_of_birth = QDate.fromString(data["date_of_birth"], Qt.ISODate)
+        player.chess_id = data["chess_id"]        
+
+        return player

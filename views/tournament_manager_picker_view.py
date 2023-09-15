@@ -3,7 +3,7 @@ from PySide6.QtCore import Qt
 from repositories.tournament_repository import TournamentRepository, Tournament
 from controllers.tournament_controller import TournamentController
 
-class TournamentSimulatorPickerView(QWidget):
+class TournamentManagerPickerView(QWidget):
     def __init__(self, nav):
         super().__init__()
 
@@ -13,7 +13,7 @@ class TournamentSimulatorPickerView(QWidget):
         
         self.layout = QVBoxLayout()
 
-        self.label = QLabel("Tournament Simulator")
+        self.label = QLabel("Tournament Manager")
         self.layout.addWidget(self.label)        
 
         self.combo_box = QComboBox()
@@ -27,11 +27,11 @@ class TournamentSimulatorPickerView(QWidget):
             
         self.combo_box.setCurrentIndex(0)
 
-        self.button = QPushButton("Simulate tournament")
-        self.button.clicked.connect(self.select_tournament)
+        self.simulation_button = QPushButton("Manage tournament")
+        self.simulation_button.clicked.connect(self.select_tournament)
 
         self.layout.addWidget(self.combo_box)
-        self.layout.addWidget(self.button)
+        self.layout.addWidget(self.simulation_button)
         # self.combo_box.currentIndexChanged.connect(self.select_tournament)
         
         self.setLayout(self.layout)
@@ -40,6 +40,6 @@ class TournamentSimulatorPickerView(QWidget):
         index = self.combo_box.currentIndex()
         selected_tournament = self.combo_box.itemData(index, role=Qt.UserRole)
         if selected_tournament:
-            self._nav.switch_to_tournament_manager(selected_tournament, index)
+            self._nav.switch_to_tournament_manager(selected_tournament, index) 
         
         

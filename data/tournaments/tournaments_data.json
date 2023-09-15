@@ -6,7 +6,33 @@
         "start_date": "2023-08-20T15:55:22",
         "end_date": "2023-08-20T15:55:22",
         "num_rounds": 6,
-        "remarks": "dqzdqd"
+        "remarks": "dqzdqd",
+        "registered_players": [
+            {
+                "first_name": "Henri",
+                "last_name": "Cave Ville",
+                "date_of_birth": "1979-01-01",
+                "chess_id": "AA21345"
+            },
+            {
+                "first_name": "Louis",
+                "last_name": "Arm Strong",
+                "date_of_birth": "2009-01-01",
+                "chess_id": "BH23789"
+            },
+            {
+                "first_name": "Jensen",
+                "last_name": "Ackles",
+                "date_of_birth": "2000-01-01",
+                "chess_id": "JZ73145"
+            },
+            {
+                "first_name": "Jared",
+                "last_name": "Padeleki",
+                "date_of_birth": "2000-01-01",
+                "chess_id": "SP03655"
+            }
+        ]
     },
     {
         "id": "8b97d885-1ff1-454e-bcbb-d08e640bfeed",
@@ -15,7 +41,8 @@
         "start_date": "2023-08-20T16:24:26",
         "end_date": "2023-08-20T16:24:26",
         "num_rounds": 45,
-        "remarks": "dzqdqzd"
+        "remarks": "dzqdqzd",
+        "registered_players": []
     },
     {
         "id": "b1f626d7-c84e-4d2c-95c5-0dd71e3f1cd7",
@@ -24,7 +51,8 @@
         "start_date": "2020-08-20T16:28:53",
         "end_date": "2023-08-20T16:28:53",
         "num_rounds": 15,
-        "remarks": "fqf"
+        "remarks": "fqf",
+        "registered_players": []
     },
     {
         "id": "9d512a48-2be3-4f44-9160-e32f62d31104",
@@ -33,7 +61,8 @@
         "start_date": "2023-08-20T16:46:20",
         "end_date": "2023-08-20T16:46:20",
         "num_rounds": 12,
-        "remarks": "qzfqfq"
+        "remarks": "qzfqfq",
+        "registered_players": []
     },
     {
         "id": "ce875645-97e4-4d59-b2d8-6125445b8e19",
@@ -42,7 +71,8 @@
         "start_date": "2023-08-20T16:48:14",
         "end_date": "2023-08-20T16:48:14",
         "num_rounds": 23,
-        "remarks": "fsfsf"
+        "remarks": "fsfsf",
+        "registered_players": []
     },
     {
         "id": "ce9eba4d-c4be-4474-b425-7ea143c5d758",
@@ -51,7 +81,8 @@
         "start_date": "2023-08-20T16:58:34",
         "end_date": "2023-08-20T16:58:34",
         "num_rounds": 45,
-        "remarks": "dqzd"
+        "remarks": "dqzd",
+        "registered_players": []
     },
     {
         "id": "c575c847-eb02-473c-964a-9a5f9124e7a7",
@@ -60,7 +91,8 @@
         "start_date": "2023-08-20T16:59:24",
         "end_date": "2023-08-20T16:59:24",
         "num_rounds": 12,
-        "remarks": "fqsefefs"
+        "remarks": "fqsefefs",
+        "registered_players": []
     },
     {
         "id": "7089245f-e5ac-4465-9094-36e0aac9e8ed",
@@ -69,7 +101,8 @@
         "start_date": "2023-08-20T17:04:17",
         "end_date": "2023-08-20T17:04:17",
         "num_rounds": 12,
-        "remarks": "fqzff"
+        "remarks": "fqzff",
+        "registered_players": []
     },
     {
         "id": "1d3d1228-1f85-4516-903a-57caa49d3c73",
@@ -78,7 +111,8 @@
         "start_date": "2023-08-20T17:07:10",
         "end_date": "2023-08-20T17:07:10",
         "num_rounds": 12,
-        "remarks": "zdqqz"
+        "remarks": "zdqqz",
+        "registered_players": []
     },
     {
         "id": "05686276-d678-4ebe-a3c5-0c6135f4a83d",
@@ -87,7 +121,8 @@
         "start_date": "2023-08-20T17:09:23",
         "end_date": "2023-08-20T17:09:23",
         "num_rounds": 12,
-        "remarks": "qzfqzf"
+        "remarks": "qzfqzf",
+        "registered_players": []
     },
     {
         "id": "eabcf033-7423-406b-ae31-7e21883856ba",
@@ -96,7 +131,8 @@
         "start_date": "2023-08-20T17:14:51",
         "end_date": "2023-08-20T17:14:51",
         "num_rounds": 12,
-        "remarks": "fsefse"
+        "remarks": "fsefse",
+        "registered_players": []
     },
     {
         "id": "25ea44b1-750c-4a91-869c-2c7306c533ce",
@@ -105,7 +141,8 @@
         "start_date": "2023-08-20T17:17:02",
         "end_date": "2023-08-20T17:17:02",
         "num_rounds": 12,
-        "remarks": "fsfse"
+        "remarks": "fsfse",
+        "registered_players": []
     },
     {
         "id": "6e1adbdf-5e7c-4bd4-8a53-c03f6790ea5f",
@@ -114,7 +151,8 @@
         "start_date": "2023-08-20T17:19:03",
         "end_date": "2023-08-20T17:19:03",
         "num_rounds": 263,
-        "remarks": "fsfsefs"
+        "remarks": "fsfsefs",
+        "registered_players": []
     },
     {
         "id": "52f9a5f6-eae5-49d8-8641-f5fe120d1f4e",
@@ -123,7 +161,8 @@
         "start_date": "2023-08-20T17:28:48",
         "end_date": "2023-08-20T17:28:48",
         "num_rounds": 65,
-        "remarks": "qzfgzqf"
+        "remarks": "qzfgzqf",
+        "registered_players": []
     },
     {
         "id": "ec02032d-f67a-4215-b351-9ddcddaf8b2f",
@@ -132,7 +171,8 @@
         "start_date": "2023-08-20T17:29:30",
         "end_date": "2023-08-20T17:29:30",
         "num_rounds": 53,
-        "remarks": "rgdgd"
+        "remarks": "rgdgd",
+        "registered_players": []
     },
     {
         "id": "54ea20d0-191e-47c0-b42c-b85614e96df6",
@@ -141,7 +181,8 @@
         "start_date": "2023-08-20T17:31:16",
         "end_date": "2023-08-20T17:31:16",
         "num_rounds": 23,
-        "remarks": "gsgseg"
+        "remarks": "gsgseg",
+        "registered_players": []
     },
     {
         "id": "df5536a9-4601-4e5d-a415-e77614a54841",
@@ -150,7 +191,8 @@
         "start_date": "2023-08-20T17:43:03",
         "end_date": "2023-08-20T17:43:03",
         "num_rounds": 95,
-        "remarks": "gsegsegse"
+        "remarks": "gsegsegse",
+        "registered_players": []
     },
     {
         "id": "a9c5594c-a049-45ff-97e1-846d0f2c996d",
@@ -159,7 +201,8 @@
         "start_date": "2023-08-20T17:43:37",
         "end_date": "2023-08-20T17:43:37",
         "num_rounds": 12,
-        "remarks": "jdtyjtjd"
+        "remarks": "jdtyjtjd",
+        "registered_players": []
     },
     {
         "id": "bbfa83c5-e570-4499-81b2-0ff54db9a774",
@@ -168,7 +211,8 @@
         "start_date": "2023-08-20T17:49:50",
         "end_date": "2023-08-20T17:49:50",
         "num_rounds": 23,
-        "remarks": "egsegse"
+        "remarks": "egsegse",
+        "registered_players": []
     },
     {
         "id": "655ae3e6-5ecb-4f1d-831e-7bdc0ea8abee",
@@ -177,7 +221,8 @@
         "start_date": "2023-08-20T17:55:02",
         "end_date": "2023-08-20T17:55:02",
         "num_rounds": 23,
-        "remarks": "dqzdqzdq"
+        "remarks": "dqzdqzdq",
+        "registered_players": []
     },
     {
         "id": "c2984203-a7d8-4aae-bc4d-4e386f8655cb",
@@ -186,7 +231,8 @@
         "start_date": "2023-08-20T18:08:31",
         "end_date": "2023-08-20T18:08:31",
         "num_rounds": 32,
-        "remarks": "qzdzqdzqd"
+        "remarks": "qzdzqdzqd",
+        "registered_players": []
     },
     {
         "id": "12282370-f696-4920-a4bd-869892614af2",
@@ -195,7 +241,8 @@
         "start_date": "2023-08-20T18:11:42",
         "end_date": "2023-08-20T18:11:42",
         "num_rounds": 12,
-        "remarks": "ukuhkhukuh"
+        "remarks": "ukuhkhukuh",
+        "registered_players": []
     },
     {
         "id": "1079de76-d9ac-464f-a3a6-1c4edb054f5e",
@@ -204,7 +251,8 @@
         "start_date": "2023-08-20T18:12:34",
         "end_date": "2023-08-20T18:12:34",
         "num_rounds": 12,
-        "remarks": "sefsefsefsfsef"
+        "remarks": "sefsefsefsfsef",
+        "registered_players": []
     },
     {
         "id": "8d3091a0-6ffd-4d94-839a-dbc091932f3a",
@@ -213,7 +261,8 @@
         "start_date": "2023-08-20T18:18:18",
         "end_date": "2023-08-20T18:18:18",
         "num_rounds": 23,
-        "remarks": "bdfbdfbfb"
+        "remarks": "bdfbdfbfb",
+        "registered_players": []
     },
     {
         "id": "e588b382-de52-437d-8abb-09aa0297ecc2",
@@ -222,7 +271,8 @@
         "start_date": "2023-08-20T18:22:31",
         "end_date": "2023-08-20T18:22:31",
         "num_rounds": 55,
-        "remarks": "gqdgdf"
+        "remarks": "gqdgdf",
+        "registered_players": []
     },
     {
         "id": "d6fe6a74-0803-4d43-9247-34bed9907868",
@@ -231,7 +281,8 @@
         "start_date": "2023-08-20T18:29:13",
         "end_date": "2023-08-20T18:29:13",
         "num_rounds": 98,
-        "remarks": "tfjtfjf"
+        "remarks": "tfjtfjf",
+        "registered_players": []
     },
     {
         "id": "986325bb-9a90-4b00-bc67-45a4918f457c",
@@ -240,7 +291,8 @@
         "start_date": "2023-08-20T18:34:55",
         "end_date": "2023-08-20T18:34:55",
         "num_rounds": 55,
-        "remarks": "shsthsthsrtht"
+        "remarks": "shsthsthsrtht",
+        "registered_players": []
     },
     {
         "id": "87f422af-fde8-42b3-9670-8e4f61726bbd",
@@ -249,7 +301,8 @@
         "start_date": "2023-08-20T18:40:00",
         "end_date": "2023-08-20T18:40:00",
         "num_rounds": 77,
-        "remarks": "htfhtfht"
+        "remarks": "htfhtfht",
+        "registered_players": []
     },
     {
         "id": "3ed8a773-2cde-4b5b-b6bf-f0437e26c32d",
@@ -258,7 +311,8 @@
         "start_date": "2023-08-20T18:47:02",
         "end_date": "2023-08-20T18:47:02",
         "num_rounds": 63,
-        "remarks": "efegrgr"
+        "remarks": "efegrgr",
+        "registered_players": []
     },
     {
         "id": "b006d2d6-927d-4303-a20e-4ba0dde36036",
@@ -267,7 +321,8 @@
         "start_date": "2023-08-20T18:56:11",
         "end_date": "2023-08-20T18:56:11",
         "num_rounds": 4,
-        "remarks": "jgyjygjy"
+        "remarks": "jgyjygjy",
+        "registered_players": []
     },
     {
         "id": "320819f0-cfa3-4fc8-ae5d-e6f9117ec813",
@@ -276,7 +331,8 @@
         "start_date": "2023-08-20T18:57:56",
         "end_date": "2023-08-20T18:57:56",
         "num_rounds": 6,
-        "remarks": "hftjyjd"
+        "remarks": "hftjyjd",
+        "registered_players": []
     },
     {
         "id": "e8626d04-915d-4284-8bd8-38591c04d85c",
@@ -285,7 +341,8 @@
         "start_date": "2023-08-20T19:00:06",
         "end_date": "2023-08-20T19:00:06",
         "num_rounds": 1,
-        "remarks": "sefsfs"
+        "remarks": "sefsfs",
+        "registered_players": []
     },
     {
         "id": "58020fbd-b21c-4bb0-bacb-9e1bbb71cea5",
@@ -294,7 +351,8 @@
         "start_date": "2023-08-20T19:05:43",
         "end_date": "2023-08-20T19:05:43",
         "num_rounds": 7,
-        "remarks": "gyjkgyjgyy"
+        "remarks": "gyjkgyjgyy",
+        "registered_players": []
     },
     {
         "id": "6ddc47f1-6f82-4e88-8582-960ef86e070c",
@@ -303,7 +361,8 @@
         "start_date": "2023-08-20T19:08:36",
         "end_date": "2023-08-20T19:08:36",
         "num_rounds": 22,
-        "remarks": "tjtyjf"
+        "remarks": "tjtyjf",
+        "registered_players": []
     },
     {
         "id": "26c9c26d-7056-4814-983e-ba0f8e078900",
@@ -312,7 +371,8 @@
         "start_date": "2023-08-20T19:47:56",
         "end_date": "2023-08-20T19:47:56",
         "num_rounds": 56,
-        "remarks": "hukhgkug"
+        "remarks": "hukhgkug",
+        "registered_players": []
     },
     {
         "id": "ae73f9c8-1d05-4729-9ebd-9f7521f70f72",
@@ -321,7 +381,8 @@
         "start_date": "2023-08-20T19:53:26",
         "end_date": "2023-08-20T19:53:26",
         "num_rounds": 55,
-        "remarks": "flfyulh"
+        "remarks": "flfyulh",
+        "registered_players": []
     },
     {
         "id": "4130ca90-5fc1-472e-9c81-c703e576b67f",
@@ -330,7 +391,8 @@
         "start_date": "2023-08-20T19:54:02",
         "end_date": "2023-08-20T19:54:02",
         "num_rounds": 2,
-        "remarks": "iljhlhil"
+        "remarks": "iljhlhil",
+        "registered_players": []
     },
     {
         "id": "7bab0bfa-3dd4-4b88-a715-15fcfa99e231",
@@ -339,7 +401,8 @@
         "start_date": "2023-08-20T21:53:28",
         "end_date": "2023-08-20T21:53:28",
         "num_rounds": 7,
-        "remarks": "efqs"
+        "remarks": "efqs",
+        "registered_players": []
     },
     {
         "id": "b25f43dc-3ab8-4364-ad5f-45de4b1e79b2",
@@ -348,7 +411,8 @@
         "start_date": "2023-08-20T21:54:43",
         "end_date": "2023-08-20T21:54:43",
         "num_rounds": 1,
-        "remarks": "f"
+        "remarks": "f",
+        "registered_players": []
     },
     {
         "id": "54d9bcb9-8a4f-4608-b723-e10a3e667a3a",
@@ -357,7 +421,8 @@
         "start_date": "2023-08-20T21:57:04",
         "end_date": "2023-08-20T21:57:04",
         "num_rounds": 1,
-        "remarks": "g"
+        "remarks": "g",
+        "registered_players": []
     },
     {
         "id": "822b9e25-c00a-427e-871d-ccbb274611e2",
@@ -366,7 +431,8 @@
         "start_date": "2023-08-20T21:57:50",
         "end_date": "2023-08-20T21:57:50",
         "num_rounds": 1,
-        "remarks": "a"
+        "remarks": "a",
+        "registered_players": []
     },
     {
         "id": "d090a35a-5468-4362-94f6-58ff442acaaf",
@@ -375,7 +441,8 @@
         "start_date": "2023-08-26T16:39:03",
         "end_date": "2023-08-26T16:39:03",
         "num_rounds": 2,
-        "remarks": "fsefse"
+        "remarks": "fsefse",
+        "registered_players": []
     },
     {
         "id": "34693af0-fa87-4f1f-9b5b-0391885d7a7b",
@@ -384,7 +451,8 @@
         "start_date": "2023-08-26T16:40:09",
         "end_date": "2023-08-26T16:40:09",
         "num_rounds": 3,
-        "remarks": "gqg"
+        "remarks": "gqg",
+        "registered_players": []
     },
     {
         "id": "e6285fb9-5a91-4989-af89-3f914451cff4",
@@ -393,7 +461,8 @@
         "start_date": "2023-08-27T00:09:52",
         "end_date": "2023-08-27T00:09:52",
         "num_rounds": 855,
-        "remarks": "dgsrg"
+        "remarks": "dgsrg",
+        "registered_players": []
     },
     {
         "id": "94116735-71b7-48b7-badb-ccb95ff5886b",
@@ -402,7 +471,8 @@
         "start_date": "2023-08-27T16:52:57",
         "end_date": "2023-08-27T16:52:57",
         "num_rounds": 12,
-        "remarks": "fws"
+        "remarks": "fws",
+        "registered_players": []
     },
     {
         "id": "2682daaf-0ee9-4f98-bff8-677331608064",
@@ -411,7 +481,8 @@
         "start_date": "2023-08-27T16:53:47",
         "end_date": "2023-08-27T16:53:47",
         "num_rounds": 3,
-        "remarks": "sefsef"
+        "remarks": "sefsef",
+        "registered_players": []
     },
     {
         "id": "8b7f827d-863e-44bc-a1ae-24c29c869797",
@@ -420,7 +491,8 @@
         "start_date": "2023-08-27T16:55:30",
         "end_date": "2023-08-27T16:55:30",
         "num_rounds": 2,
-        "remarks": "fsef"
+        "remarks": "fsef",
+        "registered_players": []
     },
     {
         "id": "3c08ce3a-e0ab-4960-9602-c4a7ef983ccf",
@@ -429,7 +501,8 @@
         "start_date": "2023-08-27T16:55:53",
         "end_date": "2023-08-27T16:55:53",
         "num_rounds": 2,
-        "remarks": "sfe"
+        "remarks": "sfe",
+        "registered_players": []
     },
     {
         "id": "6369e2ff-7a0f-42b4-864b-bb8d490dbc5d",
@@ -438,7 +511,8 @@
         "start_date": "2023-08-27T16:59:49",
         "end_date": "2023-08-27T16:59:49",
         "num_rounds": 2,
-        "remarks": "sfsf"
+        "remarks": "sfsf",
+        "registered_players": []
     },
     {
         "id": "013c3e93-a602-420c-8360-9cd09d8ecef1",
@@ -447,7 +521,8 @@
         "start_date": "2023-08-27T17:00:23",
         "end_date": "2023-08-27T17:00:23",
         "num_rounds": 2,
-        "remarks": "zfzef"
+        "remarks": "zfzef",
+        "registered_players": []
     },
     {
         "id": "ddebb122-3885-45c4-9f30-88de44d934e9",
@@ -456,7 +531,8 @@
         "start_date": "2023-08-27T17:16:50",
         "end_date": "2023-08-27T17:16:50",
         "num_rounds": 23,
-        "remarks": "sfesfs"
+        "remarks": "sfesfs",
+        "registered_players": []
     },
     {
         "id": "417288b3-82f3-4291-bd5c-cc0c70cfc160",
@@ -465,7 +541,8 @@
         "start_date": "2023-08-27T17:19:01",
         "end_date": "2023-08-27T17:19:01",
         "num_rounds": 1,
-        "remarks": "jkb"
+        "remarks": "jkb",
+        "registered_players": []
     },
     {
         "id": "7bf8dfba-6cdb-4c58-aa26-fc21db5947d0",
@@ -474,7 +551,8 @@
         "start_date": "2023-08-27T17:24:05",
         "end_date": "2023-08-27T17:24:05",
         "num_rounds": 2,
-        "remarks": "fsefesfse"
+        "remarks": "fsefesfse",
+        "registered_players": []
     },
     {
         "id": "bfe461cd-2d6b-4e4a-b1d1-6d564cb98ee6",
@@ -483,7 +561,8 @@
         "start_date": "2023-08-27T17:33:57",
         "end_date": "2023-08-27T17:33:57",
         "num_rounds": 1,
-        "remarks": "efsfeef"
+        "remarks": "efsfeef",
+        "registered_players": []
     },
     {
         "id": "06669f61-289c-43d8-a421-17491bf541f2",
@@ -492,7 +571,8 @@
         "start_date": "2023-08-27T17:36:23",
         "end_date": "2023-08-27T17:36:23",
         "num_rounds": 2,
-        "remarks": "sefsef"
+        "remarks": "sefsef",
+        "registered_players": []
     },
     {
         "id": "2b3b7031-6a3c-4677-b619-6813c856c398",
@@ -501,7 +581,8 @@
         "start_date": "2023-08-27T17:37:09",
         "end_date": "2023-08-27T17:37:09",
         "num_rounds": 3,
-        "remarks": "gdrgdrgdrgd"
+        "remarks": "gdrgdrgdrgd",
+        "registered_players": []
     },
     {
         "id": "92e5eb09-8b2a-4414-accc-9b3b6edc6930",
@@ -510,7 +591,8 @@
         "start_date": "2023-08-27T17:41:11",
         "end_date": "2023-08-27T17:41:11",
         "num_rounds": 12,
-        "remarks": "rdgrdr"
+        "remarks": "rdgrdr",
+        "registered_players": []
     },
     {
         "id": "2ab0ec62-7f04-4939-862a-11641dd0fee9",
@@ -519,7 +601,8 @@
         "start_date": "2023-08-27T17:43:46",
         "end_date": "2023-08-27T17:43:46",
         "num_rounds": 32,
-        "remarks": "fgbgf"
+        "remarks": "fgbgf",
+        "registered_players": []
     },
     {
         "id": "c9a35b3f-a2f5-4047-a926-6c215adf7382",
@@ -528,7 +611,8 @@
         "start_date": "2023-08-27T17:48:14",
         "end_date": "2023-08-27T17:48:14",
         "num_rounds": 6,
-        "remarks": "grgdr"
+        "remarks": "grgdr",
+        "registered_players": []
     },
     {
         "id": "6448ab3f-b385-4e46-a0ae-d0a532ab3d2e",
@@ -537,7 +621,8 @@
         "start_date": "2023-08-27T17:49:25",
         "end_date": "2023-08-27T17:49:25",
         "num_rounds": 63,
-        "remarks": "hfthfh"
+        "remarks": "hfthfh",
+        "registered_players": []
     },
     {
         "id": "dad42f9e-106a-4564-aa4e-2d81e92392d9",
@@ -546,7 +631,8 @@
         "start_date": "2023-08-27T17:50:41",
         "end_date": "2023-08-27T17:50:41",
         "num_rounds": 75,
-        "remarks": "efesf"
+        "remarks": "efesf",
+        "registered_players": []
     },
     {
         "id": "166928c1-92d1-418d-a2e5-7284b413fcfe",
@@ -555,7 +641,8 @@
         "start_date": "2023-08-27T17:56:21",
         "end_date": "2023-08-27T17:56:21",
         "num_rounds": 1,
-        "remarks": "drgrgd"
+        "remarks": "drgrgd",
+        "registered_players": []
     },
     {
         "id": "ed04e20c-8eba-4d46-89f0-7b010c6d5db7",
@@ -564,7 +651,8 @@
         "start_date": "2023-08-27T18:01:42",
         "end_date": "2023-08-27T18:01:42",
         "num_rounds": 32,
-        "remarks": "rgdgdrg"
+        "remarks": "rgdgdrg",
+        "registered_players": []
     },
     {
         "id": "45f18dc2-4661-4137-96ec-7a1825912dc5",
@@ -573,7 +661,8 @@
         "start_date": "2023-08-27T18:02:31",
         "end_date": "2023-08-27T18:02:31",
         "num_rounds": 3,
-        "remarks": "grdgdrg"
+        "remarks": "grdgdrg",
+        "registered_players": []
     },
     {
         "id": "33501338-8cd8-4e81-9a61-5f8d09486dff",
@@ -582,7 +671,8 @@
         "start_date": "2023-08-27T18:12:39",
         "end_date": "2023-08-27T18:12:39",
         "num_rounds": 12,
-        "remarks": "rgdrg"
+        "remarks": "rgdrg",
+        "registered_players": []
     },
     {
         "id": "1ab02400-3ece-4833-9782-73b39cf0d17d",
@@ -591,7 +681,8 @@
         "start_date": "2023-08-27T18:13:10",
         "end_date": "2023-08-27T18:13:10",
         "num_rounds": 5,
-        "remarks": "sefsefsefse"
+        "remarks": "sefsefsefse",
+        "registered_players": []
     },
     {
         "id": "73044e39-8942-4e05-a9f0-b5d670dc7321",
@@ -600,7 +691,8 @@
         "start_date": "2023-08-27T18:41:06",
         "end_date": "2023-08-27T18:41:06",
         "num_rounds": 5,
-        "remarks": "fesfsfsef"
+        "remarks": "fesfsfsef",
+        "registered_players": []
     },
     {
         "id": "6165f406-5793-4d32-9f40-a984a909e873",
@@ -609,7 +701,8 @@
         "start_date": "2023-08-27T18:42:14",
         "end_date": "2023-08-27T18:42:14",
         "num_rounds": 12,
-        "remarks": "sefse"
+        "remarks": "sefse",
+        "registered_players": []
     },
     {
         "id": "6165f406-5793-4d32-9f40-a984a909e873",
@@ -618,7 +711,8 @@
         "start_date": "2023-08-27T18:42:14",
         "end_date": "2023-08-27T18:42:14",
         "num_rounds": 12,
-        "remarks": "sefse"
+        "remarks": "sefse",
+        "registered_players": []
     },
     {
         "id": "cf892371-1759-4c7d-9702-5797453b8259",
@@ -627,7 +721,8 @@
         "start_date": "2023-08-27T18:44:34",
         "end_date": "2023-08-27T18:44:34",
         "num_rounds": 5,
-        "remarks": "grdgrd"
+        "remarks": "grdgrd",
+        "registered_players": []
     },
     {
         "id": "cf892371-1759-4c7d-9702-5797453b8259",
@@ -636,7 +731,8 @@
         "start_date": "2023-08-27T18:44:34",
         "end_date": "2023-08-27T18:44:34",
         "num_rounds": 5,
-        "remarks": "grdgrd"
+        "remarks": "grdgrd",
+        "registered_players": []
     },
     {
         "id": "6ef429cd-f768-4e35-b376-45b6f4e6e975",
@@ -645,7 +741,8 @@
         "start_date": "2023-08-27T18:49:14",
         "end_date": "2023-08-27T18:49:14",
         "num_rounds": 5,
-        "remarks": "rdgrg"
+        "remarks": "rdgrg",
+        "registered_players": []
     },
     {
         "id": "8f665985-516a-4262-a1be-33a894cc2336",
@@ -654,7 +751,8 @@
         "start_date": "2023-08-27T18:50:43",
         "end_date": "2023-08-27T18:50:43",
         "num_rounds": 5,
-        "remarks": "fsefsees"
+        "remarks": "fsefsees",
+        "registered_players": []
     },
     {
         "id": "ebb611ba-4be8-48cd-8bbe-0bcf87339252",
@@ -663,7 +761,8 @@
         "start_date": "2023-08-27T19:05:15",
         "end_date": "2023-08-27T19:05:15",
         "num_rounds": 5,
-        "remarks": "fsefes"
+        "remarks": "fsefes",
+        "registered_players": []
     },
     {
         "id": "ae62b62d-c2b1-4c2a-a833-8a920bf187d9",
@@ -672,7 +771,8 @@
         "start_date": "2023-08-27T19:06:15",
         "end_date": "2023-08-27T19:06:15",
         "num_rounds": 5,
-        "remarks": "fsefe"
+        "remarks": "fsefe",
+        "registered_players": []
     },
     {
         "id": "638e00f9-9735-4c56-a683-4c3d6bb11190",
@@ -681,7 +781,8 @@
         "start_date": "2023-08-27T19:07:41",
         "end_date": "2023-08-27T19:07:41",
         "num_rounds": 5,
-        "remarks": "drgrdgrdg"
+        "remarks": "drgrdgrdg",
+        "registered_players": []
     },
     {
         "id": "273ef9b5-cb95-4ed0-aa20-a6aa226cd3d5",
@@ -690,7 +791,8 @@
         "start_date": "2023-08-27T19:16:40",
         "end_date": "2023-08-27T19:16:40",
         "num_rounds": 5,
-        "remarks": "esfsee"
+        "remarks": "esfsee",
+        "registered_players": []
     },
     {
         "id": "a23319ae-b272-48a4-8f41-b4f6f3400719",
@@ -699,7 +801,8 @@
         "start_date": "2023-08-27T19:25:33",
         "end_date": "2023-08-27T19:25:33",
         "num_rounds": 5,
-        "remarks": "xdvdvdx"
+        "remarks": "xdvdvdx",
+        "registered_players": []
     },
     {
         "id": "f657665a-0cec-44f8-87ca-90a5158190c1",
@@ -708,7 +811,8 @@
         "start_date": "2023-08-27T19:27:58",
         "end_date": "2023-08-27T19:27:58",
         "num_rounds": 5,
-        "remarks": "vsev"
+        "remarks": "vsev",
+        "registered_players": []
     },
     {
         "id": "1883d4b7-2f7b-40d7-bd95-90029913f83e",
@@ -717,7 +821,8 @@
         "start_date": "2023-08-27T19:30:59",
         "end_date": "2023-08-27T19:30:59",
         "num_rounds": 5,
-        "remarks": "sefsefsef"
+        "remarks": "sefsefsef",
+        "registered_players": []
     },
     {
         "id": "61f69648-981d-4ca0-ac0c-a07ac74d3675",
@@ -726,7 +831,8 @@
         "start_date": "2023-08-27T19:34:05",
         "end_date": "2023-08-27T19:34:05",
         "num_rounds": 5,
-        "remarks": "gdrgrdg"
+        "remarks": "gdrgrdg",
+        "registered_players": []
     },
     {
         "id": "3095f22f-e50e-4716-864d-64947e44ab76",
@@ -735,7 +841,8 @@
         "start_date": "2023-08-27T19:41:08",
         "end_date": "2023-08-27T19:41:08",
         "num_rounds": 5,
-        "remarks": "sdgsdgd"
+        "remarks": "sdgsdgd",
+        "registered_players": []
     },
     {
         "id": "f5c3c158-0b98-4364-83c6-bc8ce2519465",
@@ -744,7 +851,8 @@
         "start_date": "2023-08-27T19:47:22",
         "end_date": "2023-08-27T19:47:22",
         "num_rounds": 5,
-        "remarks": "a\u00e9e\u00e9ae\u00e9a"
+        "remarks": "a\u00e9e\u00e9ae\u00e9a",
+        "registered_players": []
     },
     {
         "id": "aa96cc5e-8da1-47ce-b52c-51eea677aede",
@@ -753,7 +861,8 @@
         "start_date": "2023-08-27T19:56:57",
         "end_date": "2023-08-27T19:56:57",
         "num_rounds": 5,
-        "remarks": "xvxdxv"
+        "remarks": "xvxdxv",
+        "registered_players": []
     },
     {
         "id": "79426c98-3391-4f81-b728-25535f0328d7",
@@ -762,7 +871,8 @@
         "start_date": "2023-08-27T20:25:17",
         "end_date": "2023-08-27T20:25:17",
         "num_rounds": 5,
-        "remarks": "fsefse"
+        "remarks": "fsefse",
+        "registered_players": []
     },
     {
         "id": "a82fbc8f-2781-4e17-bece-3af218f60e46",
@@ -771,7 +881,8 @@
         "start_date": "2023-08-27T20:26:42",
         "end_date": "2023-08-27T20:26:42",
         "num_rounds": 6,
-        "remarks": "esfqsef"
+        "remarks": "esfqsef",
+        "registered_players": []
     },
     {
         "id": "5fb2ad4b-875f-4899-83f4-b35e19cff013",
@@ -780,7 +891,8 @@
         "start_date": "2023-08-27T20:30:20",
         "end_date": "2023-08-27T20:30:20",
         "num_rounds": 8,
-        "remarks": "fsefesfes"
+        "remarks": "fsefesfes",
+        "registered_players": []
     },
     {
         "id": "30658583-7006-4f87-88db-18d6cc45488f",
@@ -789,7 +901,8 @@
         "start_date": "2023-08-27T20:32:56",
         "end_date": "2023-08-27T20:32:56",
         "num_rounds": 56,
-        "remarks": "eqfesf"
+        "remarks": "eqfesf",
+        "registered_players": []
     },
     {
         "id": "06112bbb-770a-4fe5-ade4-4b94a0063f2b",
@@ -798,7 +911,8 @@
         "start_date": "2023-08-27T20:35:29",
         "end_date": "2023-08-27T20:35:29",
         "num_rounds": 99,
-        "remarks": "sdrgrsdgrsdg"
+        "remarks": "sdrgrsdgrsdg",
+        "registered_players": []
     },
     {
         "id": "76a99928-80af-4826-9b47-a96a998cbf96",
@@ -807,7 +921,8 @@
         "start_date": "2023-08-27T20:39:52",
         "end_date": "2023-08-27T20:39:52",
         "num_rounds": 6,
-        "remarks": "sqfqef"
+        "remarks": "sqfqef",
+        "registered_players": []
     },
     {
         "id": "d36a004e-5714-4f9f-a1f1-1579cc879f00",
@@ -816,7 +931,8 @@
         "start_date": "2023-08-27T20:44:19",
         "end_date": "2023-08-27T20:44:19",
         "num_rounds": 6,
-        "remarks": "fefqsefe"
+        "remarks": "fefqsefe",
+        "registered_players": []
     },
     {
         "id": "26cbfad5-e151-49c6-ba37-06e18912c03b",
@@ -825,7 +941,8 @@
         "start_date": "2023-08-27T20:46:12",
         "end_date": "2023-08-27T20:46:12",
         "num_rounds": 3,
-        "remarks": "sfsqefsefsef"
+        "remarks": "sfsqefsefsef",
+        "registered_players": []
     },
     {
         "id": "32c071b8-7715-40ac-b764-fa143ff8a99a",
@@ -834,7 +951,8 @@
         "start_date": "2023-09-01T16:41:56",
         "end_date": "2023-09-01T16:41:56",
         "num_rounds": 6,
-        "remarks": "none"
+        "remarks": "none",
+        "registered_players": []
     },
     {
         "id": "cdc7f67e-5bd6-4e15-a058-109b16cc9340",
@@ -843,7 +961,8 @@
         "start_date": "2023-09-01T16:45:04",
         "end_date": "2023-09-01T16:45:04",
         "num_rounds": 12,
-        "remarks": "sgrrdgdr"
+        "remarks": "sgrrdgdr",
+        "registered_players": []
     },
     {
         "id": "9ae53622-84c4-4e45-8361-f3d3f800e5a2",
@@ -852,7 +971,8 @@
         "start_date": "2023-09-01T16:46:46",
         "end_date": "2023-09-01T16:46:46",
         "num_rounds": 23,
-        "remarks": "dgrdgsg"
+        "remarks": "dgrdgsg",
+        "registered_players": []
     },
     {
         "id": "848b0c9b-a01d-4abc-a571-36cc744c0c9e",
@@ -861,7 +981,8 @@
         "start_date": "2023-09-01T18:33:18",
         "end_date": "2023-09-01T18:33:18",
         "num_rounds": 18,
-        "remarks": "N/a"
+        "remarks": "N/a",
+        "registered_players": []
     },
     {
         "id": "2e0eda73-ee58-4631-9722-bd4c750d5f66",
@@ -870,7 +991,8 @@
         "start_date": "2023-09-02T19:22:56",
         "end_date": "2023-09-02T19:22:56",
         "num_rounds": 5,
-        "remarks": ""
+        "remarks": "",
+        "registered_players": []
     },
     {
         "id": "5c6733c0-84a4-4a09-8a25-0abf03772365",
@@ -879,7 +1001,8 @@
         "start_date": "2023-09-02T19:29:51",
         "end_date": "2023-09-02T19:29:51",
         "num_rounds": 8,
-        "remarks": "fefqse"
+        "remarks": "fefqse",
+        "registered_players": []
     },
     {
         "id": "c2fb2847-6d0f-4201-96d9-4ac3e94840c4",
@@ -888,7 +1011,8 @@
         "start_date": "2023-09-02T19:57:00",
         "end_date": "2023-09-02T19:57:00",
         "num_rounds": 56,
-        "remarks": "fsefsefse"
+        "remarks": "fsefsefse",
+        "registered_players": []
     },
     {
         "id": "848b0c9b-a01d-4abc-a571-36cc744c0c9e",
@@ -897,7 +1021,8 @@
         "start_date": "2023-09-01T18:33:18",
         "end_date": "2023-09-01T18:33:18",
         "num_rounds": 18,
-        "remarks": "N/a"
+        "remarks": "N/a",
+        "registered_players": []
     },
     {
         "id": "54d9bcb9-8a4f-4608-b723-e10a3e667a3a",
@@ -906,7 +1031,8 @@
         "start_date": "2023-08-20T21:57:04",
         "end_date": "2023-08-20T21:57:04",
         "num_rounds": 1,
-        "remarks": "g"
+        "remarks": "g",
+        "registered_players": []
     },
     {
         "id": "7bf8dfba-6cdb-4c58-aa26-fc21db5947d0",
@@ -915,7 +1041,8 @@
         "start_date": "2023-08-27T17:24:05",
         "end_date": "2023-08-27T17:24:05",
         "num_rounds": 2,
-        "remarks": "fsefesfse"
+        "remarks": "fsefesfse",
+        "registered_players": []
     },
     {
         "id": "320819f0-cfa3-4fc8-ae5d-e6f9117ec813",
@@ -924,7 +1051,8 @@
         "start_date": "2023-08-20T18:57:56",
         "end_date": "2023-08-20T18:57:56",
         "num_rounds": 6,
-        "remarks": "hftjyjd"
+        "remarks": "hftjyjd",
+        "registered_players": []
     },
     {
         "id": "ba92d559-95f9-4110-8e10-3572e6db6782",
@@ -933,7 +1061,8 @@
         "start_date": "2023-08-26T16:36:49",
         "end_date": "2023-08-26T16:36:49",
         "num_rounds": 55,
-        "remarks": "fesff"
+        "remarks": "fesff",
+        "registered_players": []
     },
     {
         "id": "cf892371-1759-4c7d-9702-5797453b8259",
@@ -942,7 +1071,8 @@
         "start_date": "2023-08-27T18:44:34",
         "end_date": "2023-08-27T18:44:34",
         "num_rounds": 5,
-        "remarks": "grdgrd"
+        "remarks": "grdgrd",
+        "registered_players": []
     },
     {
         "id": "f7abc1e0-f490-46b7-a5fa-3f4bce7bcbf5",
@@ -951,6 +1081,62 @@
         "start_date": "2023-09-03T17:53:20",
         "end_date": "2023-09-03T17:53:20",
         "num_rounds": 2056,
-        "remarks": "None thank you"
+        "remarks": "None thank you",
+        "registered_players": []
+    },
+    {
+        "id": "66f0a6cf-94c7-43dd-a0e3-f6b1e7be1931",
+        "name": "Test with registered players",
+        "location": "New-York",
+        "start_date": "2023-09-15T16:53:43",
+        "end_date": "2023-09-15T16:53:43",
+        "num_rounds": 5,
+        "remarks": "This test concerns the addition of registered players to the tournament object json",
+        "registered_players": []
+    },
+    {
+        "id": "f340370c-aae1-4a9e-8bdf-c2d2ef215674",
+        "name": "qfe",
+        "location": "sefqsf",
+        "start_date": "2023-09-15T17:37:18",
+        "end_date": "2023-09-15T17:37:18",
+        "num_rounds": 9,
+        "remarks": "sfesf",
+        "registered_players": []
+    },
+    {
+        "id": "c6025937-8017-4917-b4e3-98ce2a24114e",
+        "name": "Test with registered player json object",
+        "location": "Unknown",
+        "start_date": "2023-09-15T17:45:42",
+        "end_date": "2023-09-15T17:45:42",
+        "num_rounds": 8,
+        "remarks": "Let's pray for this to work, it's a test to see if the register player json object works as intended",
+        "registered_players": [
+            {
+                "first_name": "Henri",
+                "last_name": "Cave Ville",
+                "date_of_birth": "1979-01-01",
+                "chess_id": "AA21345"
+            },
+            {
+                "first_name": "Louis",
+                "last_name": "Arm Strong",
+                "date_of_birth": "2009-01-01",
+                "chess_id": "BH23789"
+            },
+            {
+                "first_name": "Jensen",
+                "last_name": "Ackles",
+                "date_of_birth": "2000-01-01",
+                "chess_id": "JZ73145"
+            },
+            {
+                "first_name": "Jared",
+                "last_name": "Padeleki",
+                "date_of_birth": "2000-01-01",
+                "chess_id": "SP03655"
+            }
+        ]
     }
 ]

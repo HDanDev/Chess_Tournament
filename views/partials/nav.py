@@ -3,7 +3,7 @@ from views.tournament_creation_view import TournamentCreationView
 from views.tournament_read_view import TournamentReadView
 from views.tournament_manager_view import TournamentManagerView
 from views.tournament_simulator_view import TournamentSimulatorView
-from views.tournament_simulator_picker_view import TournamentSimulatorPickerView
+from views.tournament_manager_picker_view import TournamentManagerPickerView
 from views.player_creation_view import PlayerCreationView
 from views.player_read_view import PlayerReadView
 from controllers.tournament_controller import TournamentController
@@ -31,9 +31,9 @@ class Nav:
         tournament_manager_view = TournamentManagerView(self, tournament, index)
         self._base_view.switch_view(tournament_manager_view, "Chess Manager - Tournament manager")        
         
-    def switch_to_tournament_picker_simulator(self):
-        tournament_simulator_picker_view = TournamentSimulatorPickerView(self)
-        self._base_view.switch_view(tournament_simulator_picker_view, "Chess Manager - Tournament simulator picker")        
+    def switch_to_tournament_picker_manager(self):
+        tournament_simulator_picker_view = TournamentManagerPickerView(self)
+        self._base_view.switch_view(tournament_simulator_picker_view, "Chess Manager - Tournament manager picker")        
     
     def switch_to_tournament_simulator(self, tournament):
         tournament_simulator_view = TournamentSimulatorView(self, tournament)

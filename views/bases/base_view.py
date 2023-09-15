@@ -64,13 +64,13 @@ class BaseView(QMainWindow):
 
         switch_to_tournament_creation = QAction("Create", self)
         switch_to_tournament_read = QAction("View", self)
-        switch_to_tournament_simulation = QAction("Simulate", self)
+        switch_to_tournament_manage = QAction("Manage", self)
         switch_to_tournament_creation.triggered.connect(self.nav.switch_to_tournament_creation)
         switch_to_tournament_read.triggered.connect(self.nav.switch_to_tournament_read)
-        switch_to_tournament_simulation.triggered.connect(self.nav.switch_to_tournament_picker_simulator)
+        switch_to_tournament_manage.triggered.connect(self.nav.switch_to_tournament_picker_manager)
         tournament_menu.addAction(switch_to_tournament_creation)
         tournament_menu.addAction(switch_to_tournament_read)
-        tournament_menu.addAction(switch_to_tournament_simulation)
+        tournament_menu.addAction(switch_to_tournament_manage)
 
         player_menu = menubar.addMenu("Player")
         player_menu.setObjectName("player-menu")
