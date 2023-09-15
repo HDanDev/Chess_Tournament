@@ -28,7 +28,10 @@ class TournamentController:
         self.tournament_repository.update_json(tournament)
         
     def save_new_item(self, tournament):
-        self.tournament_repository.add_json(tournament)
+        self.tournament_repository.add_json(tournament)        
+        
+    def delete_one(self, id):
+        self.tournament_repository.delete_json(id)
         
     def add_player(self, player):
         try:

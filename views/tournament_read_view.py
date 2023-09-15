@@ -4,6 +4,7 @@ from controllers.tournament_controller import TournamentController
 from models.tournament import Tournament
 from views.partials.date_delegate import DateDelegate
 from views.partials.int_delegate import IntDelegate
+from functools import partial
 
 class TournamentReadView(QWidget):
     def __init__(self, nav):
@@ -22,9 +23,9 @@ class TournamentReadView(QWidget):
         self.layout.addWidget(self.label)
 
         self.table = QTableWidget()
-        self.table.setColumnCount(7)
-        self.table.setHorizontalHeaderLabels(["Name", "Location", "Starting date", "Ending date", "Number of rounds", "remarks"])
-        self.table.setColumnHidden(6, True) 
+        self.table.setColumnCount(8)
+        self.table.setHorizontalHeaderLabels(["Name", "Location", "Starting date", "Ending date", "Number of rounds", "Remarks", "Action"])
+        self.table.setColumnHidden(7, True) 
         # self.table.setItemDelegateForColumn(2, self.date_delegate)
         # self.table.setItemDelegateForColumn(3, self.date_delegate)   
         self.table.setItemDelegateForColumn(4, self.int_delegate)
@@ -60,6 +61,9 @@ class TournamentReadView(QWidget):
 
         num_rounds = QTableWidgetItem(str(tournament._num_rounds))
         num_rounds.setData(Qt.EditRole, int(tournament._num_rounds))
+        
+        delete_btn = QPushButton("Delete")
+        delete_btn.setObjectName("delete-button")
 
         remarks = QTableWidgetItem(tournament.remarks)
                 
@@ -71,12 +75,15 @@ class TournamentReadView(QWidget):
         self.table.setItem(row_position, 3, end_date)
         self.table.setItem(row_position, 4, num_rounds)
         self.table.setItem(row_position, 5, remarks)
-        self.table.setItem(row_position, 6, id)
-         
+        self.table.setCellWidget(row_position, 6, delete_btn)
+        self.table.setItem(row_position, 7, id)
+        
+        delete_btn.clicked.connect(partial(self.delete, row=row_position))
+        
     def handle_item_changed(self, item):
         row = item.row()
         try: 
-            id_item = self.table.item(row, 6) 
+            id_item = self.table.item(row, 7) 
             tournament_id = id_item.text()
             edited_tournament = Tournament(
                 id=tournament_id,
@@ -90,3 +97,13 @@ class TournamentReadView(QWidget):
             self.tournament_controller.save_changes(edited_tournament)
         except Exception as e:
             print(f"Error fnding item: {e}")  
+            
+    def delete(self, row):
+        print(f"row : {row}")
+        id = self.table.item(row, 7).text()
+        try: 
+            self.tournament_controller.delete_one(id)
+            self.table.removeRow(row)
+        except Exception as e:
+            print(f"An error occured while trying to delete the item: {e}")  
+            

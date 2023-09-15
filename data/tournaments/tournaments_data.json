@@ -369,15 +369,6 @@
         "remarks": "a"
     },
     {
-        "id": "ba92d559-95f9-4110-8e10-3572e6db6782",
-        "name": "efs",
-        "location": "fsefef",
-        "start_date": "2023-08-26T16:36:49",
-        "end_date": "2023-08-26T16:36:49",
-        "num_rounds": 55,
-        "remarks": "fesff"
-    },
-    {
         "id": "d090a35a-5468-4362-94f6-58ff442acaaf",
         "name": "qfefsef",
         "location": "sfesfesf",
@@ -531,15 +522,6 @@
         "remarks": "fgbgf"
     },
     {
-        "id": "89db872e-dee5-4ff3-8cca-690b1aa6bfca",
-        "name": "drfrd",
-        "location": "grgrd",
-        "start_date": "2023-08-27T17:45:30",
-        "end_date": "2023-08-27T17:45:30",
-        "num_rounds": 5,
-        "remarks": "grgr"
-    },
-    {
         "id": "c9a35b3f-a2f5-4047-a926-6c215adf7382",
         "name": "grgdg",
         "location": "rgdgrdg",
@@ -637,15 +619,6 @@
         "end_date": "2023-08-27T18:42:14",
         "num_rounds": 12,
         "remarks": "sefse"
-    },
-    {
-        "id": "cf892371-1759-4c7d-9702-5797453b8259",
-        "name": "rdgdrg",
-        "location": "rgdrgdr",
-        "start_date": "2023-08-27T18:44:34",
-        "end_date": "2023-08-27T18:44:34",
-        "num_rounds": 5,
-        "remarks": "grdgrd"
     },
     {
         "id": "cf892371-1759-4c7d-9702-5797453b8259",
@@ -970,15 +943,6 @@
         "end_date": "2023-08-27T18:44:34",
         "num_rounds": 5,
         "remarks": "grdgrd"
-    },
-    {
-        "id": "89db872e-dee5-4ff3-8cca-690b1aa6bfca",
-        "name": "drfrd",
-        "location": "grgrd",
-        "start_date": "2023-08-27T17:45:30",
-        "end_date": "2023-08-27T17:45:30",
-        "num_rounds": 5,
-        "remarks": "grgr"
     },
     {
         "id": "f7abc1e0-f490-46b7-a5fa-3f4bce7bcbf5",
