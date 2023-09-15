@@ -29,6 +29,9 @@ class TournamentReadView(QWidget):
         # self.table.setItemDelegateForColumn(2, self.date_delegate)
         # self.table.setItemDelegateForColumn(3, self.date_delegate)   
         self.table.setItemDelegateForColumn(4, self.int_delegate)
+        
+        self.sort_order = [Qt.AscendingOrder] * self.table.columnCount()
+        self.table.horizontalHeader().sectionClicked.connect(self.sort_rows)
 
         
         self.layout.addWidget(self.table)
@@ -105,5 +108,9 @@ class TournamentReadView(QWidget):
             self.tournament_controller.delete_one(id)
             self.table.removeRow(row)
         except Exception as e:
-            print(f"An error occured while trying to delete the item: {e}")  
+            print(f"An error occured while trying to delete the item: {e}")              
             
+    def sort_rows(self, column):
+        current_order = self.sort_order[column]
+        self.sort_order[column] = Qt.DescendingOrder if current_order == Qt.AscendingOrder else Qt.AscendingOrder
+        self.table.sortItems(column, current_order)

@@ -11,7 +11,7 @@ class PlayerReadView(QWidget):
 
         self.nav = nav
         self.player_controller = PlayerController(nav)
-        self.player_data = self.player_controller.get_player_data()
+        self.player_data = sorted(self.player_controller.get_player_data(), key=lambda x: x.last_name)
         # self.date_delegate = DateDelegate(self)
         
         self.layout = QVBoxLayout()
@@ -22,6 +22,8 @@ class PlayerReadView(QWidget):
         self.table = QTableWidget()
         self.table.setColumnCount(5)
         self.table.setHorizontalHeaderLabels(["Chess ID", "First name", "Last name", "Date of birth", "Action"])
+        self.sort_order = [Qt.AscendingOrder] * self.table.columnCount()
+        self.table.horizontalHeader().sectionClicked.connect(self.sort_rows)
         # self.table.setItemDelegateForColumn(2, self.date_delegate)
         # self.table.setItemDelegateForColumn(3, self.date_delegate)   
         
@@ -81,5 +83,10 @@ class PlayerReadView(QWidget):
                 self.player_controller.delete_one(id)
                 self.table.removeRow(row)
             except Exception as e:
-                print(f"An error occured while trying to delete the item: {e}")  
+                print(f"An error occured while trying to delete the item: {e}")                  
+    
+    def sort_rows(self, column):
+        current_order = self.sort_order[column]
+        self.sort_order[column] = Qt.DescendingOrder if current_order == Qt.AscendingOrder else Qt.AscendingOrder
+        self.table.sortItems(column, current_order)
                 
