@@ -11,6 +11,7 @@ class Tournament:
         self._current_round = current_round
         self._rounds = []
         self._registered_players = []
+        self._total_registered_players = len(self.registered_players)
         self._remarks = remarks
 
     @property
@@ -93,6 +94,14 @@ class Tournament:
     @registered_players.setter
     def registered_players(self, value):
         self._registered_players = value
+        
+    @property
+    def total_registered_players(self):
+        return self._total_registered_players  
+        
+    @total_registered_players.setter
+    def total_registered_players(self, value):
+        self._total_registered_players = value
     
     # @registered_players.setter
     # def registered_players(self, value):
@@ -103,9 +112,11 @@ class Tournament:
 
     def add_player(self, player):
         self._registered_players.append(player)
+        self._total_registered_players = len(self.registered_players)
 
     def remove_player(self, player):
         self._registered_players.remove(player)
+        self._total_registered_players = len(self.registered_players)        
         
     # def update_player_score(self, target_player, updated_score):
     #     for player in self._registered_players:

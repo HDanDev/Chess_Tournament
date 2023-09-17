@@ -83,7 +83,10 @@ class InputField(QWidget):
         self._layout.removeWidget(self._input)
         
         self._layout.insertWidget(index, self._label)
-        self._layout.insertWidget(index + 1, self._input)        
+        self._layout.insertWidget(index + 1, self._input)    
+        
+    def set_text(self, text):
+        self._input.setText(str(text))    
         
     @property
     def layout(self):

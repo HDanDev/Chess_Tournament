@@ -72,8 +72,9 @@ class BaseRepository:
     def update_json(self, obj):
         try:
             data = self.read_json()
-
+            
             for i, item in enumerate(data):
+                print(item)
                 if getattr(item, self._attribute) == getattr(obj, self._attribute):
                     data[i] = obj
                     break
@@ -132,8 +133,8 @@ class BaseRepository:
         pass
     
     @staticmethod    
-    def serialize_player(player):
-       
+    def serialize_player(player):    
+        print("Data type base repository:", type(player.date_of_birth))
         return {
             "first_name": player.first_name,
             "last_name": player.last_name,

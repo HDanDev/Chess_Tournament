@@ -40,29 +40,68 @@ class TournamentSimulatorView(QWidget):
         # self.tournament_controller.save_new_item(self.tournament)
         self.tournament_controller.setup_view(self)
         
-    def populate_table(self):        
-
-        for i in range(self.tournament.num_rounds):
-            self.tournament_controller.generate_pairs(current_round=i+1) 
-            self.create_round_table(self.tournament.rounds[i])
+    def populate_table(self):   
+        if len(self.tournament.rounds) == 0:  
+            if int(self.tournament.num_rounds) > 1:   
+                print("case1")
+                for i in range(1, int(self.tournament.num_rounds)):
+                    self.tournament_controller.generate_pairs(current_round=int(i)) 
+                    self.create_round_table(self.tournament.rounds[int(i)-1])
+                    print(f"self.tournament.num_rounds : {self.tournament.num_rounds}")
+                    print(f"i : {i}")
+                    print(f"currentround : {self.tournament.current_round}")
+                    print(f"length : {len(self.tournament.rounds)}")
+                    
+            else:  
+                print("case2")
+                self.tournament_controller.generate_pairs() 
+                self.create_round_table(self.tournament.rounds[0]) 
+                print(f"self.tournament.num_rounds : {self.tournament.num_rounds}")
+                print(f"currentround : {self.tournament.current_round}")
+                print(f"length : {len(self.tournament.rounds)}")
+        else:
+            if int(self.tournament.num_rounds) > 1 and self.tournament.num_rounds is not len(self.tournament.rounds) :   
+                print("case3")
+                for round in self.tournament.rounds:
+                    self.create_immutable_round_table(round)
+                    print(f"self.tournament.num_rounds : {self.tournament.num_rounds}")
+                    print(f"currentround : {self.tournament.current_round}")
+                    print(f"length : {len(self.tournament.rounds)}")
+                for i in range(len(self.tournament.rounds), self.tournament.num_rounds):
+                    self.tournament_controller.generate_pairs(current_round=int(i+1)) 
+                    self.create_round_table(self.tournament.rounds[i])
+                    print(f"self.tournament.num_rounds : {self.tournament.num_rounds}")
+                    print(f"i : {i}")
+                    print(f"currentround : {self.tournament.current_round}")
+                    print(f"length : {len(self.tournament.rounds)}")
+            else:
+                print("case4")
+                for round in self.tournament.rounds:
+                    self.create_immutable_round_table(round)
+                    print(f"self.tournament.num_rounds : {self.tournament.num_rounds}")
+                    print(f"currentround : {self.tournament.current_round}")
+                    print(f"length : {len(self.tournament.rounds)}")
+            
 
     def create_round_table(self, round):
         round_table = QTableWidget()
         round_table.setColumnCount(2)
         round_table.setHorizontalHeaderLabels(["Matches", "Winner"])
+        
+        if round.matches and len(round.matches) > 0:
 
-        for match in round.matches :
-            row_position = round_table.rowCount()
-            round_table.insertRow(row_position)
+            for match in round.matches :            
+                row_position = round_table.rowCount()
+                round_table.insertRow(row_position)
 
-            matches_item = QTableWidgetItem(f"{match.player1.get_full_name()} vs {match.player2.get_full_name()}")
-            matches_item.setFlags(matches_item.flags() & ~Qt.ItemIsEditable)
-            round_table.setItem(row_position, 0, matches_item)
-            
-            combo_box = QComboBox()
-            combo_box.addItems(["Ex Aequo", match.player1.get_full_name(), match.player2.get_full_name()])
-            combo_box.setCurrentText("Ex Aequo")
-            round_table.setCellWidget(row_position, 1, combo_box)
+                matches_item = QTableWidgetItem(f"{match.player1.get_full_name()} vs {match.player2.get_full_name()}")
+                matches_item.setFlags(matches_item.flags() & ~Qt.ItemIsEditable)
+                round_table.setItem(row_position, 0, matches_item)
+                
+                combo_box = QComboBox()
+                combo_box.addItems(["Ex Aequo", match.player1.get_full_name(), match.player2.get_full_name()])
+                combo_box.setCurrentText("Ex Aequo")
+                round_table.setCellWidget(row_position, 1, combo_box)
             
         self.resize_table_to_content(round_table)
         
@@ -70,6 +109,32 @@ class TournamentSimulatorView(QWidget):
         self.tournament_controller.set_round_end_date(round, end_date.input.dateTime())
         print(f"{round.name} end at {round.end_datetime}")
         
+        self.layout.addWidget(round_table)
+        
+    def create_immutable_round_table(self, round):
+        print("Data type tournament simulator.py:", type(round.end_datetime))
+        title = QLabel(f"Round \"{round.name}\" ended at {round.end_datetime.toString('dddd, yyyy-MM-dd HH:mm:ss')}")
+        round_table = QTableWidget()
+        round_table.setColumnCount(2)
+        round_table.setHorizontalHeaderLabels(["Matches", "Winner"])
+        
+        if round.matches and len(round.matches) > 0:
+
+            for match in round.matches :            
+                row_position = round_table.rowCount()
+                round_table.insertRow(row_position)
+
+                matches_item = QTableWidgetItem(f"{match.player1.get_full_name()} vs {match.player2.get_full_name()}")
+                matches_item.setFlags(matches_item.flags() & ~Qt.ItemIsEditable)
+                round_table.setItem(row_position, 0, matches_item)
+                
+                result = QTableWidgetItem(f"{match.get_winner()}")
+                result.setFlags(result.flags() & ~Qt.ItemIsEditable)
+                round_table.setItem(row_position, 1, result)
+            
+        self.resize_table_to_content(round_table)
+        
+        self.layout.addWidget(title)
         self.layout.addWidget(round_table)
         
     def handle_item_changed(self, item):

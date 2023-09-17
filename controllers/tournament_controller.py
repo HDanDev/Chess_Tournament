@@ -35,21 +35,28 @@ class TournamentController:
         
     def add_player(self, player):
         try:
-            self.tournament.registered_players.append(player)
+            self.tournament.add_player(player)
         except Exception as e:
             print(f"Error adding player: {e}")
             
-    def clear_registered_player(self):
+    def remove_player(self, player):
+        try:
+            self.tournament.remove_player(player)
+        except Exception as e:
+            print(f"Error removing player: {e}")
+            
+            
+    def clear_registered_players(self):
         self.tournament.registered_players.clear()
             
-    def generate_pairs(self, is_simulation = False, current_round=0):
+    def generate_pairs(self, is_simulation = False, current_round=1):
         try:
             self.tournament.current_round = current_round
             
             new_round = Round()
             new_round.name = f"Round {self.tournament.current_round}"
-            new_round.start_datetime = datetime.now()
-            new_round.end_datetime = None            
+            new_round.start_datetime = QDateTime.currentDateTime()
+            new_round.end_datetime = QDateTime.currentDateTime()           
             
             if self.tournament.current_round == 1:
                 random.shuffle(self.tournament.registered_players)
@@ -65,8 +72,12 @@ class TournamentController:
                     new_match.player1 = sorted_players[i]
                     new_match.player2 = sorted_players[i + 1]                    
                     new_round.add_match(new_match)    
-
+            print(f"this tournament currently count {len(self.tournament.rounds)}")
             self.tournament.add_round(new_round)
+            checker = 0
+            print(f"just added a round: {self.tournament.rounds[checker]}")
+            checker = checker+1
+            
             
             is_simulation = True
             if is_simulation:
@@ -77,6 +88,7 @@ class TournamentController:
                     match.result = random_result
                     print(f"Outcome of {match.get_match_name()}: {match.result} / player one has now: {match.get_match_result()[0][1]} points, and player 2: {match.get_match_result()[1][1]} points")
             
+            self.save_changes(self.tournament)
         except Exception as e:
             print(f"Error generating pairs: {e}")         
             
@@ -99,6 +111,8 @@ class TournamentController:
         return id in tournament_players_ids and id in all_players_ids
     
     def set_round_end_date(self, round, date):
-        round.end_datetime = date.toString(Qt.ISODate)
+        
+        print("Data type tournament_controller:", type(date))
+        round.end_datetime = date
 
     
