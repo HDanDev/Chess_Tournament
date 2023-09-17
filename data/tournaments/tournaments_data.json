@@ -134,7 +134,7 @@
         "end_date": "2023-09-16T21:59:42",
         "num_rounds": 8,
         "current_round": 1,
-        "total_registered_players": 3,
+        "total_registered_players": 2,
         "remarks": "It's a test to detect behavior abnormalities, hopefuly it should work",
         "registered_players": [
             {
@@ -142,12 +142,6 @@
                 "last_name": "Emploi",
                 "date_of_birth": "1986-08-12",
                 "chess_id": "PO12345"
-            },
-            {
-                "first_name": "Louis",
-                "last_name": "Arm Strong",
-                "date_of_birth": "2009-01-01",
-                "chess_id": "BH23789"
             },
             {
                 "first_name": "Jensen",
@@ -182,7 +176,6 @@
                 "chess_id": "AA21345"
             }
         ],
-        "rounds": [
-        ]
+        "rounds": []
     }
 ]

@@ -1,5 +1,5 @@
 from PySide6.QtWidgets import QLabel, QPushButton, QVBoxLayout, QWidget, QTableWidget, QTableWidgetItem, QHeaderView, QDialog
-from PySide6.QtCore import Qt, QDate
+from PySide6.QtCore import Qt, QDate, Signal
 from controllers.player_controller import PlayerController
 from controllers.tournament_controller import TournamentController
 from models.player import Player
@@ -7,16 +7,20 @@ from views.partials.date_delegate import DateDelegate
 from functools import partial
 
 class PlayerReadView(QWidget):
-    def __init__(self, nav, player_data="", tournament=""):
+    closed = Signal()
+    def __init__(self, nav, tournament=""):
         super().__init__()
 
         self.nav = nav
         self.player_controller = PlayerController(nav)
-        self.player_data = player_data if player_data != "" else sorted(self.player_controller.get_player_data(), key=lambda x: x.last_name)
+        self.player_data = tournament.registered_players if tournament != "" else sorted(self.player_controller.get_player_data(), key=lambda x: x.last_name)
+                     
         # self.date_delegate = DateDelegate(self)
         self.tournament = tournament
         self.tournament_controller = TournamentController(self.nav, self.tournament)
-        self.is_tournament_related = True if player_data != "" and tournament != "" else False
+        self.is_tournament_related = True if tournament != "" else False
+        
+        print(f"len before: {len(self.tournament.registered_players)}")                        
         
         self.layout = QVBoxLayout()
 
@@ -130,5 +134,8 @@ class PlayerReadView(QWidget):
     def sort_rows(self, column):
         current_order = self.sort_order[column]
         self.sort_order[column] = Qt.DescendingOrder if current_order == Qt.AscendingOrder else Qt.AscendingOrder
-        self.table.sortItems(column, current_order)
-                
+        self.table.sortItems(column, current_order) 
+        
+    def closeEvent(self, event):
+        self.closed.emit()
+        event.accept()

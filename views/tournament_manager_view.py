@@ -49,6 +49,7 @@ class TournamentManagerView(QWidget):
         self.selected_players_table = None
         self.nbr_players_input = None
         self.cell_change_listener = True
+        self.players_list = None
         
         self.view_player_button = QPushButton("See registered players")
         self.view_player_button.clicked.connect(self.see_players)
@@ -320,12 +321,13 @@ class TournamentManagerView(QWidget):
     def see_players(self):
         index = self.combo_box.currentIndex()
         selected_tournament = self.combo_box.itemData(index, role=Qt.UserRole)
-        if selected_tournament:
-            players_list = PlayerReadView(self._nav, selected_tournament.registered_players, self.tournament)
-            # players_list.destroyed.connect(self.on_players_list_closed)
-            players_list.actualize_main_table()
-            if int(self.tournament.current_round) > 1 and int(self.tournament.num_rounds) == len(self.tournament.rounds): players_list.hide_delete_column()
-            players_list.show()
+        if selected_tournament and not self.players_list:
+            print(f"len before: {len(self.tournament.registered_players)}")                        
+            self.players_list = PlayerReadView(self._nav, self.tournament)
+            self.players_list.closed.connect(self.on_players_list_closed)
+            self.players_list.actualize_main_table()
+            if int(self.tournament.current_round) > 1 and int(self.tournament.num_rounds) == len(self.tournament.rounds): self.players_list.hide_delete_column()
+            self.players_list.show()
             # players_list.hide_delete_column()
             
     def _check_view_player_button_visibility(self):
@@ -341,11 +343,17 @@ class TournamentManagerView(QWidget):
 
         print(f"Value '{value}' not found.")
         
-    # def on_players_list_closed(self):
-    #     QTimer.singleShot(100, self.destroy_players_list)
+    def on_players_list_closed(self):
+        QTimer.singleShot(100, self.destroy_players_list)
         
-    # def destroy_players_list(self):
-    #     self.sender().deleteLater()
-    #     if not self.paintingActive(): print("Destroying PlayerReadView")
-        
+    def destroy_players_list(self):
+        self.sender().deleteLater()
+        registered_players_cell = self.find_cell(self.tournament.id, 6)
+        if not self.paintingActive(): 
+            self.cell_change_listener = False
+            if registered_players_cell is not None: registered_players_cell.setText(str(len(self.tournament.registered_players)))
+            self.cell_change_listener = True
+            self.players_list = None
+            self.toggle_buttons_visibility_check()   
+            self._check_view_player_button_visibility()    
             
