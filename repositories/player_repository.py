@@ -40,14 +40,12 @@ class PlayerRepository(BaseRepository):
     
     @staticmethod    
     def _serialize(player):
-        print("Data type player_repository.py:", type(player.date_of_birth))
-        
-       
         return {
             "first_name": player.first_name,
             "last_name": player.last_name,
             "date_of_birth": player.date_of_birth.toString(Qt.ISODate), 
-            "chess_id": player.chess_id
+            "chess_id": player.chess_id,
+            "tournament_score": player.points
         }
         
     @staticmethod    
@@ -57,6 +55,7 @@ class PlayerRepository(BaseRepository):
         player.first_name = data["first_name"]
         player.last_name = data["last_name"]
         player.date_of_birth = QDate.fromString(data["date_of_birth"], Qt.ISODate)
-        player.chess_id = data["chess_id"]        
+        player.chess_id = data["chess_id"]    
+        player.points = data.get("tournament_score", 0)    
 
         return player

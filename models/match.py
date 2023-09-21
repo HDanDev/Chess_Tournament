@@ -31,6 +31,7 @@ class Match:
         self._losing_points = 0
         self._draw_points = 0.5
         self._player_repository = PlayerRepository()
+        self._score = []
 
     @property
     def player1(self):
@@ -55,6 +56,15 @@ class Match:
     @result.setter
     def result(self, value):
         self._result = value
+        self._score = self.get_match_result()
+        
+    @property
+    def score(self):
+        return self._score
+
+    @score.setter
+    def score(self, value):
+        self._score = value
         
     def get_winner(self):
         try: 
@@ -75,6 +85,15 @@ class Match:
                 return ([self._player1, self._losing_points], [self._player2, self._winning_points])
             else:
                 return ([self._player1, self._draw_points], [self._player2, self._draw_points])
+        except Exception as e:
+            print(f"Could not retrieve the result for the specified match probably because the said match has no result yet: {e}")
+            
+    def get_score_tuple(self, isWinner):
+        try: 
+            if isWinner:
+                return self.get_match_result()[0]
+            else:
+                return self.get_match_result()[1]
         except Exception as e:
             print(f"Could not retrieve the result for the specified match probably because the said match has no result yet: {e}")
        

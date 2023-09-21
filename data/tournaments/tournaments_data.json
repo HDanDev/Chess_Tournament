@@ -133,24 +133,333 @@
         "start_date": "2023-09-16T21:59:42",
         "end_date": "2023-09-16T21:59:42",
         "num_rounds": 8,
-        "current_round": 1,
-        "total_registered_players": 2,
+        "current_round": 8,
+        "total_registered_players": 4,
         "remarks": "It's a test to detect behavior abnormalities, hopefuly it should work",
         "registered_players": [
-            {
-                "first_name": "Paul",
-                "last_name": "Emploi",
-                "date_of_birth": "1986-08-12",
-                "chess_id": "PO12345"
-            },
             {
                 "first_name": "Jensen",
                 "last_name": "Ackles",
                 "date_of_birth": "2000-01-01",
                 "chess_id": "JZ73145"
+            },
+            {
+                "first_name": "Steve",
+                "last_name": "Emploi",
+                "date_of_birth": "1994-01-01",
+                "chess_id": "YS60200"
+            },
+            {
+                "first_name": "Louis",
+                "last_name": "Arm Strong",
+                "date_of_birth": "2009-01-01",
+                "chess_id": "BH23789"
+            },
+            {
+                "first_name": "Jared",
+                "last_name": "Padeleki",
+                "date_of_birth": "2000-01-01",
+                "chess_id": "SP03655"
             }
         ],
-        "rounds": []
+        "rounds": [
+            {
+                "name": "Round 1",
+                "start_datetime": "2023-09-21T22:50:16",
+                "end_datetime": "2023-09-21T22:50:16",
+                "matches": [
+                    {
+                        "player1": {
+                            "first_name": "Jensen",
+                            "last_name": "Ackles",
+                            "date_of_birth": "2000-01-01",
+                            "chess_id": "JZ73145"
+                        },
+                        "player2": {
+                            "first_name": "Steve",
+                            "last_name": "Emploi",
+                            "date_of_birth": "1994-01-01",
+                            "chess_id": "YS60200"
+                        },
+                        "result": "win"
+                    },
+                    {
+                        "player1": {
+                            "first_name": "Louis",
+                            "last_name": "Arm Strong",
+                            "date_of_birth": "2009-01-01",
+                            "chess_id": "BH23789"
+                        },
+                        "player2": {
+                            "first_name": "Jared",
+                            "last_name": "Padeleki",
+                            "date_of_birth": "2000-01-01",
+                            "chess_id": "SP03655"
+                        },
+                        "result": "draw"
+                    }
+                ]
+            },
+            {
+                "name": "Round 2",
+                "start_datetime": "2023-09-21T22:50:16",
+                "end_datetime": "2023-09-21T22:50:16",
+                "matches": [
+                    {
+                        "player1": {
+                            "first_name": "Jensen",
+                            "last_name": "Ackles",
+                            "date_of_birth": "2000-01-01",
+                            "chess_id": "JZ73145"
+                        },
+                        "player2": {
+                            "first_name": "Louis",
+                            "last_name": "Arm Strong",
+                            "date_of_birth": "2009-01-01",
+                            "chess_id": "BH23789"
+                        },
+                        "result": "draw"
+                    },
+                    {
+                        "player1": {
+                            "first_name": "Jared",
+                            "last_name": "Padeleki",
+                            "date_of_birth": "2000-01-01",
+                            "chess_id": "SP03655"
+                        },
+                        "player2": {
+                            "first_name": "Steve",
+                            "last_name": "Emploi",
+                            "date_of_birth": "1994-01-01",
+                            "chess_id": "YS60200"
+                        },
+                        "result": "draw"
+                    }
+                ]
+            },
+            {
+                "name": "Round 3",
+                "start_datetime": "2023-09-21T22:50:16",
+                "end_datetime": "2023-09-21T22:50:16",
+                "matches": [
+                    {
+                        "player1": {
+                            "first_name": "Jensen",
+                            "last_name": "Ackles",
+                            "date_of_birth": "2000-01-01",
+                            "chess_id": "JZ73145"
+                        },
+                        "player2": {
+                            "first_name": "Louis",
+                            "last_name": "Arm Strong",
+                            "date_of_birth": "2009-01-01",
+                            "chess_id": "BH23789"
+                        },
+                        "result": "draw"
+                    },
+                    {
+                        "player1": {
+                            "first_name": "Jared",
+                            "last_name": "Padeleki",
+                            "date_of_birth": "2000-01-01",
+                            "chess_id": "SP03655"
+                        },
+                        "player2": {
+                            "first_name": "Steve",
+                            "last_name": "Emploi",
+                            "date_of_birth": "1994-01-01",
+                            "chess_id": "YS60200"
+                        },
+                        "result": "draw"
+                    }
+                ]
+            },
+            {
+                "name": "Round 4",
+                "start_datetime": "2023-09-21T22:50:16",
+                "end_datetime": "2023-09-21T22:50:16",
+                "matches": [
+                    {
+                        "player1": {
+                            "first_name": "Jensen",
+                            "last_name": "Ackles",
+                            "date_of_birth": "2000-01-01",
+                            "chess_id": "JZ73145"
+                        },
+                        "player2": {
+                            "first_name": "Louis",
+                            "last_name": "Arm Strong",
+                            "date_of_birth": "2009-01-01",
+                            "chess_id": "BH23789"
+                        },
+                        "result": "lose"
+                    },
+                    {
+                        "player1": {
+                            "first_name": "Jared",
+                            "last_name": "Padeleki",
+                            "date_of_birth": "2000-01-01",
+                            "chess_id": "SP03655"
+                        },
+                        "player2": {
+                            "first_name": "Steve",
+                            "last_name": "Emploi",
+                            "date_of_birth": "1994-01-01",
+                            "chess_id": "YS60200"
+                        },
+                        "result": "draw"
+                    }
+                ]
+            },
+            {
+                "name": "Round 5",
+                "start_datetime": "2023-09-21T22:50:16",
+                "end_datetime": "2023-09-21T22:50:16",
+                "matches": [
+                    {
+                        "player1": {
+                            "first_name": "Louis",
+                            "last_name": "Arm Strong",
+                            "date_of_birth": "2009-01-01",
+                            "chess_id": "BH23789"
+                        },
+                        "player2": {
+                            "first_name": "Jensen",
+                            "last_name": "Ackles",
+                            "date_of_birth": "2000-01-01",
+                            "chess_id": "JZ73145"
+                        },
+                        "result": "lose"
+                    },
+                    {
+                        "player1": {
+                            "first_name": "Jared",
+                            "last_name": "Padeleki",
+                            "date_of_birth": "2000-01-01",
+                            "chess_id": "SP03655"
+                        },
+                        "player2": {
+                            "first_name": "Steve",
+                            "last_name": "Emploi",
+                            "date_of_birth": "1994-01-01",
+                            "chess_id": "YS60200"
+                        },
+                        "result": "win"
+                    }
+                ]
+            },
+            {
+                "name": "Round 6",
+                "start_datetime": "2023-09-21T22:50:16",
+                "end_datetime": "2023-09-21T22:50:16",
+                "matches": [
+                    {
+                        "player1": {
+                            "first_name": "Jensen",
+                            "last_name": "Ackles",
+                            "date_of_birth": "2000-01-01",
+                            "chess_id": "JZ73145"
+                        },
+                        "player2": {
+                            "first_name": "Jared",
+                            "last_name": "Padeleki",
+                            "date_of_birth": "2000-01-01",
+                            "chess_id": "SP03655"
+                        },
+                        "result": "draw"
+                    },
+                    {
+                        "player1": {
+                            "first_name": "Louis",
+                            "last_name": "Arm Strong",
+                            "date_of_birth": "2009-01-01",
+                            "chess_id": "BH23789"
+                        },
+                        "player2": {
+                            "first_name": "Steve",
+                            "last_name": "Emploi",
+                            "date_of_birth": "1994-01-01",
+                            "chess_id": "YS60200"
+                        },
+                        "result": "win"
+                    }
+                ]
+            },
+            {
+                "name": "Round 7",
+                "start_datetime": "2023-09-21T22:50:16",
+                "end_datetime": "2023-09-21T22:50:16",
+                "matches": [
+                    {
+                        "player1": {
+                            "first_name": "Jensen",
+                            "last_name": "Ackles",
+                            "date_of_birth": "2000-01-01",
+                            "chess_id": "JZ73145"
+                        },
+                        "player2": {
+                            "first_name": "Louis",
+                            "last_name": "Arm Strong",
+                            "date_of_birth": "2009-01-01",
+                            "chess_id": "BH23789"
+                        },
+                        "result": "lose"
+                    },
+                    {
+                        "player1": {
+                            "first_name": "Jared",
+                            "last_name": "Padeleki",
+                            "date_of_birth": "2000-01-01",
+                            "chess_id": "SP03655"
+                        },
+                        "player2": {
+                            "first_name": "Steve",
+                            "last_name": "Emploi",
+                            "date_of_birth": "1994-01-01",
+                            "chess_id": "YS60200"
+                        },
+                        "result": "lose"
+                    }
+                ]
+            },
+            {
+                "name": "Round 8",
+                "start_datetime": "2023-09-21T22:50:54",
+                "end_datetime": "2023-09-21T22:50:54",
+                "matches": [
+                    {
+                        "player1": {
+                            "first_name": "Jensen",
+                            "last_name": "Ackles",
+                            "date_of_birth": "2000-01-01",
+                            "chess_id": "JZ73145"
+                        },
+                        "player2": {
+                            "first_name": "Steve",
+                            "last_name": "Emploi",
+                            "date_of_birth": "1994-01-01",
+                            "chess_id": "YS60200"
+                        },
+                        "result": "draw"
+                    },
+                    {
+                        "player1": {
+                            "first_name": "Louis",
+                            "last_name": "Arm Strong",
+                            "date_of_birth": "2009-01-01",
+                            "chess_id": "BH23789"
+                        },
+                        "player2": {
+                            "first_name": "Jared",
+                            "last_name": "Padeleki",
+                            "date_of_birth": "2000-01-01",
+                            "chess_id": "SP03655"
+                        },
+                        "result": "draw"
+                    }
+                ]
+            }
+        ]
     },
     {
         "id": "3ba4620c-16c7-4c7f-951d-5a1d9e9bc21e",

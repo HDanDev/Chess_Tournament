@@ -54,12 +54,10 @@ class TournamentReadView(QWidget):
 
         name = QTableWidgetItem(tournament.name)
         location = QTableWidgetItem(tournament.location)
-        print("Data type tournamentread1.py:", type(tournament.start_date))
 
         start_date = QTableWidgetItem(tournament.start_date.toString(Qt.ISODate))
         start_date.setData(Qt.DisplayRole, start_date.text())
         start_date.setData(Qt.EditRole, tournament.start_date)
-        print("Data type tournamentread2.py:", type(tournament.end_date))
 
         end_date = QTableWidgetItem(tournament.end_date.toString(Qt.ISODate))
         end_date.setData(Qt.DisplayRole, end_date.text())
@@ -113,7 +111,6 @@ class TournamentReadView(QWidget):
             print(f"Error fnding item: {e}")  
             
     def delete(self, row):
-        print(f"row : {row}")
         id = self.table.item(row, self.id_column).text()
         try: 
             self.tournament_controller.delete_one(id)

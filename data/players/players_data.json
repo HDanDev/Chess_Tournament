@@ -3,24 +3,36 @@
         "first_name": "Louis",
         "last_name": "Arm Strong",
         "date_of_birth": "2009-01-01",
-        "chess_id": "BH23789"
+        "chess_id": "BH23789",
+        "tournament_score": {
+            "562a63f1-4aa8-4538-8069-eb2fe8815554": 4.5
+        }
     },
     {
         "first_name": "Jensen",
         "last_name": "Ackles",
         "date_of_birth": "2000-01-01",
-        "chess_id": "JZ73145"
+        "chess_id": "JZ73145",
+        "tournament_score": {
+            "562a63f1-4aa8-4538-8069-eb2fe8815554": 3.5
+        }
     },
     {
         "first_name": "Jared",
         "last_name": "Padeleki",
         "date_of_birth": "2000-01-01",
-        "chess_id": "SP03655"
+        "chess_id": "SP03655",
+        "tournament_score": {
+            "562a63f1-4aa8-4538-8069-eb2fe8815554": 3.5
+        }
     },
     {
         "first_name": "Steve",
         "last_name": "Emploi",
         "date_of_birth": "1994-01-01",
-        "chess_id": "YS60200"
+        "chess_id": "YS60200",
+        "tournament_score": {
+            "562a63f1-4aa8-4538-8069-eb2fe8815554": 2.5
+        }
     }
 ]

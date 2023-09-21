@@ -4,12 +4,12 @@ import string
 import random
 
 class Player:
-    def __init__(self, last_name="", first_name="", date_of_birth="", chess_id="", points=0):
+    def __init__(self, last_name="", first_name="", date_of_birth="", chess_id=""):
         self._last_name = last_name
         self._first_name = first_name
         self._date_of_birth = date_of_birth
         self._chess_id = chess_id
-        self._points = points
+        self._points = {}
 
     @property
     def last_name(self):
@@ -60,6 +60,14 @@ class Player:
     def get_full_name(self):
         return f"{self._first_name} {self._last_name} ({self._chess_id})"
     
+    def get_points(self, tournament_id):
+        return self.points.get(tournament_id, 0)     
+    
+    def update_points(self, tournament_id, score):
+        if tournament_id not in self.points:
+            self.points[tournament_id] = 0
+        self.points[tournament_id] = float(self.points[tournament_id]) + float(score)
+    
     @staticmethod
     def is_null_or_white_space(string):
         return string is None or len(string.strip()) == 0
@@ -73,6 +81,3 @@ class Player:
         chess_id = (letters + digits).upper()
     
         return chess_id
-    
-    def update_score(self, updated_score):
-        self._points += updated_score

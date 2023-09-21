@@ -2,6 +2,7 @@ from PySide6.QtWidgets import QLabel, QPushButton, QVBoxLayout, QWidget, QLineEd
 from PySide6.QtCore import Qt, QDateTime
 from views.partials.input_field import InputField, FormType
 from models.tournament import Tournament
+from models.match import MatchResult
 from controllers.tournament_controller import TournamentController
 from repositories.player_repository import PlayerRepository
 from views.partials.date_delegate import DateDelegate
@@ -89,6 +90,7 @@ class TournamentSimulatorView(QWidget):
         round_table.setHorizontalHeaderLabels(["Matches", "Winner"])
         
         if round.matches and len(round.matches) > 0:
+            combo_boxes_data = []
 
             for match in round.matches :            
                 row_position = round_table.rowCount()
@@ -99,9 +101,16 @@ class TournamentSimulatorView(QWidget):
                 round_table.setItem(row_position, 0, matches_item)
                 
                 combo_box = QComboBox()
-                combo_box.addItems(["Ex Aequo", match.player1.get_full_name(), match.player2.get_full_name()])
+                combo_box.addItem("Ex Aequo")
+                combo_box.setItemData(0, MatchResult.DRAW, Qt.UserRole)
+                combo_box.addItem(match.player1.get_full_name())
+                combo_box.setItemData(1, MatchResult.WIN, Qt.UserRole)
+                combo_box.addItem(match.player2.get_full_name())
+                combo_box.setItemData(2, MatchResult.LOSE, Qt.UserRole)
                 combo_box.setCurrentText("Ex Aequo")
                 round_table.setCellWidget(row_position, 1, combo_box)
+                
+                combo_boxes_data.append(combo_box)
             
         self.resize_table_to_content(round_table)
         
@@ -109,7 +118,12 @@ class TournamentSimulatorView(QWidget):
         self.tournament_controller.set_round_end_date(round, end_date.input.dateTime())
         print(f"{round.name} end at {round.end_datetime}")
         
+        self.simulation_button = QPushButton("Get info")
+        self.simulation_button.clicked.connect(lambda: self.get_combo_boxes_data(combo_boxes_data))
+        
         self.layout.addWidget(round_table)
+        self.layout.addWidget(self.simulation_button)
+        
         
     def create_immutable_round_table(self, round):
         print("Data type tournament simulator.py:", type(round.end_datetime))
@@ -136,6 +150,14 @@ class TournamentSimulatorView(QWidget):
         
         self.layout.addWidget(title)
         self.layout.addWidget(round_table)
+        
+    def get_combo_boxes_data(self, combo_boxes_data):
+        if combo_boxes_data:
+            usable_data = []
+            for combo_box_data in combo_boxes_data:
+                combo_index = combo_box_data.currentIndex()
+                usable_data.append(combo_box_data.itemData(combo_index, Qt.UserRole))
+            self.tournament_controller.update_matches_results(usable_data)
         
     def handle_item_changed(self, item):
         row = item.row()

@@ -18,9 +18,7 @@ class PlayerReadView(QWidget):
         # self.date_delegate = DateDelegate(self)
         self.tournament = tournament
         self.tournament_controller = TournamentController(self.nav, self.tournament)
-        self.is_tournament_related = True if tournament != "" else False
-        
-        print(f"len before: {len(self.tournament.registered_players)}")                        
+        self.is_tournament_related = True if tournament != "" else False                    
         
         self.layout = QVBoxLayout()
 
@@ -46,7 +44,6 @@ class PlayerReadView(QWidget):
 
         first_name = QTableWidgetItem(player.first_name)
         last_name = QTableWidgetItem(player.last_name)
-        print("Data type player_read.py:", type(player.date_of_birth))
 
         date_of_birth = QTableWidgetItem(player.date_of_birth.toString(Qt.ISODate))
         date_of_birth.setData(Qt.DisplayRole, date_of_birth.text())
@@ -107,7 +104,6 @@ class PlayerReadView(QWidget):
             sender = self.sender()
             if isinstance(sender, QPushButton):
                 row = self.table.indexAt(sender.pos()).row()
-                print(f"row : {row}")
                 id = self.table.item(row, 0).text()
                 try: 
                     self.player_controller.delete_one(id)
@@ -119,7 +115,6 @@ class PlayerReadView(QWidget):
             sender = self.sender()
             if isinstance(sender, QPushButton):
                 row = self.table.indexAt(sender.pos()).row()
-                print(f"row : {row}")
                 id = self.table.item(row, 0).text() if self.table.item(row, 0) else None
                 for player in self.tournament.registered_players:
                     try: 
@@ -127,7 +122,6 @@ class PlayerReadView(QWidget):
                             self.tournament_controller.remove_player(player)
                             self.tournament_controller.save_changes(self.tournament)  
                             self.table.removeRow(row)
-                            print(f"{len(self.tournament.registered_players)}")                        
                     except Exception as e:
                         print(f"An error occured while trying to delete the item: {e}")                  
         

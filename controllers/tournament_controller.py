@@ -2,6 +2,7 @@ from PySide6.QtWidgets import QTableWidgetItem, QHeaderView
 from PySide6.QtCore import QDateTime, Qt
 from repositories.tournament_repository import TournamentRepository
 from models.match import MatchResult, Match
+from controllers.player_controller import PlayerController
 from models.round import Round
 from models.tournament import Tournament
 import random 
@@ -12,6 +13,7 @@ class TournamentController:
     def __init__(self, nav, tournament={}):
         self.nav = nav
         self.tournament = tournament
+        self.player_controller = PlayerController(self.nav)
         self.tournament_repository = TournamentRepository()
         self.tournament_model = Tournament
         
@@ -63,7 +65,7 @@ class TournamentController:
                 sorted_players = self.tournament.registered_players
                 
             else: 
-                sorted_players = sorted(self.tournament.registered_players, key=lambda p: p.points, reverse=True)
+                sorted_players = self.sort_players_by_scores()
                 # sorted_players = sorted(self.tournament.registered_players, key=lambda player: player[1], reverse=True)                
 
             for i in range(0, len(sorted_players), 2):
@@ -77,8 +79,7 @@ class TournamentController:
             checker = 0
             print(f"just added a round: {self.tournament.rounds[checker]}")
             checker = checker+1
-            
-            
+                        
             is_simulation = True
             if is_simulation:
                 outcome = list(MatchResult)
@@ -86,11 +87,32 @@ class TournamentController:
                 for match in new_round.matches:
                     random_result = random.choice(outcome)
                     match.result = random_result
-                    print(f"Outcome of {match.get_match_name()}: {match.result} / player one has now: {match.get_match_result()[0][1]} points, and player 2: {match.get_match_result()[1][1]} points")
+                    print(f"Outcome of {match.get_match_name()}: {match.result} / player one has now: {match.score[0][1]} points, and player 2: {match.score[1][1]} points")
+                    self.tournament.update_player_score(match.score[0][0], match.score[0][1]) 
+                    self.tournament.update_player_score(match.score[1][0], match.score[1][1])                     
+                    self.player_controller.save_changes(match.score[0][0])
+                    self.player_controller.save_changes(match.score[1][0])
+                    
+            
+            print(f"{sorted_players[0].get_full_name()} has currently : {sorted_players[0].get_points(self.tournament.id)} points")                    
             
             self.save_changes(self.tournament)
+            
         except Exception as e:
-            print(f"Error generating pairs: {e}")         
+            print(f"Error generating pairs: {e}")        
+            
+    def update_matches_results(self, results_list): 
+        current_round = self.tournament.rounds[int(self.tournament.current_round) - 1]
+        for i, match in enumerate(current_round.matches):
+            match.result = results_list[i]
+            print(f"{match.get_score_tuple(True)[0].get_full_name()} has currently : {match.get_score_tuple(True)[1]} points")
+            print(f"{match.get_score_tuple(False)[0].get_full_name()} has currently : {match.get_score_tuple(False)[1]} points")
+            self.tournament.update_player_score(match.get_score_tuple(True)[0], match.get_score_tuple(True)[1]) 
+            self.tournament.update_player_score(match.get_score_tuple(False)[0], match.get_score_tuple(False)[1]) 
+            self.save_changes(self.tournament)    
+            
+    def sort_players_by_scores(self):
+        return sorted(self.tournament.registered_players, key=lambda player: player.get_points(self.tournament.id), reverse=True)
             
     def play_match(self, match):
         try:
@@ -111,8 +133,4 @@ class TournamentController:
         return id in tournament_players_ids and id in all_players_ids
     
     def set_round_end_date(self, round, date):
-        
-        print("Data type tournament_controller:", type(date))
         round.end_datetime = date
-
-    

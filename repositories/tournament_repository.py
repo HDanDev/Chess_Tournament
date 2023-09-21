@@ -21,9 +21,6 @@ class TournamentRepository(BaseRepository):
             if tournament.rounds and len(tournament.rounds) > 0:
                 for round in tournament.rounds:
                     rounds.append(round.serialize())
-            print("Data type tournament_repository.py1:", type(tournament.start_date))
-            print("Data type tournament_repository.py2:", type(tournament.end_date))
-                        
             return {
                 "id": tournament.id,
                 "name": tournament.name,

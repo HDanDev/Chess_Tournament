@@ -91,12 +91,10 @@ class TournamentManagerView(QWidget):
 
         name = QTableWidgetItem(self.tournament.name)
         location = QTableWidgetItem(self.tournament.location)
-        print("Data type tournamentmanager1.py:", type(self.tournament.start_date))
 
         start_date = QTableWidgetItem(self.tournament.start_date.toString(Qt.ISODate))
         start_date.setData(Qt.DisplayRole, start_date.text())
         start_date.setData(Qt.EditRole, self.tournament.start_date)
-        print("Data type tournamentmanager2.py:", type(self.tournament.end_date))
 
         end_date = QTableWidgetItem(self.tournament.end_date.toString(Qt.ISODate))
         end_date.setData(Qt.DisplayRole, end_date.text())
@@ -288,7 +286,6 @@ class TournamentManagerView(QWidget):
     def save_selected_players(self):
         self.tournament_controller.clear_registered_players()
         registered_players_cell = self.find_cell(self.tournament.id, 6)
-        print(f"tournament : {self.tournament} tournament id : {self.tournament.id}")
         for row in range(self.selected_players_table.rowCount()):
             checkbox_widget = self.selected_players_table.cellWidget(row, self.id_player_table_column)
             if isinstance(checkbox_widget, CenteredCheckBoxWidget):
@@ -322,7 +319,6 @@ class TournamentManagerView(QWidget):
         index = self.combo_box.currentIndex()
         selected_tournament = self.combo_box.itemData(index, role=Qt.UserRole)
         if selected_tournament and not self.players_list:
-            print(f"len before: {len(self.tournament.registered_players)}")                        
             self.players_list = PlayerReadView(self._nav, self.tournament)
             self.players_list.closed.connect(self.on_players_list_closed)
             self.players_list.actualize_main_table()
@@ -338,7 +334,6 @@ class TournamentManagerView(QWidget):
         for row in range(self.table.rowCount()):
             item = self.table.item(row, self.id_main_table_column)
             if item and item.text() == value:
-                print(f"row : {row}, current cell value : {self.table.item(row, self.id_main_table_column).text()}")
                 return self.table.item(row, col)
 
         print(f"Value '{value}' not found.")

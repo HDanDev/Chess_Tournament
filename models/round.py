@@ -47,11 +47,7 @@ class Round:
         matches = [] 
         if len(self.matches) > 0:
             for match in self.matches:
-                matches.append(match.serialize())   
-        print("Data type round.py 1 :", type(self.start_datetime))
-        print("Data type round.py 2 :", type(self.end_datetime))
-        print("Data value round.py 2 :", self.end_datetime)
-                 
+                matches.append(match.serialize())
 
         return {
             "name": self.name,

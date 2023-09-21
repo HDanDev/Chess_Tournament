@@ -132,3 +132,9 @@ class Tournament:
     @remarks.setter
     def remarks(self, value):
         if value: self._remarks = value
+        
+    def update_player_score(self, player, score):
+        if player in self.registered_players:
+            player.update_points(self.id, score)
+        else:
+            raise ValueError("Player is not registered for this tournament.")
