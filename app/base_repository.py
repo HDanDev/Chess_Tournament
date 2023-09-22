@@ -77,10 +77,10 @@ class BaseRepository:
                 if getattr(item, self._attribute) == getattr(obj, self._attribute):
                     data[i] = obj
                     break
-
             with open(self._file_path, 'w') as file:
                 serialized_data = [self._serialize(item) for item in data]
                 json.dump(serialized_data, file, indent=4)
+                
         except FileNotFoundError:
             print(f"Could not find the file: {self._file_path}")
         except json.JSONDecodeError:

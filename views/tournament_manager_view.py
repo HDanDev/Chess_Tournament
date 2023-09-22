@@ -72,7 +72,15 @@ class TournamentManagerView(QWidget):
         self.auto_add_players_button_validation.clicked.connect(self.auto_select_players)
         self.auto_add_players_button_validation.setVisible(False)        
         
-        self.start_simulation_btn = QPushButton("Simulate tournament")
+        self.manage_next_round = QPushButton("Manage next round")
+        self.manage_next_round.clicked.connect(self.manage_round)
+        self.layout.addWidget(self.manage_next_round)
+        
+        self.simulate_next_round = QPushButton("Simulate next round")
+        self.simulate_next_round.clicked.connect(self.start_step_by_step_simulation)
+        self.layout.addWidget(self.simulate_next_round)        
+        
+        self.start_simulation_btn = QPushButton("Simulate whole tournament")
         self.start_simulation_btn.clicked.connect(self.start_simulation)
         self.layout.addWidget(self.start_simulation_btn)
         
@@ -256,6 +264,8 @@ class TournamentManagerView(QWidget):
         
     def toggle_start_simulation_button(self, tournament):
         self.start_simulation_btn.setVisible(True) if int(tournament.num_rounds) > len(tournament.rounds) and len(tournament.registered_players) > 0 and len(tournament.registered_players) % 2 == 0 else self.start_simulation_btn.setVisible(False)
+        self.manage_next_round.setVisible(True) if int(tournament.num_rounds) > len(tournament.rounds) and len(tournament.registered_players) > 0 and len(tournament.registered_players) % 2 == 0 else self.manage_next_round.setVisible(False)
+        self.simulate_next_round.setVisible(True) if int(tournament.num_rounds) > len(tournament.rounds) and len(tournament.registered_players) > 0 and len(tournament.registered_players) % 2 == 0 else self.simulate_next_round.setVisible(False)
         
     def auto_select_players(self):
         self.tournament_controller.clear_registered_players()
@@ -308,6 +318,12 @@ class TournamentManagerView(QWidget):
         
     def start_simulation(self):
         self._nav.switch_to_tournament_simulator(self.tournament)
+        
+    def start_step_by_step_simulation(self):
+        self._nav.switch_to_tournament_step_by_step_simulator(self.tournament)
+        
+    def manage_round(self):
+        self._nav.switch_to_round_manager(self.tournament)
         
     def select_tournament(self):
         index = self.combo_box.currentIndex()

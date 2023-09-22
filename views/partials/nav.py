@@ -6,6 +6,8 @@ from views.tournament_simulator_view import TournamentSimulatorView
 from views.tournament_manager_picker_view import TournamentManagerPickerView
 from views.player_creation_view import PlayerCreationView
 from views.player_read_view import PlayerReadView
+from views.tournament_step_by_step_simulator_view import TournamentStepByStepSimulatorView
+from views.round_manager_view import RoundManager
 from controllers.tournament_controller import TournamentController
 
 class Nav:
@@ -38,6 +40,14 @@ class Nav:
     def switch_to_tournament_simulator(self, tournament):
         tournament_simulator_view = TournamentSimulatorView(self, tournament)
         self._base_view.switch_view(tournament_simulator_view, "Chess Manager - Tournament simulator")
+        
+    def switch_to_tournament_step_by_step_simulator(self, tournament):
+        tournament_simulator_step_by_step_view = TournamentStepByStepSimulatorView(self, tournament)
+        self._base_view.switch_view(tournament_simulator_step_by_step_view, "Chess Manager - Tournament simulator")
+        
+    def switch_to_round_manager(self, tournament):
+        round_manager_view = RoundManager(self, tournament)
+        self._base_view.switch_view(round_manager_view, "Chess Manager - Round manager")
         
     def switch_to_player_creation(self):
         player_creation_view = PlayerCreationView(self)

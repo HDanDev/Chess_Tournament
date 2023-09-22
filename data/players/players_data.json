@@ -5,7 +5,7 @@
         "date_of_birth": "2009-01-01",
         "chess_id": "BH23789",
         "tournament_score": {
-            "562a63f1-4aa8-4538-8069-eb2fe8815554": 4.5
+            "bfe15aa5-e3fc-4019-9914-e1a74e104d79": 1.5
         }
     },
     {
@@ -14,7 +14,7 @@
         "date_of_birth": "2000-01-01",
         "chess_id": "JZ73145",
         "tournament_score": {
-            "562a63f1-4aa8-4538-8069-eb2fe8815554": 3.5
+            "bfe15aa5-e3fc-4019-9914-e1a74e104d79": 1.5
         }
     },
     {
@@ -23,16 +23,16 @@
         "date_of_birth": "2000-01-01",
         "chess_id": "SP03655",
         "tournament_score": {
-            "562a63f1-4aa8-4538-8069-eb2fe8815554": 3.5
+            "bfe15aa5-e3fc-4019-9914-e1a74e104d79": 1.5
         }
     },
     {
-        "first_name": "Steve",
+        "first_name": "Paul",
         "last_name": "Emploi",
         "date_of_birth": "1994-01-01",
         "chess_id": "YS60200",
         "tournament_score": {
-            "562a63f1-4aa8-4538-8069-eb2fe8815554": 2.5
+            "bfe15aa5-e3fc-4019-9914-e1a74e104d79": 1.5
         }
     }
 ]

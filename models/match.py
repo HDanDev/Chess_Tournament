@@ -100,7 +100,7 @@ class Match:
     def get_match_name(self):
         return self._player1.get_full_name() + " vs " + self._player2.get_full_name()    
     
-    def serialize(self):     
+    def serialize(self):    
         return {
             "player1": self._player_repository.serialize_player(self.player1),
             "player2": self._player_repository.serialize_player(self.player2),

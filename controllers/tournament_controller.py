@@ -47,7 +47,6 @@ class TournamentController:
         except Exception as e:
             print(f"Error removing player: {e}")
             
-            
     def clear_registered_players(self):
         self.tournament.registered_players.clear()
             
@@ -58,7 +57,6 @@ class TournamentController:
             new_round = Round()
             new_round.name = f"Round {self.tournament.current_round}"
             new_round.start_datetime = QDateTime.currentDateTime()
-            new_round.end_datetime = QDateTime.currentDateTime()           
             
             if self.tournament.current_round == 1:
                 random.shuffle(self.tournament.registered_players)
@@ -80,7 +78,6 @@ class TournamentController:
             print(f"just added a round: {self.tournament.rounds[checker]}")
             checker = checker+1
                         
-            is_simulation = True
             if is_simulation:
                 outcome = list(MatchResult)
                 
@@ -93,23 +90,21 @@ class TournamentController:
                     self.player_controller.save_changes(match.score[0][0])
                     self.player_controller.save_changes(match.score[1][0])
                     
-            
-            print(f"{sorted_players[0].get_full_name()} has currently : {sorted_players[0].get_points(self.tournament.id)} points")                    
-            
-            self.save_changes(self.tournament)
+                print(f"{sorted_players[0].get_full_name()} has currently : {sorted_players[0].get_points(self.tournament.id)} points")                    
+                
+                self.save_changes(self.tournament)
             
         except Exception as e:
             print(f"Error generating pairs: {e}")        
             
-    def update_matches_results(self, results_list): 
-        current_round = self.tournament.rounds[int(self.tournament.current_round) - 1]
-        for i, match in enumerate(current_round.matches):
+    def update_matches_results(self, round, results_list): 
+        for i, match in enumerate(round.matches):
             match.result = results_list[i]
-            print(f"{match.get_score_tuple(True)[0].get_full_name()} has currently : {match.get_score_tuple(True)[1]} points")
-            print(f"{match.get_score_tuple(False)[0].get_full_name()} has currently : {match.get_score_tuple(False)[1]} points")
-            self.tournament.update_player_score(match.get_score_tuple(True)[0], match.get_score_tuple(True)[1]) 
-            self.tournament.update_player_score(match.get_score_tuple(False)[0], match.get_score_tuple(False)[1]) 
-            self.save_changes(self.tournament)    
+            print(f"Outcome of {match.get_match_name()}: {match.result} / {match.score[0][0].get_full_name()} has now: {match.score[0][1]} points, and {match.score[1][0].get_full_name()}: {match.score[1][1]} points")
+            self.tournament.update_player_score(match.score[0][0], match.score[0][1]) 
+            self.tournament.update_player_score(match.score[1][0], match.score[1][1])                     
+            self.player_controller.save_changes(match.score[0][0])
+            self.player_controller.save_changes(match.score[1][0])  
             
     def sort_players_by_scores(self):
         return sorted(self.tournament.registered_players, key=lambda player: player.get_points(self.tournament.id), reverse=True)
@@ -132,5 +127,11 @@ class TournamentController:
 
         return id in tournament_players_ids and id in all_players_ids
     
-    def set_round_end_date(self, round, date):
-        round.end_datetime = date
+    def set_round_start_date(self, round, date):
+        round.start_datetime = date
+           
+    def set_round_end_date(self, round, date, hasChangedDate):
+        round.end_datetime = date if hasChangedDate else QDateTime.currentDateTime()
+        
+    def set_round_name(self, round, name):
+        round.name = name
