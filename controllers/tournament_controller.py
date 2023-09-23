@@ -72,30 +72,14 @@ class TournamentController:
                     new_match.player1 = sorted_players[i]
                     new_match.player2 = sorted_players[i + 1]                    
                     new_round.add_match(new_match)    
-            print(f"this tournament currently count {len(self.tournament.rounds)}")
+                        
             self.tournament.add_round(new_round)
-            checker = 0
-            print(f"just added a round: {self.tournament.rounds[checker]}")
-            checker = checker+1
                         
             if is_simulation:
-                outcome = list(MatchResult)
-                
-                for match in new_round.matches:
-                    random_result = random.choice(outcome)
-                    match.result = random_result
-                    print(f"Outcome of {match.get_match_name()}: {match.result} / player one has now: {match.score[0][1]} points, and player 2: {match.score[1][1]} points")
-                    self.tournament.update_player_score(match.score[0][0], match.score[0][1]) 
-                    self.tournament.update_player_score(match.score[1][0], match.score[1][1])                     
-                    self.player_controller.save_changes(match.score[0][0])
-                    self.player_controller.save_changes(match.score[1][0])
-                    
-                print(f"{sorted_players[0].get_full_name()} has currently : {sorted_players[0].get_points(self.tournament.id)} points")                    
-                
-                self.save_changes(self.tournament)
+                self.generate_random_results(new_round)                  
             
         except Exception as e:
-            print(f"Error generating pairs: {e}")        
+            print(f"Error generating pairs: {e}")       
             
     def update_matches_results(self, round, results_list): 
         for i, match in enumerate(round.matches):
@@ -106,20 +90,21 @@ class TournamentController:
             self.player_controller.save_changes(match.score[0][0])
             self.player_controller.save_changes(match.score[1][0])  
             
+    def generate_random_results(self, round):
+        outcome = list(MatchResult)                
+        for match in round.matches:
+            random_result = random.choice(outcome)
+            match.result = random_result
+            print(f"Outcome of {match.get_match_name()}: {match.result} / player one has now: {match.score[0][1]} points, and player 2: {match.score[1][1]} points")
+            self.tournament.update_player_score(match.score[0][0], match.score[0][1]) 
+            self.tournament.update_player_score(match.score[1][0], match.score[1][1])                     
+            self.player_controller.save_changes(match.score[0][0])
+            self.player_controller.save_changes(match.score[1][0])
+        self.set_round_end_date(round, False)
+        self.save_changes(self.tournament)
+            
     def sort_players_by_scores(self):
         return sorted(self.tournament.registered_players, key=lambda player: player.get_points(self.tournament.id), reverse=True)
-            
-    def play_match(self, match):
-        try:
-            if match.result == MatchResult.WIN:
-                match.player1.points += 1
-            elif match.result == MatchResult.LOSE:
-                match.player2.points += 1
-            elif match.result == MatchResult.DRAW:
-                match.player1.points += 0.5
-                match.player2.points += 0.5
-        except Exception as e:
-            print(f"Error playing match: {e}")
             
     def check_is_player_already_selected(self, tournament_players, all_players, id):
         tournament_players_ids = set(player.chess_id for player in tournament_players)
@@ -130,8 +115,15 @@ class TournamentController:
     def set_round_start_date(self, round, date):
         round.start_datetime = date
            
-    def set_round_end_date(self, round, date, hasChangedDate):
-        round.end_datetime = date if hasChangedDate else QDateTime.currentDateTime()
+    def set_round_end_date(self, round, hasChangedDate, date=""):
+        round.end_datetime = date if hasChangedDate and date else QDateTime.currentDateTime()
         
     def set_round_name(self, round, name):
         round.name = name
+        
+    def manage_round_data(self, round, results_list, round_name, round_start_date, has_start_date_changed, round_end_date, has_end_date_changed):
+        self.update_matches_results(round, results_list)
+        if round_start_date and has_start_date_changed : self.set_round_start_date(round, round_start_date)
+        self.set_round_end_date(round, has_end_date_changed, round_end_date)
+        if round_name : self.set_round_name(round, round_name)
+        self.save_changes(self.tournament)

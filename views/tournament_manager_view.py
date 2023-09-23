@@ -256,7 +256,7 @@ class TournamentManagerView(QWidget):
         self.toggle_add_player_button(tournament)
         
     def toggle_add_player_button(self, tournament):
-        if int(tournament.current_round) > 1 and int(tournament.num_rounds) == len(tournament.rounds):
+        if int(tournament.current_round) > 1 or int(tournament.num_rounds) == len(tournament.rounds):
             self.auto_add_players_btn.setVisible(False)
             self.auto_add_players_button_validation.setVisible(False)
             self.save_players_button.setVisible(False)

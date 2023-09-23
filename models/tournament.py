@@ -1,12 +1,13 @@
 import uuid
+from PySide6.QtCore import QDateTime
 
 class Tournament:
-    def __init__(self, name, location, start_date, end_date, id="",num_rounds=4, current_round=1, remarks=""):
+    def __init__(self, name, location, start_date="", end_date="", id="",num_rounds=4, current_round=1, remarks=""):
         self._id = id if id != "" else str(uuid.uuid4())
         self._name = name
         self._location = location
-        self._start_date = start_date
-        self._end_date = end_date
+        self._start_date = start_date if start_date else QDateTime.currentDateTime()
+        self._end_date = end_date if end_date else QDateTime.currentDateTime().addMonths(1)
         self._num_rounds = num_rounds
         self._current_round = current_round
         self._rounds = []

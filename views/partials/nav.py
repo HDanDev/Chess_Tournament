@@ -31,7 +31,7 @@ class Nav:
         
     def switch_to_tournament_manager(self, tournament, index=0):
         tournament_manager_view = TournamentManagerView(self, tournament, index)
-        self._base_view.switch_view(tournament_manager_view, "Chess Manager - Tournament manager")        
+        self._base_view.switch_view(tournament_manager_view, f"Chess Manager - Tournament manager - \"{tournament.name}\"")        
         
     def switch_to_tournament_picker_manager(self):
         tournament_simulator_picker_view = TournamentManagerPickerView(self)
@@ -39,15 +39,15 @@ class Nav:
     
     def switch_to_tournament_simulator(self, tournament):
         tournament_simulator_view = TournamentSimulatorView(self, tournament)
-        self._base_view.switch_view(tournament_simulator_view, "Chess Manager - Tournament simulator")
+        self._base_view.switch_view(tournament_simulator_view, f"Chess Manager - Tournament simulator - \"{tournament.name}\"")
         
     def switch_to_tournament_step_by_step_simulator(self, tournament):
         tournament_simulator_step_by_step_view = TournamentStepByStepSimulatorView(self, tournament)
-        self._base_view.switch_view(tournament_simulator_step_by_step_view, "Chess Manager - Tournament simulator")
+        self._base_view.switch_view(tournament_simulator_step_by_step_view, f"Chess Manager - Tournament simulator - \"{tournament.name}\"")
         
     def switch_to_round_manager(self, tournament):
         round_manager_view = RoundManager(self, tournament)
-        self._base_view.switch_view(round_manager_view, "Chess Manager - Round manager")
+        self._base_view.switch_view(round_manager_view, f"Chess Manager - Round manager - \"{tournament.name}\"")
         
     def switch_to_player_creation(self):
         player_creation_view = PlayerCreationView(self)

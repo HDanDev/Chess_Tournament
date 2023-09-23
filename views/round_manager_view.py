@@ -44,7 +44,7 @@ class RoundManager(QWidget):
         self.tournament_controller.setup_view(self)
         
     def populate_table(self):  
-        round_nbr = int(len(self.tournament.rounds) + 1)
+        round_nbr = len(self.tournament.rounds) + 1
         print(f"self.tournament.num_rounds : {self.tournament.num_rounds}")
         print(f"i : {round_nbr}")
         print(f"currentround : {self.tournament.current_round}")
@@ -83,7 +83,13 @@ class RoundManager(QWidget):
         self.resize_table_to_content(round_table)
         
         self.save_btn = QPushButton("Save and go next round")
-        self.save_btn.clicked.connect(lambda: self.save_changes(combo_boxes_data, round, round_name.input.text(), start_date.input.dateTime(), end_date.input.dateTime()))
+        self.save_btn.clicked.connect(lambda: self.next_round(combo_boxes_data, round, round_name.input.text(), start_date.input.dateTime(), end_date.input.dateTime()))
+        
+        self.next_auto = QPushButton("Save and simulate next round")
+        self.next_auto.clicked.connect(lambda: self.simulate_next(combo_boxes_data, round, round_name.input.text(), start_date.input.dateTime(), end_date.input.dateTime()))
+        
+        self.all_auto = QPushButton("Save and simulate whole tournament")
+        self.all_auto.clicked.connect(lambda: self.simulate_all(combo_boxes_data, round, round_name.input.text(), start_date.input.dateTime(), end_date.input.dateTime()))
                 
         round_name = InputField(self.layout, "Round name", "Round name")
         
@@ -95,6 +101,8 @@ class RoundManager(QWidget):
         
         self.layout.addWidget(round_table)
         self.layout.addWidget(self.save_btn)
+        self.layout.addWidget(self.next_auto)
+        self.layout.addWidget(self.all_auto) 
         
     def save_changes(self, combo_boxes_data, round, round_name=None, round_start_date=None, round_end_date=None):
         if combo_boxes_data:
@@ -102,11 +110,7 @@ class RoundManager(QWidget):
             for combo_box_data in combo_boxes_data:
                 combo_index = combo_box_data.currentIndex()
                 usable_data.append(combo_box_data.itemData(combo_index, Qt.UserRole))
-            self.tournament_controller.update_matches_results(round, usable_data)
-            if round_start_date and self.has_start_date_changed : self.tournament_controller.set_round_start_date(round, round_start_date)
-            self.tournament_controller.set_round_end_date(round, round_end_date, self.has_end_date_changed)
-            if round_name : self.tournament_controller.set_round_name(round, round_name)
-            self.tournament_controller.save_changes(self.tournament)
+            self.tournament_controller.manage_round_data(round, usable_data, round_name, round_start_date, self.has_start_date_changed, round_end_date, self.has_end_date_changed)
         
     def handle_item_changed(self, item):
         row = item.row()
@@ -139,8 +143,27 @@ class RoundManager(QWidget):
     def toggle_end_date(self):
         self.has_end_date_changed = True
         
-    def next_round(self):
-        self._nav.switch_to_tournament_simulator(self.tournament) if int(self.tournament.current_round) < len(self.tournament.rounds) else print("Tournament is over")
-        print(int(self.tournament.current_round))
-        print(len(self.tournament.rounds))
+    def next_round(self, combo_boxes_data, round, round_name=None, round_start_date=None, round_end_date=None):
+        self.save_changes(combo_boxes_data, round, round_name, round_start_date, round_end_date)
+        if int(self.tournament.current_round) < int(self.tournament.num_rounds):
+            self.nav.switch_to_round_manager(self.tournament) 
+        else: 
+            print("Tournament is over")
+            self.save_btn.setVisible(False)           
+            
+    def simulate_next(self, combo_boxes_data, round, round_name=None, round_start_date=None, round_end_date=None):
+        self.save_changes(combo_boxes_data, round, round_name, round_start_date, round_end_date)
+        if int(self.tournament.current_round) < int(self.tournament.num_rounds):
+            self.nav.switch_to_tournament_step_by_step_simulator(self.tournament) 
+        else: 
+            print("Tournament is over")
+            self.next_auto.setVisible(False)
+            
+    def simulate_all(self, combo_boxes_data, round, round_name=None, round_start_date=None, round_end_date=None):
+        self.save_changes(combo_boxes_data, round, round_name, round_start_date, round_end_date)
+        if int(self.tournament.current_round) < int(self.tournament.num_rounds):
+            self.nav.switch_to_tournament_simulator(self.tournament) 
+        else: 
+            print("Tournament is over")
+            self.all_auto.setVisible(False)
         

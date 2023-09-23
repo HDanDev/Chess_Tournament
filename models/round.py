@@ -3,11 +3,10 @@ from models.match import Match
 class Round:
     def __init__(self, name="", start_datetime=None, end_datetime=None):
         self._name = name
-        self._start_datetime = start_datetime
-        self._end_datetime = end_datetime
+        self._start_datetime = start_datetime if start_datetime else QDateTime.currentDateTime()
+        self._end_datetime = end_datetime if end_datetime else QDateTime.currentDateTime().addDays(1)
         self._matches = []
         self._match_model = Match()
-
     @property
     def name(self):
         return self._name
