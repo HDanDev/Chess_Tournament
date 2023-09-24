@@ -60,8 +60,11 @@ class Player:
     def get_full_name(self):
         return f"{self._first_name} {self._last_name} ({self._chess_id})"
     
-    def get_points(self, tournament_id):
-        return self.points.get(tournament_id, 0)     
+    def get_points(self, tournament_id):  
+        return self.points.get(tournament_id, 0)
+    
+    def set_points(self, key, value):
+        self.points[key] = value
     
     def update_points(self, tournament_id, score):
         if tournament_id not in self.points:

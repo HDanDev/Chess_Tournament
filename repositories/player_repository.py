@@ -56,6 +56,6 @@ class PlayerRepository(BaseRepository):
         player.last_name = data["last_name"]
         player.date_of_birth = QDate.fromString(data["date_of_birth"], Qt.ISODate)
         player.chess_id = data["chess_id"]    
-        player.points = data.get("tournament_score", 0)    
-
+        player.points = data.get("tournament_score", {})     
+            
         return player

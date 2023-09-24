@@ -14,6 +14,7 @@ class PlayerReadView(QWidget):
         self.nav = nav
         self.player_controller = PlayerController(nav)
         self.player_data = tournament.registered_players if tournament != "" else sorted(self.player_controller.get_player_data(), key=lambda x: x.last_name)
+        self.is_sorted_by_score = True if tournament != "" else False
                      
         # self.date_delegate = DateDelegate(self)
         self.tournament = tournament
@@ -33,10 +34,12 @@ class PlayerReadView(QWidget):
 
     def populate_table(self):
         
+        add_player_method = self.add_player_to_table_with_score if self.is_sorted_by_score else self.add_player_to_table
+        
         for player in self.player_data:
-            self.add_player_to_table(player)
+            add_player_method(player)
             
-        self.table.itemChanged.connect(self.handle_item_changed)    
+        if not self.is_sorted_by_score: self.table.itemChanged.connect(self.handle_item_changed)
        
     def add_player_to_table(self, player):
         id = QTableWidgetItem(player.chess_id)
@@ -61,7 +64,32 @@ class PlayerReadView(QWidget):
         self.table.setCellWidget(self.row_position, 4, delete_btn)
         # delete_btn.clicked.connect(partial(self.delete_in_tournament, row=self.row_position)) if self.is_tournament_related else delete_btn.clicked.connect(partial(self.delete, row=self.row_position))
         delete_btn.clicked.connect(self.delete_in_tournament) if self.is_tournament_related else delete_btn.clicked.connect(self.delete)
-         
+              
+    def add_player_to_table_with_score(self, player):
+        id = QTableWidgetItem(player.chess_id)
+        id.setFlags(id.flags() & ~Qt.ItemIsEnabled)
+
+        first_name = QTableWidgetItem(player.first_name)
+        first_name.setFlags(first_name.flags() & ~Qt.ItemIsEnabled)
+        
+        last_name = QTableWidgetItem(player.last_name)
+        last_name.setFlags(last_name.flags() & ~Qt.ItemIsEnabled)
+
+        date_of_birth = QTableWidgetItem(player.date_of_birth.toString(Qt.ISODate))
+        date_of_birth.setData(Qt.DisplayRole, date_of_birth.text())
+        date_of_birth.setFlags(date_of_birth.flags() & ~Qt.ItemIsEnabled)
+        
+        score = QTableWidgetItem(str(player.get_points(self.tournament.id)))
+        score.setFlags(score.flags() & ~Qt.ItemIsEnabled)
+        
+        self.row_position = self.table.rowCount()
+        self.table.insertRow(self.row_position)
+        self.table.setItem(self.row_position, 0, id)
+        self.table.setItem(self.row_position, 1, first_name)
+        self.table.setItem(self.row_position, 2, last_name)
+        self.table.setItem(self.row_position, 3, date_of_birth)
+        self.table.setItem(self.row_position, 4, score)
+          
     def handle_item_changed(self, item):
         row = item.row()
         try: 
@@ -78,7 +106,10 @@ class PlayerReadView(QWidget):
     def create_main_table(self):
         self.table = QTableWidget()
         self.table.setColumnCount(5)
-        self.table.setHorizontalHeaderLabels(["Chess ID", "First name", "Last name", "Date of birth", "Action"])
+        if self.is_sorted_by_score:
+            self.table.setHorizontalHeaderLabels(["Chess ID", "First name", "Last name", "Date of birth", "Score"])
+        else:
+            self.table.setHorizontalHeaderLabels(["Chess ID", "First name", "Last name", "Date of birth", "Action"])
         self.sort_order = [Qt.AscendingOrder] * self.table.columnCount()
         self.table.horizontalHeader().sectionClicked.connect(self.sort_rows)
         self.table.verticalHeader().setVisible(False)

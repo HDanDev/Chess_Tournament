@@ -338,7 +338,7 @@ class TournamentManagerView(QWidget):
             self.players_list = PlayerReadView(self._nav, self.tournament)
             self.players_list.closed.connect(self.on_players_list_closed)
             self.players_list.actualize_main_table()
-            if int(self.tournament.current_round) > 1 and int(self.tournament.num_rounds) == len(self.tournament.rounds): self.players_list.hide_delete_column()
+            # if int(self.tournament.current_round) > 1 and int(self.tournament.num_rounds) == len(self.tournament.rounds): self.players_list.hide_delete_column()
             self.players_list.show()
             # players_list.hide_delete_column()
             
