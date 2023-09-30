@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QMainWindow, QVBoxLayout, QWidget, QLabel, QHBoxLayout, QMenu, QMenuBar, QPushButton, QWidgetAction, QToolBar, QApplication
+from PySide6.QtWidgets import QMainWindow, QVBoxLayout, QWidget, QLabel, QHBoxLayout, QMenu, QMenuBar, QPushButton, QWidgetAction, QToolBar, QApplication, QScrollArea
 from PySide6.QtCore import Qt, QFile
 from PySide6.QtGui import QPixmap, QIcon, QAction
 from views.partials.nav import Nav
@@ -50,8 +50,14 @@ class BaseView(QMainWindow):
             if item.widget():
                 item.widget().deleteLater()
 
-        self._content_layout.addWidget(new_view)
-        new_view.show()
+        scroll_area = QScrollArea()
+        scroll_area.setWidget(new_view)
+        scroll_area.setWidgetResizable(True) 
+        scroll_area.setObjectName("scroll-box")
+        new_view.setObjectName("content-box")
+        
+        self._content_layout.addWidget(scroll_area)
+        scroll_area.show()
         
         self.setWindowTitle(title)
         self._title.setText(title) 

@@ -8,12 +8,62 @@ QMainWindow {
     font-family: "Comfortaa";
     font-size: 14px;}
 
+#content-box {
+    background-color: rgba(255, 198, 219, 1);
+    }
+
 QPushButton {
     color: white;
     background-color: #df6f97;
     border: none;
     padding: 10px;
     margin-right: 8px;
+    font-family: "Comfortaa";
+}
+
+QTableWidget {
+    background-color: rgba(255, 198, 219, 1);
+    color: #ee8187;
+    border: none;
+    font-family: "Comfortaa";
+}
+
+QHeaderView {
+    background-color: rgba(255, 198, 219, 1);
+}
+
+QHeaderView::section:horizontal,
+QHeaderView::section:vertical {
+    background-color: #df6f97;
+    /* border-radius: 8px; */
+    /* border: 4px dashed white; */
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    font-family: "Comfortaa";
+}
+
+QTableWidget::item {
+    background-color: #4e4e4e;
+    /* border-radius: 8px; */
+    border: none;
+    /* border: 4px dashed white; */
+}
+
+QTableWidget::item:selected {
+    background-color: lightgray;
+    color: white;
+}
+
+QLineEdit, 
+QDateTimeEdit,
+QDateEdit,
+QTextEdit,
+QComboBox {
+    background-color: #4e4e4e;
+    font-family: "Comfortaa";
+    border: none;
+    color: #ee8187;
 }
 
 QPushButton:hover {
@@ -54,7 +104,14 @@ QMenuBar::item:selected {
 
 #title {
     font-size: 24px;
+    padding: 16px;
     font-weight: bold;
+    /* border: 4px dashed #73000000; */
+}
+
+#scroll-box {
+    background-color: rgba(255, 198, 219, 0);
+    border: none;
 }
 
 #img {

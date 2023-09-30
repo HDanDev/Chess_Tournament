@@ -1,5 +1,6 @@
 from PySide6.QtWidgets import QLabel, QPushButton, QVBoxLayout, QWidget, QTableWidget, QTableWidgetItem, QHeaderView, QDialog
 from PySide6.QtCore import Qt, QDateTime
+from PySide6.QtGui import QBrush, QColor
 from controllers.tournament_controller import TournamentController
 from models.tournament import Tournament
 from views.partials.date_delegate import DateDelegate
@@ -17,6 +18,8 @@ class TournamentReadView(QWidget):
         self.date_delegate = DateDelegate(self)
         self.int_delegate = IntDelegate(self)
         self.id_column = 9
+        # self.backround_color = QBrush(QColor(200,200,200))
+        # self.text_color = QBrush(QColor(140,140,140))
         
         self.layout = QVBoxLayout()
 
