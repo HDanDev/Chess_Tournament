@@ -35,7 +35,6 @@ class TournamentReadView(QWidget):
         self.sort_order = [Qt.AscendingOrder] * self.table.columnCount()
         self.table.horizontalHeader().sectionClicked.connect(self.sort_rows)
 
-        
         self.layout.addWidget(self.table)
 
         self.setLayout(self.layout)
