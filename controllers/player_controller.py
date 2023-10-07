@@ -1,8 +1,6 @@
-from PySide6.QtWidgets import QTableWidgetItem, QHeaderView
-from PySide6.QtCore import QDateTime 
+from PySide6.QtWidgets import QHeaderView
 from repositories.player_repository import PlayerRepository
 from models.player import Player
-from datetime import datetime
 import random
 
 class PlayerController:

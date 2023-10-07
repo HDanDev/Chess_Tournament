@@ -8,7 +8,6 @@ from views.player_creation_view import PlayerCreationView
 from views.player_read_view import PlayerReadView
 from views.tournament_step_by_step_simulator_view import TournamentStepByStepSimulatorView
 from views.round_manager_view import RoundManager
-from controllers.tournament_controller import TournamentController
 
 class Nav:
     def __init__(self, base_view):

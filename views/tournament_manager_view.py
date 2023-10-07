@@ -1,8 +1,6 @@
-from PySide6.QtWidgets import QLabel, QPushButton, QVBoxLayout, QWidget, QLineEdit, QTableWidget, QTableWidgetItem, QDialog, QCheckBox, QComboBox, QHeaderView
-from PySide6.QtGui import QIntValidator
+from PySide6.QtWidgets import QLabel, QPushButton, QVBoxLayout, QWidget, QTableWidget, QTableWidgetItem, QComboBox, QHeaderView
 from PySide6.QtCore import Qt, QDateTime, QTimer
 from views.partials.input_field import InputField, FormType
-from models.tournament import Tournament
 from controllers.tournament_controller import TournamentController
 from controllers.player_controller import PlayerController
 from repositories.player_repository import PlayerRepository
@@ -34,6 +32,7 @@ class TournamentManagerView(QWidget):
         self.layout.addWidget(self.label)
         
         self.combo_box = QComboBox()
+        self.combo_box.setObjectName("input")
 
         for tournament in self.tournament_controller.get_tournament_data():
             item = tournament.name

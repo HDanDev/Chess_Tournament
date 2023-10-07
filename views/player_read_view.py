@@ -1,10 +1,8 @@
-from PySide6.QtWidgets import QLabel, QPushButton, QVBoxLayout, QWidget, QTableWidget, QTableWidgetItem, QHeaderView, QDialog
+from PySide6.QtWidgets import QLabel, QPushButton, QVBoxLayout, QWidget, QTableWidget, QTableWidgetItem, QHeaderView
 from PySide6.QtCore import Qt, QDate, Signal
 from controllers.player_controller import PlayerController
 from controllers.tournament_controller import TournamentController
 from models.player import Player
-from views.partials.date_delegate import DateDelegate
-from functools import partial
 
 class PlayerReadView(QWidget):
     closed = Signal()

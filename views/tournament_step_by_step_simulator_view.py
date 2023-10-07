@@ -1,13 +1,9 @@
-from PySide6.QtWidgets import QLabel, QPushButton, QVBoxLayout, QWidget, QLineEdit, QTableWidget, QTableWidgetItem, QDialog, QCheckBox, QComboBox, QHBoxLayout, QDateEdit, QHeaderView
-from PySide6.QtCore import Qt, QDateTime
-from views.partials.input_field import InputField, FormType
-from models.tournament import Tournament
-from models.match import MatchResult
+from PySide6.QtWidgets import QLabel, QPushButton, QVBoxLayout, QWidget, QTableWidget, QTableWidgetItem
+from PySide6.QtCore import Qt
 from controllers.tournament_controller import TournamentController
 from repositories.player_repository import PlayerRepository
 from views.partials.date_delegate import DateDelegate
 from views.partials.int_delegate import IntDelegate
-from views.partials.centered_check_box_widget import CenteredCheckBoxWidget
 
 class TournamentStepByStepSimulatorView(QWidget):
     def __init__(self, nav, tournament):

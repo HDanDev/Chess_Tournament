@@ -1,6 +1,5 @@
 from PySide6.QtWidgets import QLabel, QPushButton, QVBoxLayout, QWidget, QComboBox
 from PySide6.QtCore import Qt
-from repositories.tournament_repository import TournamentRepository, Tournament
 from controllers.tournament_controller import TournamentController
 
 class TournamentManagerPickerView(QWidget):
@@ -17,6 +16,7 @@ class TournamentManagerPickerView(QWidget):
         self.layout.addWidget(self.label)        
 
         self.combo_box = QComboBox()
+        self.combo_box.setObjectName("input")
 
         # model = self.combo_box.model()
 

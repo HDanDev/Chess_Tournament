@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QTableWidgetItem, QHeaderView
+from PySide6.QtWidgets import QHeaderView
 from PySide6.QtCore import QDateTime, Qt
 from repositories.tournament_repository import TournamentRepository
 from models.match import MatchResult, Match
@@ -6,7 +6,6 @@ from controllers.player_controller import PlayerController
 from models.round import Round
 from models.tournament import Tournament
 import random 
-from datetime import datetime
 
 class TournamentController:
     

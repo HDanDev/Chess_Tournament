@@ -1,5 +1,4 @@
 from enum import Enum
-from PySide6.QtCore import Qt, QDate
 from repositories.player_repository import PlayerRepository
 
 class MatchResult(Enum):

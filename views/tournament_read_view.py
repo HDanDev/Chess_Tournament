@@ -1,8 +1,6 @@
-from PySide6.QtWidgets import QLabel, QPushButton, QVBoxLayout, QWidget, QTableWidget, QTableWidgetItem, QHeaderView, QDialog
+from PySide6.QtWidgets import QLabel, QPushButton, QVBoxLayout, QWidget, QTableWidget, QTableWidgetItem
 from PySide6.QtCore import Qt, QDateTime
-from PySide6.QtGui import QBrush, QColor
 from controllers.tournament_controller import TournamentController
-from models.tournament import Tournament
 from views.partials.date_delegate import DateDelegate
 from views.partials.int_delegate import IntDelegate
 from functools import partial
@@ -107,7 +105,7 @@ class TournamentReadView(QWidget):
             edited_tournament.start_date=QDateTime.fromString(self.table.item(row, 2).text(), Qt.ISODate)
             edited_tournament.end_date=QDateTime.fromString(self.table.item(row, 3).text(), Qt.ISODate)
             edited_tournament.num_rounds=int(self.table.item(row, 4).text())
-            edited_tournament.remarks=self.table.item(row, 6).text()
+            edited_tournament.remarks=self.table.item(row, 7).text()
                 
             self.tournament_controller.save_changes(edited_tournament)
         except Exception as e:

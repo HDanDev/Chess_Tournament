@@ -1,6 +1,6 @@
-from PySide6.QtWidgets import QMainWindow, QVBoxLayout, QWidget, QLabel, QHBoxLayout, QMenu, QMenuBar, QPushButton, QWidgetAction, QToolBar, QApplication, QScrollArea
+from PySide6.QtWidgets import QMainWindow, QVBoxLayout, QWidget, QLabel, QPushButton, QScrollArea
 from PySide6.QtCore import Qt, QFile
-from PySide6.QtGui import QPixmap, QIcon, QAction
+from PySide6.QtGui import QIcon, QAction
 from views.partials.nav import Nav
 
 class BaseView(QMainWindow):

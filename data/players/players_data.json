@@ -6,7 +6,7 @@
         "chess_id": "BH23789",
         "tournament_score": {
             "bfe15aa5-e3fc-4019-9914-e1a74e104d79": 1.0,
-            "39373d42-9512-4e21-9e9e-74e179b8d28d": 2.0
+            "39373d42-9512-4e21-9e9e-74e179b8d28d": 2.5
         }
     },
     {
@@ -16,7 +16,7 @@
         "chess_id": "JZ73145",
         "tournament_score": {
             "bfe15aa5-e3fc-4019-9914-e1a74e104d79": 1.5,
-            "39373d42-9512-4e21-9e9e-74e179b8d28d": 3.5
+            "39373d42-9512-4e21-9e9e-74e179b8d28d": 4.5
         }
     },
     {
@@ -26,7 +26,7 @@
         "chess_id": "SP03655",
         "tournament_score": {
             "bfe15aa5-e3fc-4019-9914-e1a74e104d79": 1.0,
-            "39373d42-9512-4e21-9e9e-74e179b8d28d": 0.5
+            "39373d42-9512-4e21-9e9e-74e179b8d28d": 1.0
         }
     },
     {
@@ -38,5 +38,12 @@
             "bfe15aa5-e3fc-4019-9914-e1a74e104d79": 0.5,
             "39373d42-9512-4e21-9e9e-74e179b8d28d": 2.0
         }
+    },
+    {
+        "first_name": "Henry",
+        "last_name": "Cave-Ville",
+        "date_of_birth": "1976-01-01",
+        "chess_id": "OB25872",
+        "tournament_score": {}
     }
 ]

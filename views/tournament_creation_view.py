@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QLabel, QPushButton, QVBoxLayout, QWidget, QLineEdit
+from PySide6.QtWidgets import QLabel, QPushButton, QVBoxLayout, QWidget
 from views.partials.input_field import InputField, FormType
 from models.tournament import Tournament
 from controllers.tournament_controller import TournamentController

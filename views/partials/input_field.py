@@ -1,5 +1,5 @@
-from PySide6.QtWidgets import QWidget, QLabel, QLineEdit, QVBoxLayout, QDateTimeEdit, QTextEdit, QComboBox, QDateEdit
-from PySide6.QtCore import QDateTime, QDate, QTime
+from PySide6.QtWidgets import QWidget, QLabel, QLineEdit, QDateTimeEdit, QTextEdit, QComboBox, QDateEdit
+from PySide6.QtCore import QDateTime, QDate
 from PySide6.QtGui import QIntValidator
 
 class FormType:
@@ -23,7 +23,7 @@ class InputField(QWidget):
         self._label.setObjectName(f"label-{self._label}")
         self._layout.addWidget(self._label)
         self._input = self.create_component(self, self._form_type)
-        self._input.setObjectName(f"input-{self._input}")
+        self._input.setObjectName(f"input")
         self._layout.addWidget(self._input)
         
     @staticmethod
