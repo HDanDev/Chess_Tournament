@@ -14,7 +14,6 @@ class TournamentReadView(QWidget):
         self.tournament_data = self.tournament_controller.get_tournament_data()
         # self.tournament = Tournament()
         self.date_delegate = DateDelegate(self)
-        self.int_delegate = IntDelegate(self)
         self.id_column = 9
         # self.backround_color = QBrush(QColor(200,200,200))
         # self.text_color = QBrush(QColor(140,140,140))
@@ -30,7 +29,6 @@ class TournamentReadView(QWidget):
         self.table.setColumnHidden(self.id_column, True) 
         # self.table.setItemDelegateForColumn(2, self.date_delegate)
         # self.table.setItemDelegateForColumn(3, self.date_delegate)   
-        self.table.setItemDelegateForColumn(4, self.int_delegate)
         
         self.sort_order = [Qt.AscendingOrder] * self.table.columnCount()
         self.table.horizontalHeader().sectionClicked.connect(self.sort_rows)
@@ -84,6 +82,8 @@ class TournamentReadView(QWidget):
         self.table.setItem(row_position, 2, start_date)
         self.table.setItem(row_position, 3, end_date)
         self.table.setItem(row_position, 4, num_rounds)
+        delegate = IntDelegate(min_value=tournament._current_round)
+        self.table.setItemDelegateForRow(row_position, delegate)
         self.table.setItem(row_position, 5, current_round)
         self.table.setItem(row_position, 6, total_registered_players)
         self.table.setItem(row_position, 7, remarks)
