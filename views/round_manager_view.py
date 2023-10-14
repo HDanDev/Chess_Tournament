@@ -6,7 +6,7 @@ from models.match import MatchResult
 from controllers.tournament_controller import TournamentController
 from repositories.player_repository import PlayerRepository
 from views.partials.date_delegate import DateDelegate
-from views.partials.int_delegate import IntDelegate
+# from views.partials.int_delegate import IntDelegate
 
 class RoundManager(QWidget):
     def __init__(self, nav, tournament):
@@ -17,7 +17,7 @@ class RoundManager(QWidget):
         self.tournament = tournament
         self.player_repository = PlayerRepository()
         self.date_delegate = DateDelegate(self)
-        self.int_delegate = IntDelegate(self)
+        # self.int_delegate = IntDelegate(self)
         self.all_players = self.player_repository.read_json()
         self.id_index_column = 3
         self.has_start_date_changed = False

@@ -2,7 +2,7 @@ from PySide6.QtWidgets import QLabel, QPushButton, QVBoxLayout, QWidget, QTableW
 from PySide6.QtCore import Qt, QDateTime
 from controllers.tournament_controller import TournamentController
 from views.partials.date_delegate import DateDelegate
-from views.partials.int_delegate import IntDelegate
+# from views.partials.int_delegate import IntDelegate
 from functools import partial
 
 class TournamentReadView(QWidget):
@@ -40,13 +40,13 @@ class TournamentReadView(QWidget):
         self.tournament_controller.setup_view(self)
 
     def populate_table(self):
-        
         for tournament in self.tournament_data:
             self.add_tournament_to_table(tournament)
             
         self.table.itemChanged.connect(self.handle_item_changed)    
        
     def add_tournament_to_table(self, tournament):
+        
         id = QTableWidgetItem(tournament.id)
         id.setFlags(id.flags() & ~Qt.ItemIsEnabled)
 
@@ -74,7 +74,7 @@ class TournamentReadView(QWidget):
         delete_btn.setObjectName("delete-button")
 
         remarks = QTableWidgetItem(tournament.remarks)
-                
+            
         row_position = self.table.rowCount()
         self.table.insertRow(row_position)
         self.table.setItem(row_position, 0, name)
@@ -82,8 +82,8 @@ class TournamentReadView(QWidget):
         self.table.setItem(row_position, 2, start_date)
         self.table.setItem(row_position, 3, end_date)
         self.table.setItem(row_position, 4, num_rounds)
-        delegate = IntDelegate(min_value=tournament._current_round)
-        self.table.setItemDelegateForRow(row_position, delegate)
+        # delegate = IntDelegate(min_value=tournament._current_round)
+        # self.table.setItemDelegateForRow(row_position, delegate)
         self.table.setItem(row_position, 5, current_round)
         self.table.setItem(row_position, 6, total_registered_players)
         self.table.setItem(row_position, 7, remarks)
@@ -103,7 +103,15 @@ class TournamentReadView(QWidget):
             edited_tournament.location=self.table.item(row, 1).text()
             edited_tournament.start_date=QDateTime.fromString(self.table.item(row, 2).text(), Qt.ISODate)
             edited_tournament.end_date=QDateTime.fromString(self.table.item(row, 3).text(), Qt.ISODate)
+            
+            if int(self.table.item(row, 4).text()) < edited_tournament.current_round: 
+                min_allowed_value = QTableWidgetItem(str(edited_tournament.current_round))
+                self.table.setItem(row, 4, min_allowed_value)
+            elif int(self.table.item(row, 4).text()) > 100 :
+                max_allowed_value = QTableWidgetItem(str(100))
+                self.table.setItem(row, 4, max_allowed_value)
             edited_tournament.num_rounds=int(self.table.item(row, 4).text())
+                
             edited_tournament.remarks=self.table.item(row, 7).text()
                 
             self.tournament_controller.save_changes(edited_tournament)

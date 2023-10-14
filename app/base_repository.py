@@ -1,4 +1,4 @@
-import json
+import json, os
 from models.player import Player
 from PySide6.QtCore import Qt, QDate
 
@@ -19,20 +19,39 @@ class BaseRepository:
             data = []
 
         data.append(serialized_obj)
-
-        with open(self._file_path, "w") as file:
-            json.dump(data, file, indent=4)    
+        
+        temp_file_path = self._file_path + ".temp"
+        is_success = False
+        
+        try:
+            with open(temp_file_path, "w") as file:
+                json.dump(data, file, indent=4)
+                is_success = True
+                
+        except Exception as e:
+            print(f"An error occurred: {str(e)}, therefore the json file has not been updated")
+            
+        if is_success : os.replace(temp_file_path, self._file_path)
             
     def clear_json(self):
         try:
             with open(self._file_path, 'r') as file:
                 data = json.load(file)
             data.clear()
-
-            with open(self._file_path, 'w') as file:
-                json.dump(data, file, indent=4)
-
-            print("All entries cleared from the JSON file.")
+        
+            temp_file_path = self._file_path + ".temp"
+            is_success = False
+        
+            try:
+                with open(temp_file_path, "w") as file:
+                    json.dump(data, file, indent=4)
+                    is_success = True
+                    print("All entries cleared from the JSON file.")
+                    
+            except Exception as e:
+                print(f"An error occurred: {str(e)}, therefore the json file has not been updated")
+                
+            if is_success : os.replace(temp_file_path, self._file_path)
             
         except FileNotFoundError as e:
             print(f"Could not find the file: {e}")
@@ -60,8 +79,20 @@ class BaseRepository:
     def write_json(self, data):
         try:
             serialized_data = [self._serialize(item) for item in data]
-            with open(self._file_path, 'w') as file:
-                json.dump(serialized_data, file, indent=4)
+            
+            temp_file_path = self._file_path + ".temp"
+            is_success = False
+        
+            try:
+                with open(temp_file_path, "w") as file:
+                    json.dump(serialized_data, file, indent=4)
+                    is_success = True
+                    
+            except Exception as e:
+                print(f"An error occurred: {str(e)}, therefore the json file has not been updated")
+                
+            if is_success : os.replace(temp_file_path, self._file_path)
+                
         except FileNotFoundError as e:
             print(f"Could not find the file: {e}")
         except json.JSONDecodeError:
@@ -77,9 +108,20 @@ class BaseRepository:
                 if getattr(item, self._attribute) == getattr(obj, self._attribute):
                     data[i] = obj
                     break
-            with open(self._file_path, 'w') as file:
-                serialized_data = [self._serialize(item) for item in data]
-                json.dump(serialized_data, file, indent=4)
+                
+            temp_file_path = self._file_path + ".temp"
+            is_success = False
+    
+            try:
+                with open(temp_file_path, "w") as file:
+                    serialized_data = [self._serialize(item) for item in data]
+                    json.dump(serialized_data, file, indent=4)
+                    is_success = True
+                    
+            except Exception as e:
+                print(f"An error occurred: {str(e)}, therefore the json file has not been updated")
+
+            if is_success : os.replace(temp_file_path, self._file_path)
                 
         except FileNotFoundError:
             print(f"Could not find the file: {self._file_path}")
@@ -96,10 +138,21 @@ class BaseRepository:
                 if getattr(item, self._attribute) == id:
                     data.remove(item)
                     break
+        
+            temp_file_path = self._file_path + ".temp"
+            is_success = False
+    
+            try:
+                with open(temp_file_path, "w") as file:
+                    serialized_data = [self._serialize(item) for item in data]
+                    json.dump(serialized_data, file, indent=4)
+                    is_success = True
+                    
+            except Exception as e:
+                print(f"An error occurred: {str(e)}, therefore the json file has not been updated")
 
-            with open(self._file_path, 'w') as file:
-                serialized_data = [self._serialize(item) for item in data]
-                json.dump(serialized_data, file, indent=4)
+            if is_success : os.replace(temp_file_path, self._file_path)
+                
         except FileNotFoundError:
             print(f"Could not find the file: {self._file_path}")
         except json.JSONDecodeError:

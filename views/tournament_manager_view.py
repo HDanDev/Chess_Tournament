@@ -5,7 +5,7 @@ from controllers.tournament_controller import TournamentController
 from controllers.player_controller import PlayerController
 from repositories.player_repository import PlayerRepository
 from views.partials.date_delegate import DateDelegate
-from views.partials.int_delegate import IntDelegate
+# from views.partials.int_delegate import IntDelegate
 from views.partials.centered_check_box_widget import CenteredCheckBoxWidget
 from views.player_read_view import PlayerReadView
 
@@ -19,7 +19,7 @@ class TournamentManagerView(QWidget):
         self.tournament = tournament
         self.player_repository = PlayerRepository()
         self.date_delegate = DateDelegate(self)
-        self.int_delegate = IntDelegate(self)
+        # self.int_delegate = IntDelegate(self)
         self.all_players = self.player_repository.read_json()
         self.id_player_table_column = 3
         self.registered_players_column = 6
@@ -94,7 +94,7 @@ class TournamentManagerView(QWidget):
         id.setFlags(id.flags() & ~Qt.ItemIsEnabled)
         # self.table.setItemDelegateForColumn(2, self.date_delegate)
         # self.table.setItemDelegateForColumn(3, self.date_delegate)
-        self.table.setItemDelegateForColumn(4, self.int_delegate)
+        # self.table.setItemDelegateForColumn(4, self.int_delegate)
 
         name = QTableWidgetItem(self.tournament.name)
         location = QTableWidgetItem(self.tournament.location)
@@ -147,6 +147,12 @@ class TournamentManagerView(QWidget):
                 edited_tournament.location=self.table.item(row, 1).text()
                 edited_tournament.start_date=QDateTime.fromString(self.table.item(row, 2).text(), Qt.ISODate)
                 edited_tournament.end_date=QDateTime.fromString(self.table.item(row, 3).text(), Qt.ISODate)
+                if int(self.table.item(row, 4).text()) < edited_tournament.current_round: 
+                    min_allowed_value = QTableWidgetItem(str(edited_tournament.current_round))
+                    self.table.setItem(row, 4, min_allowed_value)
+                elif int(self.table.item(row, 4).text()) > 100 :
+                    max_allowed_value = QTableWidgetItem(str(100))
+                    self.table.setItem(row, 4, max_allowed_value)
                 edited_tournament.num_rounds=int(self.table.item(row, 4).text())
                 edited_tournament.current_round=int(self.table.item(row, 5).text())
                 edited_tournament.remarks=self.table.item(row, 7).text()

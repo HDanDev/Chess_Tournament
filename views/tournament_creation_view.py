@@ -20,7 +20,7 @@ class TournamentCreationView(QWidget):
         self.start_date = InputField(self.layout, "Start date", "Starting date", FormType.DateTime)
         self.end_date = InputField(self.layout, "End date", "Ending date", FormType.DateTime)
         self._num_rounds = InputField(self.layout, "Number of rounds", "Number of rounds", FormType.Numerical)
-        self.players = InputField(self.layout, "Registered player", "Registered player", FormType.Combo)
+        # self.players = InputField(self.layout, "Registered player", "Registered player", FormType.Combo)
         self.remarks = InputField(self.layout, "Remarks", "Remarks", FormType.LongText)
 
         self.register_button = QPushButton("Register")

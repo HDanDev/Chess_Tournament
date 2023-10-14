@@ -1,7 +1,7 @@
 from . import BaseRepository
 from PySide6.QtCore import Qt, QDate
 from models.player import Player
-import json
+import json, os
 
 class PlayerRepository(BaseRepository):
     PLAYER_JSON_FILE_PATH = './data/players/players_data.json'
@@ -27,9 +27,19 @@ class PlayerRepository(BaseRepository):
 
         if serialized_player:
             data.append(serialized_player)
+    
+        temp_file_path = self._file_path + ".temp"
+        is_success = False
 
-        with open(self._file_path, "w") as file:
-            json.dump(data, file, indent=4)
+        try:
+            with open(temp_file_path, "w") as file:
+                json.dump(data, file, indent=4)
+                is_success = False
+                
+        except Exception as e:
+            print(f"An error occurred: {str(e)}, therefore the json file has not been updated")
+            
+        if is_success : os.replace(temp_file_path, self._file_path)
             
     def __is_id_assigned(self, new_id, assigned_ids):
         return new_id in assigned_ids
