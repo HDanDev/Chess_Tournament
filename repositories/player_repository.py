@@ -34,7 +34,7 @@ class PlayerRepository(BaseRepository):
         try:
             with open(temp_file_path, "w") as file:
                 json.dump(data, file, indent=4)
-                is_success = False
+                is_success = True
                 
         except Exception as e:
             print(f"An error occurred: {str(e)}, therefore the json file has not been updated")

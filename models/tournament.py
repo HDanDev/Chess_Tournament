@@ -2,7 +2,7 @@ import uuid
 from PySide6.QtCore import QDateTime
 
 class Tournament:
-    def __init__(self, name, location, start_date="", end_date="", id="",num_rounds=4, current_round=1, remarks=""):
+    def __init__(self, name="Untitled tournament", location="Undefined location", start_date="", end_date="", id="",num_rounds=4, current_round=1, remarks=""):
         self._id = id if id != "" else str(uuid.uuid4())
         self._name = name
         self._location = location

@@ -35,6 +35,7 @@ class TournamentManagerPickerView(QWidget):
         # self.combo_box.currentIndexChanged.connect(self.select_tournament)
         
         self.setLayout(self.layout)
+        self.layout.addStretch()        
         
     def select_tournament(self):
         index = self.combo_box.currentIndex()
