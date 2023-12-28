@@ -6,6 +6,7 @@ from controllers.tournament_controller import TournamentController
 from controllers.player_controller import PlayerController
 from repositories.player_repository import PlayerRepository
 from views.partials.date_delegate import DateDelegate
+import random
 # from views.partials.int_delegate import IntDelegate
 
 class RoundReadView(QWidget):
@@ -26,7 +27,7 @@ class RoundReadView(QWidget):
         
         self.layout = QVBoxLayout()
         
-        return_button = QPushButton('Return', self)
+        return_button = QPushButton('Go back to manager', self)
         return_button.clicked.connect(self.return_button_clicked)
 
         self.table = QTreeWidget(self)
@@ -48,6 +49,7 @@ class RoundReadView(QWidget):
             tournament_item = QTreeWidgetItem(self.table, [round.name])
 
             for match in round.matches:
+                string_color = "color" + str(random.randint(1,7))
                 self.previous_result = match.result
                 match_item = QTreeWidgetItem(tournament_item)
                 nested_widget = QWidget()
@@ -55,9 +57,11 @@ class RoundReadView(QWidget):
                 nested_layout = QVBoxLayout(nested_widget)
                 combo_layout = QHBoxLayout(combo_widget)
                 combo_layout.setAlignment(Qt.AlignLeft)
-                string_result = f"Result : {match.get_winner()}"
+                string_result = f"--> Result : * {match.get_winner()} *"
                 combo_label = QLabel(string_result)
+                combo_label.setObjectName("result")
                 round_name = QLabel(match.get_match_name())
+                round_name.setObjectName(string_color)
                 
                 # combo_box = QComboBox()
                 # combo_box.addItem("Ex Aequo")

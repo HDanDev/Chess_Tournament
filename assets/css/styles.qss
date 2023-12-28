@@ -28,6 +28,14 @@ QTableWidget {
     font-family: "Comfortaa";
 }
 
+QTreeWidget {
+    background-color: rgba(255, 198, 219, 1);
+    color: #ee8187;
+    border: none;
+    font-family: "Comfortaa";
+    font-size: 16px;
+}
+
 QHeaderView {
     background-color: rgba(255, 198, 219, 1);
 }
@@ -142,4 +150,36 @@ QMenuBar::item:selected {
 
 #delete-button:hover {
     background-color: #ee8187; /* Red background color on hover */
+}
+
+#color1 {
+    color: #5187d8;
+}
+
+#color2 {
+    color: #7058c7;
+}
+
+#color3 {
+    color: #d34848;
+}
+
+#color4 {
+    color: #d48824;
+}
+
+#color5 {
+    color: #21a6aa;
+}
+
+#color6 {
+    color: #36b366;
+}
+
+#color7 {
+    color: #ffb856ab;
+}
+
+#result {
+    color: #b9537a;
 }
