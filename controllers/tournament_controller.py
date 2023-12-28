@@ -19,8 +19,8 @@ class TournamentController:
     def setup_view(self, view):
         self.view = view
         self.view.populate_table()
-        self.view.table.horizontalHeader().setStretchLastSection(True)
-        self.view.table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        # self.view.table.horizontalHeader().setStretchLastSection(True)
+        # self.view.table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         
     def get_tournament_data(self):
         return self.tournament_repository.read_json()
@@ -88,6 +88,13 @@ class TournamentController:
             self.tournament.update_player_score(match.score[1][0], match.score[1][1])                     
             self.player_controller.save_changes(match.score[0][0])
             self.player_controller.save_changes(match.score[1][0])  
+            
+    def modify_matches_results(self, match, score_1, score_2):
+        match.player1.update_points(self.tournament.id, score_1)
+        match.player2.update_points(self.tournament.id, score_2)
+        self.player_controller.save_changes(match.player1)
+        self.player_controller.save_changes(match.player2)  
+        print("ok")
             
     def generate_random_results(self, round):
         outcome = list(MatchResult)                

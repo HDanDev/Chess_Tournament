@@ -69,6 +69,7 @@ class Player:
         if tournament_id not in self.points:
             self.points[tournament_id] = 0
         self.points[tournament_id] = float(self.points[tournament_id]) + float(score)
+        print(f"{float(self.points[tournament_id])} + {float(score)} = {self.points[tournament_id]}")
     
     @staticmethod
     def is_null_or_white_space(string):

@@ -8,6 +8,7 @@ from views.partials.date_delegate import DateDelegate
 # from views.partials.int_delegate import IntDelegate
 from views.partials.centered_check_box_widget import CenteredCheckBoxWidget
 from views.player_read_view import PlayerReadView
+from views.round_read_view import RoundReadView
 
 class TournamentManagerView(QWidget):
     def __init__(self, nav, tournament, index=0):
@@ -82,6 +83,10 @@ class TournamentManagerView(QWidget):
         self.start_simulation_btn = QPushButton("Simulate whole tournament")
         self.start_simulation_btn.clicked.connect(self.start_simulation)
         self.layout.addWidget(self.start_simulation_btn)
+        
+        self.view_round_button = QPushButton("See rounds results")
+        self.view_round_button.clicked.connect(self.see_rounds)
+        self.layout.addWidget(self.view_round_button)
         
         self.toggle_buttons_visibility_check()       
         self.create_main_table()
@@ -271,6 +276,7 @@ class TournamentManagerView(QWidget):
         self.start_simulation_btn.setVisible(True) if int(tournament.num_rounds) > len(tournament.rounds) and len(tournament.registered_players) > 0 and len(tournament.registered_players) % 2 == 0 else self.start_simulation_btn.setVisible(False)
         self.manage_next_round.setVisible(True) if int(tournament.num_rounds) > len(tournament.rounds) and len(tournament.registered_players) > 0 and len(tournament.registered_players) % 2 == 0 else self.manage_next_round.setVisible(False)
         self.simulate_next_round.setVisible(True) if int(tournament.num_rounds) > len(tournament.rounds) and len(tournament.registered_players) > 0 and len(tournament.registered_players) % 2 == 0 else self.simulate_next_round.setVisible(False)
+        self.view_round_button.setVisible(True) if len(tournament.rounds) > 0 and len(tournament.registered_players) > 0 and len(tournament.registered_players) % 2 == 0 else self.view_round_button.setVisible(False)
         
     def auto_select_players(self):
         self.tournament_controller.clear_registered_players()
@@ -346,6 +352,12 @@ class TournamentManagerView(QWidget):
             # if int(self.tournament.current_round) > 1 and int(self.tournament.num_rounds) == len(self.tournament.rounds): self.players_list.hide_delete_column()
             self.players_list.show()
             # players_list.hide_delete_column()
+            
+    def see_rounds(self):
+        index = self.combo_box.currentIndex()
+        selected_tournament = self.combo_box.itemData(index, role=Qt.UserRole)
+        if selected_tournament:
+            self._nav.switch_to_rounds_read(self.tournament) 
             
     def _check_view_player_button_visibility(self):
         self.view_player_button.setVisible(True) if self.tournament and len(self.tournament.registered_players) > 0 else self.view_player_button.setVisible(False)            

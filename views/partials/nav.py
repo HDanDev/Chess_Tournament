@@ -6,6 +6,7 @@ from views.tournament_simulator_view import TournamentSimulatorView
 from views.tournament_manager_picker_view import TournamentManagerPickerView
 from views.player_creation_view import PlayerCreationView
 from views.player_read_view import PlayerReadView
+from views.round_read_view import RoundReadView
 from views.tournament_step_by_step_simulator_view import TournamentStepByStepSimulatorView
 from views.round_manager_view import RoundManager
 
@@ -54,4 +55,8 @@ class Nav:
         
     def switch_to_player_read(self):
         player_read_view = PlayerReadView(self)
-        self._base_view.switch_view(player_read_view, "Chess Manager - Player view")
+        self._base_view.switch_view(player_read_view, "Chess Manager - Players view")
+        
+    def switch_to_rounds_read(self, tournament):
+        rounds_read_view = RoundReadView(self, tournament)
+        self._base_view.switch_view(rounds_read_view, "Chess Manager - Rounds view")
