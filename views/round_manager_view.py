@@ -103,6 +103,18 @@ class RoundManager(QWidget):
         self.layout.addWidget(self.next_auto)
         self.layout.addWidget(self.all_auto) 
         
+        self.message = QLabel()
+        self.message.setObjectName("error")
+        self.message.setAlignment(Qt.AlignHCenter)
+        self.layout.addWidget(self.message)
+        
+        self.view_round_button = QPushButton("Go to results")
+        self.view_round_button.clicked.connect(self.see_rounds)
+        self.view_round_button.setVisible(False)
+        self.layout.addWidget(self.view_round_button)
+        
+        self.layout.addStretch()  
+        
     def save_changes(self, combo_boxes_data, round, round_name=None, round_start_date=None, round_end_date=None):
         if combo_boxes_data:
             usable_data = []
@@ -147,22 +159,33 @@ class RoundManager(QWidget):
         if int(self.tournament.current_round) < int(self.tournament.num_rounds):
             self.nav.switch_to_round_manager(self.tournament) 
         else: 
-            print("Tournament is over")
-            self.save_btn.setVisible(False)           
+            self.message.setText("Tournament is over")
+            self.save_btn.setVisible(False)
+            self.next_auto.setVisible(False)
+            self.all_auto.setVisible(False) 
+            self.view_round_button.setVisible(True)         
             
     def simulate_next(self, combo_boxes_data, round, round_name=None, round_start_date=None, round_end_date=None):
         self.save_changes(combo_boxes_data, round, round_name, round_start_date, round_end_date)
         if int(self.tournament.current_round) < int(self.tournament.num_rounds):
             self.nav.switch_to_tournament_step_by_step_simulator(self.tournament) 
         else: 
-            print("Tournament is over")
+            self.message.setText("Tournament is over")
+            self.save_btn.setVisible(False)
             self.next_auto.setVisible(False)
+            self.all_auto.setVisible(False)
+            self.view_round_button.setVisible(True)         
             
     def simulate_all(self, combo_boxes_data, round, round_name=None, round_start_date=None, round_end_date=None):
         self.save_changes(combo_boxes_data, round, round_name, round_start_date, round_end_date)
         if int(self.tournament.current_round) < int(self.tournament.num_rounds):
             self.nav.switch_to_tournament_simulator(self.tournament) 
         else: 
-            print("Tournament is over")
+            self.message.setText("Tournament is over")
+            self.save_btn.setVisible(False)
+            self.next_auto.setVisible(False)
             self.all_auto.setVisible(False)
+            self.view_round_button.setVisible(True)         
         
+    def see_rounds(self):
+        self.nav.switch_to_rounds_read(self.tournament) 

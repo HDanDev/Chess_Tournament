@@ -70,21 +70,33 @@ class TournamentStepByStepSimulatorView(QWidget):
         
         self.layout.addWidget(title)
         self.layout.addWidget(round_table)
-            
-        self.next_manual = QPushButton("Manage next round")
-        self.next_manual.clicked.connect(self.next_round)
-        
-        self.next_auto = QPushButton("Simulate next round")
-        self.next_auto.clicked.connect(self.simulate_next)
-        
-        self.all_auto = QPushButton("Simulate whole tournament")
-        self.all_auto.clicked.connect(self.simulate_all)
-        
         self.layout.addWidget(round_table)
-        self.layout.addWidget(self.next_manual)
-        self.layout.addWidget(self.next_auto)
-        self.layout.addWidget(self.all_auto) 
+        
+        self.message = QLabel()
+        self.message.setObjectName("error")
+        self.message.setAlignment(Qt.AlignHCenter)
+        self.layout.addWidget(self.message)
+                  
+        if int(self.tournament.current_round) < int(self.tournament.num_rounds):
+            self.next_manual = QPushButton("Manage next round")
+            self.next_manual.clicked.connect(self.next_round)
             
+            self.next_auto = QPushButton("Simulate next round")
+            self.next_auto.clicked.connect(self.simulate_next)
+            
+            self.all_auto = QPushButton("Simulate whole tournament")
+            self.all_auto.clicked.connect(self.simulate_all)
+            
+            self.layout.addWidget(self.next_manual)
+            self.layout.addWidget(self.next_auto)
+            self.layout.addWidget(self.all_auto) 
+        else:
+            self.message.setText("Tournament is over")
+            self.view_round_button = QPushButton("Go to results")
+            self.view_round_button.clicked.connect(self.see_rounds)
+            self.layout.addWidget(self.view_round_button)
+            self.layout.addStretch()        
+        
     def resize_table_to_content(self, table):
         total_height = table.horizontalHeader().height()
         for row in range(table.rowCount()):
@@ -96,19 +108,29 @@ class TournamentStepByStepSimulatorView(QWidget):
         if int(self.tournament.current_round) < int(self.tournament.num_rounds):
             self.nav.switch_to_round_manager(self.tournament) 
         else: 
-            print("Tournament is over")
+            self.message.setText("Tournament is over")
             self.next_manual.setVisible(False)
+            self.next_auto.setVisible(False)
+            self.all_auto.setVisible(False)
             
     def simulate_next(self):
         if int(self.tournament.current_round) < int(self.tournament.num_rounds):
             self.nav.switch_to_tournament_step_by_step_simulator(self.tournament) 
         else: 
-            print("Tournament is over")
+            self.message.setText("Tournament is over")
+            self.next_manual.setVisible(False)
             self.next_auto.setVisible(False)
+            self.all_auto.setVisible(False)
             
     def simulate_all(self):
         if int(self.tournament.current_round) < int(self.tournament.num_rounds):
             self.nav.switch_to_tournament_simulator(self.tournament) 
         else: 
-            print("Tournament is over")
+            self.message.setText("Tournament is over")
+            self.next_manual.setVisible(False)
+            self.next_auto.setVisible(False)
             self.all_auto.setVisible(False)
+            
+    def see_rounds(self):
+        self.nav.switch_to_rounds_read(self.tournament) 
+            

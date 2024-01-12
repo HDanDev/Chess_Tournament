@@ -162,6 +162,7 @@ class TournamentManagerView(QWidget):
                 edited_tournament.current_round=int(self.table.item(row, 5).text())
                 edited_tournament.remarks=self.table.item(row, 7).text()
                     
+                self.tournament = edited_tournament
                 self.tournament_controller.save_changes(edited_tournament)
                 self.toggle_buttons_visibility_check(edited_tournament)
             except Exception as e:

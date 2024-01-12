@@ -47,20 +47,17 @@ class TournamentSimulatorView(QWidget):
             print(f"length : {len(self.tournament.rounds)}")           
             self.tournament_controller.generate_pairs(current_round=int(current_round), is_simulation=True) 
             self.create_round_table(self.tournament.rounds[int(i)])
-                  
-        self.next_manual = QPushButton("Manage next round")
-        self.next_manual.clicked.connect(self.next_round)
-        
-        self.next_auto = QPushButton("Simulate next round")
-        self.next_auto.clicked.connect(self.simulate_next)
-        
-        self.all_auto = QPushButton("Simulate whole tournament")
-        self.all_auto.clicked.connect(self.simulate_all)
-        
-        self.layout.addWidget(self.next_manual)
-        self.layout.addWidget(self.next_auto)
-        self.layout.addWidget(self.all_auto)     
+            
+        self.message = QLabel("Tournament is over")
+        self.message.setAlignment(Qt.AlignHCenter)
+        self.message.setObjectName("error")
+        self.layout.addWidget(self.message)   
 
+        self.view_round_button = QPushButton("Go to results")
+        self.view_round_button.clicked.connect(self.see_rounds)
+        self.layout.addWidget(self.view_round_button)
+        self.layout.addStretch()        
+        
     def create_round_table(self, round):
         title = QLabel(f"Round \"{round.name}\" ended at {round.end_datetime.toString('dddd, yyyy-MM-dd HH:mm:ss')}")
         round_table = QTableWidget()
@@ -93,23 +90,5 @@ class TournamentSimulatorView(QWidget):
         
         table.setFixedHeight(total_height)   
         
-    def next_round(self):
-        if int(self.tournament.current_round) < int(self.tournament.num_rounds):
-            self.nav.switch_to_round_manager(self.tournament) 
-        else: 
-            print("Tournament is over")
-            self.next_manual.setVisible(False)
-            
-    def simulate_next(self):
-        if int(self.tournament.current_round) < int(self.tournament.num_rounds):
-            self.nav.switch_to_tournament_step_by_step_simulator(self.tournament) 
-        else: 
-            print("Tournament is over")
-            self.next_auto.setVisible(False)
-            
-    def simulate_all(self):
-        if int(self.tournament.current_round) < int(self.tournament.num_rounds):
-            self.nav.switch_to_tournament_simulator(self.tournament) 
-        else: 
-            print("Tournament is over")
-            self.all_auto.setVisible(False)
+    def see_rounds(self):
+        self.nav.switch_to_rounds_read(self.tournament) 

@@ -152,6 +152,16 @@ QMenuBar::item:selected {
     background-color: #ee8187; /* Red background color on hover */
 }
 
+#success {
+    color: #1272aa;
+    font-weight: bold;
+}
+
+#error {
+    color: #fd3c35;
+    font-weight: bold;
+}
+
 #color1 {
     color: #5187d8;
 }
