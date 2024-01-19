@@ -1,9 +1,14 @@
-import re 
+import re
 import string
 import random
 
+
 class Player:
-    def __init__(self, last_name="", first_name="", date_of_birth="", chess_id=""):
+    def __init__(self, last_name="",
+                 first_name="",
+                 date_of_birth="",
+                 chess_id=""
+                 ):
         self._last_name = last_name
         self._first_name = first_name
         self._date_of_birth = date_of_birth
@@ -43,11 +48,15 @@ class Player:
         if self.is_null_or_white_space(value):
             self._chess_id = self.generate_chess_id()
         else:
-            if not re.match(r'^[A-Za-z]{2}\d{5}$', value):
-                raise ValueError("The chess ID should match the two letters followed by five numbers mandatory format.")
+            if not re.match(r"^[A-Za-z]{2}\d{5}$", value):
+                raise ValueError(
+                    "The chess ID should match "
+                    "the two letters followed "
+                    "by five numbers mandatory format."
+                )
 
             self._chess_id = value.upper()
-            
+
     @property
     def points(self):
         return self._points
@@ -58,29 +67,37 @@ class Player:
 
     def get_full_name(self):
         return f"{self._first_name} {self._last_name} ({self._chess_id})"
-    
-    def get_points(self, tournament_id):  
+
+    def get_points(self, tournament_id):
         return self.points.get(tournament_id, 0)
-    
+
     def set_points(self, key, value):
         self.points[key] = value
-    
+
     def update_points(self, tournament_id, score):
         if tournament_id not in self.points:
             self.points[tournament_id] = 0
-        self.points[tournament_id] = float(self.points[tournament_id]) + float(score)
-        print(f"{float(self.points[tournament_id])} + {float(score)} = {self.points[tournament_id]}")
-    
+        self.points[tournament_id] = (
+            float(self.points[tournament_id])
+            + float(score)
+        )
+        print(
+            f"{float(self.points[tournament_id])} "
+            f"+ {float(score)} = {self.points[tournament_id]}"
+        )
+
     @staticmethod
     def is_null_or_white_space(string):
         return string is None or len(string.strip()) == 0
-    
-    @staticmethod    
+
+    @staticmethod
     def generate_chess_id():
-        letters = ''.join(random.choice(string.ascii_letters) for _ in range(2))
-    
-        digits = ''.join(random.choice(string.digits) for _ in range(5))
-    
+        letters = (
+            "".join(random.choice(string.ascii_letters) for _ in range(2))
+            )
+
+        digits = "".join(random.choice(string.digits) for _ in range(5))
+
         chess_id = (letters + digits).upper()
-    
+
         return chess_id

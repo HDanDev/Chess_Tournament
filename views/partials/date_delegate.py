@@ -1,6 +1,7 @@
 from PySide6.QtWidgets import QItemDelegate, QDateTimeEdit
 from PySide6.QtCore import QDateTime, Qt
 
+
 class DateDelegate(QItemDelegate):
     def createEditor(self, parent, option, index):
         editor = QDateTimeEdit(parent)
