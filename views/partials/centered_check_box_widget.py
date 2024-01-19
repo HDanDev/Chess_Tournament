@@ -1,6 +1,7 @@
 from PySide6.QtWidgets import QHBoxLayout, QCheckBox, QWidget
 from PySide6.QtCore import Qt, Signal
 
+
 class CenteredCheckBoxWidget(QWidget):
     stateChanged = Signal(int)
 

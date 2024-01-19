@@ -1,6 +1,7 @@
 from PySide6.QtWidgets import QItemDelegate, QSpinBox
 from PySide6.QtCore import Qt
 
+
 class IntDelegate(QItemDelegate):
     def __init__(self, parent=None, min_value=1, max_value=100):
         super().__init__(parent)
