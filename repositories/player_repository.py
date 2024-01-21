@@ -1,4 +1,4 @@
-from . import BaseRepository
+from app.base_repository import BaseRepository
 from PySide6.QtCore import Qt
 from PySide6.QtCore import QDate
 from models.player import Player
