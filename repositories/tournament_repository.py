@@ -1,4 +1,4 @@
-from . import BaseRepository
+from app.base_repository import BaseRepository
 from PySide6.QtCore import Qt, QDateTime
 from models.tournament import Tournament
 from models.round import Round
