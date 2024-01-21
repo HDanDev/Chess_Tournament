@@ -49,20 +49,20 @@ py main.py
 
 Installing flake8-html via pip:
 
-    ```bash
-    pip install flake8 flake8-html
-    ```
+```bash
+pip install flake8 flake8-html
+```
 
 Run the flake8-html command line instruction to generate the desired files:
 
-    ```bash
-    flake8 --max-line-length=119 --format=html --htmldir=flake8-report
-    ```
+```bash
+flake8 --max-line-length=119 --format=html --htmldir=flake8-report
+```
 
 Open the generated HTML report:
 
  ```bash
-    open flake8-report/index.html        # On macOS
-    start flake8-report/index.html       # On Windows
-    xdg-open flake8-report/index.html    # On Linux
+open flake8-report/index.html        # On macOS
+start flake8-report/index.html       # On Windows
+xdg-open flake8-report/index.html    # On Linux
 
