@@ -134,13 +134,15 @@ class TournamentController:
                     opponents_count[opponent] += 1
                 else:
                     opponents_count[opponent] = 1
+                    
+        print(opponents_count)
 
         return opponents_count
             
     def find_player_with_least_fought_opponent(self, player, players, excluded_players):
         opponents_count = self.get_opponents_count(player)
         valid_opponents = [opponent for opponent in players if opponent.chess_id != player.chess_id and opponent.chess_id not in excluded_players]
-        least_fought_opponent = min(valid_opponents, key=lambda x: opponents_count.get(x.chess_id, 0), default=None)
+        least_fought_opponent = min(valid_opponents, key=lambda x: opponents_count.get(x, 0), default=None)
         
         return least_fought_opponent
 
