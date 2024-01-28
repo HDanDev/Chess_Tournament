@@ -68,12 +68,24 @@ class TournamentController:
                 # key=lambda player: player[1], reverse=True
                 # )
 
-            for i in range(0, len(sorted_players), 2):
-                if i + 1 < len(sorted_players):
+            already_paired_players = []
+
+            for player in sorted_players:
+                if player.chess_id not in already_paired_players:
                     new_match = Match()
-                    new_match.player1 = sorted_players[i]
-                    new_match.player2 = sorted_players[i + 1]
+                    new_match.player1 = player
+                    new_match.player2 = self.find_player_with_least_fought_opponent(
+                        player, sorted_players, already_paired_players
+                        )
                     new_round.add_match(new_match)
+                    already_paired_players += [new_match.player1.chess_id, new_match.player2.chess_id]
+
+            # for i in range(0, len(sorted_players), 2):
+            #     if i + 1 < len(sorted_players):
+            #         new_match = Match()
+            #         new_match.player1 = sorted_players[i]
+            #         new_match.player2 = sorted_players[i + 1]
+            #         new_round.add_match(new_match)
 
             self.tournament.add_round(new_round)
 
@@ -108,6 +120,38 @@ class TournamentController:
             self.player_controller.save_changes(
                 match.score[1][0]
                 )
+
+    def get_opponents_count(self, player):
+        opponents_count = {}
+        for round in self.tournament.rounds:
+            for match in round.matches:
+                if player == match.player1:
+                    opponent = match.player2
+                elif player == match.player2:
+                    opponent = match.player1
+                else:
+                    continue
+
+                if opponent in opponents_count:
+                    opponents_count[opponent] += 1
+                else:
+                    opponents_count[opponent] = 1
+
+        print(opponents_count)
+
+        return opponents_count
+
+    def find_player_with_least_fought_opponent(
+            self, player, players, excluded_players
+            ):
+        opponents_count = self.get_opponents_count(player)
+        valid_opponents = [
+            opponent for opponent in players if opponent.chess_id != player.chess_id
+            and opponent.chess_id not in excluded_players
+            ]
+        least_fought_opponent = min(valid_opponents, key=lambda x: opponents_count.get(x, 0), default=None)
+
+        return least_fought_opponent
 
     def modify_matches_results(self, match, score_1, score_2):
         match.player1.update_points(self.tournament.id, score_1)
